@@ -1,10 +1,41 @@
 // Portfolio data — single source of truth
 export const PARTNERS = [
-  "CITY CIVILS",
-  "PRIME EXTERIOR CLEANING FIFE",
-  "LASHMEK & CO",
-  "ACE OF SPADES LANDSCAPES",
-  "B&A LAMBSC.",
+  {
+    name: "City Civils",
+    src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/afl9bojg_Copy%20of%20C%20%281%29.png",
+  },
+  {
+    name: "LashMek & Co",
+    src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/cumbqz89_Copy%20of%20C%20%282%29.png",
+  },
+  {
+    name: "Celunéa Skincare",
+    src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/d5aoyplk_Copy%20of%20C%20%2813%29.png",
+  },
+  {
+    name: "EDN Renovation Group",
+    src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/ecm2ahxa_Copy%20of%20C%20%2814%29.png",
+  },
+  {
+    name: "B&A Landscaping",
+    src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/icj99f3b_B%26A%20LANDSCAPING.png",
+  },
+  {
+    name: "MA Home Interiors",
+    src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/5gj3usg5_Copy%20of%20C%20%2818%29.png",
+  },
+  {
+    name: "Refined Spaces",
+    src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/21sqgwu2_Copy%20of%20C%20%2817%29.png",
+  },
+  {
+    name: "Pulse Performance",
+    src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/vojuu1i2_Copy%20of%20C%20%2816%29.png",
+  },
+  {
+    name: "Ace Of Spades Landscapes",
+    src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/2jovh8s3_Copy%20of%20C%20%2815%29.png",
+  },
 ];
 
 // Verified asset → brand mapping:

@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { PARTNERS } from "../../data/portfolio";
 
 export const TrustedBy = () => {
-  const items = [...PARTNERS, ...PARTNERS]; // duplicated for seamless marquee
+  // Duplicate the list for a seamless infinite marquee
+  const items = [...PARTNERS, ...PARTNERS];
   return (
     <section
       data-testid="trusted-by"
@@ -15,23 +16,31 @@ export const TrustedBy = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="text-center font-heading text-[10.5px] sm:text-[11px] tracking-[0.32em] uppercase text-white/40 mb-10"
+          className="text-center font-heading text-[10.5px] sm:text-[11px] tracking-[0.32em] uppercase text-white/40 mb-12"
         >
           Trusted by ambitious brands
         </motion.p>
 
         <div className="relative gradient-fade-x">
           <div
-            className="flex w-max items-center gap-12 sm:gap-20 animate-logo-marquee whitespace-nowrap"
             data-testid="trusted-logos"
+            className="flex w-max items-center gap-12 sm:gap-20 lg:gap-24 animate-logo-marquee whitespace-nowrap"
           >
-            {items.map((name, i) => (
-              <span
-                key={`${name}-${i}`}
-                className="font-display text-2xl sm:text-3xl lg:text-4xl uppercase tracking-[0.04em] text-white/35 hover:text-white/80 transition-colors"
+            {items.map((p, i) => (
+              <div
+                key={`${p.name}-${i}`}
+                className="shrink-0 h-16 sm:h-20 w-40 sm:w-52 grid place-items-center opacity-90 hover:opacity-100 transition-opacity duration-300"
+                title={p.name}
+                aria-label={p.name}
               >
-                {name}
-              </span>
+                <img
+                  src={p.src}
+                  alt={p.name}
+                  loading="lazy"
+                  draggable={false}
+                  className="max-h-full max-w-full object-contain"
+                />
+              </div>
             ))}
           </div>
         </div>
