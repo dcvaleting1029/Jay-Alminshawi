@@ -21,11 +21,6 @@ export const PROJECTS = [
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/yhaksnqh_ChatGPT%20Image%20Jun%2013%2C%202026%2C%2006_08_36%20AM.png",
   },
   {
-    name: "Prime Exterior Cleaning",
-    category: "Exterior Cleaning",
-    image: "https://images.unsplash.com/photo-1697292859724-0d2501966448?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwxfHxkYXJrJTIwc2xlZWslMjBtb2Rlcm4lMjB3ZWJzaXRlJTIwbW9ja3VwfGVufDB8fHx8MTc4MTM1NjM0MHww&ixlib=rb-4.1.0&q=85",
-  },
-  {
     name: "Ace Of Spades",
     category: "Landscaping",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/79at75kh_Ace%20of%20Spades%20Landscapes%20Homepage%20%281%29.png",

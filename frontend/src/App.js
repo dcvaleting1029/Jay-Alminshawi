@@ -12,6 +12,7 @@ import Testimonials from "@/components/portfolio/Testimonials";
 import About from "@/components/portfolio/About";
 import Contact from "@/components/portfolio/Contact";
 import Footer from "@/components/portfolio/Footer";
+import AdminContacts from "@/components/admin/AdminContacts";
 
 const Home = () => {
   return (
@@ -47,6 +48,7 @@ function App() {
         />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<AdminContacts />} />
         </Routes>
       </BrowserRouter>
     </div>
