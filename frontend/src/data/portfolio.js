@@ -68,7 +68,7 @@ export const PROJECTS = [
     name: "MA Home Interiors",
     category: "Interior Design",
     url: "https://www.mahomeinteriors.com/",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/bm7kozd2_Luxury%20Interior%20Design%20Website%20Landing%20Page.png",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/30wcgyke_Luxury%20Interior%20Design%20Website%20Landing%20Page.png",
   },
   {
     name: "DC Valeting",
