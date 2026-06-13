@@ -1,0 +1,116 @@
+{
+  "theme": "dark",
+  "archetype": "5 (Luxury)",
+  "design_philosophy": "Premium, cinematic, dark portfolio website for 'Jay Alminshawi'. Emphasizes deep blacks, thin precise borders, immersive 3D-feeling mockups, and bold cinematic typography for a Webflow-agency aesthetic.",
+  "colors": {
+    "background": {
+      "primary": "#050505",
+      "secondary": "#0a0a0a",
+      "surface": "#121212"
+    },
+    "text": {
+      "primary": "#ffffff",
+      "secondary": "#a1a1aa",
+      "muted": "#71717a"
+    },
+    "border": {
+      "default": "rgba(255, 255, 255, 0.08)",
+      "hover": "rgba(255, 255, 255, 0.2)",
+      "glow": "rgba(255, 255, 255, 0.15)"
+    },
+    "accents": {
+      "metallic": "linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))"
+    }
+  },
+  "typography": {
+    "heading_font": "Outfit",
+    "display_font": "Anton",
+    "body_font": "Manrope",
+    "scale": {
+      "h1_hero": "text-6xl sm:text-7xl lg:text-[8vw] uppercase font-bold tracking-tighter leading-none",
+      "h2": "text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight",
+      "h3": "text-xl sm:text-2xl font-medium",
+      "body": "text-base lg:text-lg text-zinc-400 leading-relaxed",
+      "overline": "text-xs tracking-[0.2em] uppercase text-zinc-500 font-semibold"
+    }
+  },
+  "layout": {
+    "spacing": "Generous spacing. Use py-24 or py-32 for section padding. Gap-8 to gap-12 in grids.",
+    "grid_projects": "4-col grid on desktop (grid-cols-4), 2-col tablet, 1-col mobile.",
+    "grid_services": "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 with gap-6.",
+    "borders": "Use border-border/40 for a sharp, technical agency feel."
+  },
+  "components": {
+    "navbar": "Fixed z-50, w-full, backdrop-blur-xl bg-black/40 border-b border-white/5. 'BUILD YOUR WEBSITE' pill CTA and Hamburger.",
+    "hero": "Cinematic. Giant title using display font. 3D angled laptop mockup on the right with dark website inside, floating with shadow-2xl. 'SCROLL DOWN TO EXPLORE' indicator. Add a metallic shine sweep animation to the laptop.",
+    "buttons": "Pill-shaped (rounded-full), 1px solid border-white/20, text-white. On hover: bg-white text-black with a subtle glow. Use magnetic hover physics if possible.",
+    "project_cards": "Dark grey cards, thin border. Image inside a laptop mockup frame. Category label top, title bottom-left, circular arrow top-right. Hover: lift (-translate-y-2), subtle 3D tilt, and white glow shadow.",
+    "service_cards": "Minimalist. Dark gradient background, line icon, thin border, corner arrow. Staggered reveal. Hover: white border glow.",
+    "testimonials": "Glassmorphism panels (bg-white/5, backdrop-blur-xl, border-white/10). 3 cards fading from left. Include a decorative parallax laptop on the right side of the section.",
+    "about_philosophy": "Bold inline typography ('CREATION', 'PERSONAL BRAND', etc. highlighted in white, rest muted). Horizontal mini project preview strip on the right.",
+    "footer": "Massive oversized text ('JAY ALMINSHAWI') at text-[10vw], clean minimalist links, copyright 2026.",
+    "contact_form": "Dark inputs, border-b only or thin 1px rounded-lg borders. Must handle backend storage."
+  },
+  "animations": {
+    "global": "Lenis for smooth scroll (or framer-motion useScroll).",
+    "reveals": "Scroll-triggered fade-ups (y: 40 -> 0, opacity: 0 -> 1) with staggerChildren.",
+    "parallax": "Subtle y-axis translate on scroll for laptop mockups using useTransform.",
+    "micro": "Magnetic buttons, hover line-draw on icons, metallic sweep on hero."
+  },
+  "media": {
+    "hero_laptop_screen": "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/15hcg86z_June%2013%2C%202026%206_41_19%20am%20-%20Screenshot.png",
+    "projects": [
+      {
+        "name": "City Civils",
+        "category": "Construction",
+        "image_url": "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/15hcg86z_June%2013%2C%202026%206_41_19%20am%20-%20Screenshot.png"
+      },
+      {
+        "name": "Prime Exterior Cleaning",
+        "category": "Exterior Cleaning",
+        "image_url": "https://images.unsplash.com/photo-1697292859724-0d2501966448?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwxfHxkYXJrJTIwc2xlZWslMjBtb2Rlcm4lMjB3ZWJzaXRlJTIwbW9ja3VwfGVufDB8fHx8MTc4MTM1NjM0MHww&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "name": "Ace Of Spades",
+        "category": "Landscaping",
+        "image_url": "https://images.unsplash.com/photo-1776186243408-3c0489503faa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTN8MHwxfHNlYXJjaHwxfHxkYXJrJTIwYWVzdGhldGljJTIwbW9kZXJuJTIwbGFuZHNjYXBpbmd8ZW58MHx8fHwxNzgxMzU2MzQwfDA&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "name": "LashMek & Co",
+        "category": "Beauty",
+        "image_url": "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/4jswi790_Beauty%20and%20Aesthetics%20Clinic%20Website%20Homepage%20%281%29.png"
+      },
+      {
+        "name": "MA Home Interiors",
+        "category": "Interior Design",
+        "image_url": "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/d87iar8q_Skincare%20Brand%20Website%20Homepage.png"
+      },
+      {
+        "name": "DC Valeting",
+        "category": "Valeting",
+        "image_url": "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/c7ekj4qk_June%2013%2C%202026%206_45_10%20am%20-%20Screenshot.png"
+      },
+      {
+        "name": "Trim2Fresh",
+        "category": "Barbers",
+        "image_url": "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBkYXJrJTIwYmFyYmVyJTIwbW9kZXJufGVufDB8fHx8MTc4MTM1NjM0MHww&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "name": "Play_Co",
+        "category": "Coaching",
+        "image_url": "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/yhaksnqh_ChatGPT%20Image%20Jun%2013%2C%202026%2C%2006_08_36%20AM.png"
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Use framer-motion extensively. Apply staggered card reveals for the Projects and Services sections.",
+    "Implement the 3D angled laptop mockups using CSS transforms (`rotateX`, `rotateY`, `perspective`) and framer-motion to create parallax and hover tilt effects.",
+    "For the 'Trusted By' logo strip, use sleek white/grey text typography (e.g., uppercase, wide tracking, opacity-50) instead of actual image logos to maintain the minimal aesthetic.",
+    "The Contact form must work, storing data. Tie the 'BUILD YOUR WEBSITE' navbar CTA to scroll to this contact section.",
+    "Ensure the hero mockup feels immersive with soft shadows/reflections and a metallic shine sweep (`animate={{ backgroundPosition: ['200% 0', '-200% 0'] }}`).",
+    "Follow the `.js` file rule strictly. Do NOT generate `.tsx` files.",
+    "All interactive elements MUST have `data-testid` properties (e.g., `data-testid=\"contact-submit-button\"`, `data-testid=\"nav-build-website\"`).",
+    "Avoid generic 'card' looks by using dark gradient backgrounds and thin 1px white/10 borders to blend cleanly with the dark #050505 background.",
+    "In the About section, ensure bold keywords are styled explicitly to pop against the muted paragraph text."
+  ]
+}
