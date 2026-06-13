@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Check, Loader2 } from "lucide-react";
 import axios from "axios";
 import { toast } from "sonner";
+import { CountryCodePicker } from "./CountryCodePicker";
+import { COUNTRIES, DEFAULT_COUNTRY_CODE } from "../../data/countries";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -18,7 +20,8 @@ const PROJECT_TYPES = [
 export const Contact = () => {
   const [form, setForm] = useState({
     name: "",
-    phone: "",
+    nationalPhone: "",
+    countryCode: DEFAULT_COUNTRY_CODE,
     company: "",
     project_type: "",
     message: "",
@@ -26,20 +29,44 @@ export const Contact = () => {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
 
+  const country = useMemo(
+    () => COUNTRIES.find((c) => c.code === form.countryCode) || COUNTRIES[0],
+    [form.countryCode]
+  );
+
   const update = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.phone || !form.message) {
+    if (!form.name || !form.nationalPhone || !form.message) {
       toast.error("Please fill in name, phone and message.");
       return;
     }
+    // Compose E.164: dial code + national digits only
+    const digits = form.nationalPhone.replace(/[^\d]/g, "").replace(/^0+/, "");
+    const fullPhone = `${country.dial}${digits}`;
+
+    const payload = {
+      name: form.name,
+      phone: fullPhone,
+      company: form.company,
+      project_type: form.project_type,
+      message: form.message,
+    };
+
     setLoading(true);
     try {
-      await axios.post(`${API}/contact`, form);
+      await axios.post(`${API}/contact`, payload);
       setSent(true);
       toast.success("Message sent — I'll be in touch soon.");
-      setForm({ name: "", phone: "", company: "", project_type: "", message: "" });
+      setForm({
+        name: "",
+        nationalPhone: "",
+        countryCode: DEFAULT_COUNTRY_CODE,
+        company: "",
+        project_type: "",
+        message: "",
+      });
     } catch (err) {
       const data = err?.response?.data?.detail;
       let msg = "Something went wrong. Please try again.";
@@ -110,18 +137,24 @@ export const Contact = () => {
                 />
               </label>
               <label className="block">
-                <span className="font-mono-grotesk text-[10.5px] tracking-[0.26em] uppercase text-white/40">Phone * <span className="text-white/25 normal-case tracking-normal ml-1">(international format, e.g. +447700900000)</span></span>
-                <input
-                  data-testid="contact-phone"
-                  type="tel"
-                  inputMode="tel"
-                  value={form.phone}
-                  onChange={update("phone")}
-                  placeholder="+44 7700 900000"
-                  pattern="^[+][1-9][\d\s\-().]{6,20}$"
-                  className={inputClasses}
-                  required
-                />
+                <span className="font-mono-grotesk text-[10.5px] tracking-[0.26em] uppercase text-white/40">Phone *</span>
+                <div className="flex items-end gap-3">
+                  <CountryCodePicker
+                    value={form.countryCode}
+                    onChange={(code) => setForm((f) => ({ ...f, countryCode: code }))}
+                    testId="contact-country"
+                  />
+                  <input
+                    data-testid="contact-phone"
+                    type="tel"
+                    inputMode="tel"
+                    value={form.nationalPhone}
+                    onChange={update("nationalPhone")}
+                    placeholder="7700 900000"
+                    className={`${inputClasses} flex-1`}
+                    required
+                  />
+                </div>
               </label>
               <label className="block">
                 <span className="font-mono-grotesk text-[10.5px] tracking-[0.26em] uppercase text-white/40">Company</span>
