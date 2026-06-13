@@ -1,6 +1,24 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Instagram, Linkedin, Mail, ArrowUpRight } from "lucide-react";
+import { Instagram, Linkedin, ArrowUpRight } from "lucide-react";
+
+// Inline TikTok glyph (lucide-react has no native TikTok icon)
+const TikTokIcon = ({ size = 14, className = "" }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
 
 const LINKS = [
   { label: "HOME", id: "home" },
@@ -64,7 +82,7 @@ export const Footer = () => {
               <li>
                 <a
                   data-testid="social-instagram"
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/jay_alminshawi/"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-3 text-[13px] tracking-[0.22em] uppercase text-white/60 hover:text-white transition-colors"
@@ -74,22 +92,24 @@ export const Footer = () => {
               </li>
               <li>
                 <a
+                  data-testid="social-tiktok"
+                  href="https://www.tiktok.com/@jay_alminshawi"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-3 text-[13px] tracking-[0.22em] uppercase text-white/60 hover:text-white transition-colors"
+                >
+                  <TikTokIcon size={14} /> TikTok
+                </a>
+              </li>
+              <li>
+                <a
                   data-testid="social-linkedin"
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/jay-alminshawi-012250248/"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-3 text-[13px] tracking-[0.22em] uppercase text-white/60 hover:text-white transition-colors"
                 >
                   <Linkedin size={14} /> LinkedIn
-                </a>
-              </li>
-              <li>
-                <a
-                  data-testid="social-email"
-                  href="mailto:hello@jayalminshawi.com"
-                  className="inline-flex items-center gap-3 text-[13px] tracking-[0.22em] uppercase text-white/60 hover:text-white transition-colors"
-                >
-                  <Mail size={14} /> Email
                 </a>
               </li>
             </ul>

@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import axios from "axios";
-import { Lock, RefreshCw, Mail, ArrowLeft, Search } from "lucide-react";
+import { Lock, RefreshCw, Phone, ArrowLeft, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
@@ -110,7 +110,7 @@ const AdminContacts = () => {
     if (!query.trim()) return items;
     const q = query.toLowerCase();
     return items.filter((c) =>
-      [c.name, c.email, c.company, c.project_type, c.message]
+      [c.name, c.phone, c.company, c.project_type, c.message]
         .filter(Boolean)
         .some((v) => String(v).toLowerCase().includes(q))
     );
@@ -173,7 +173,7 @@ const AdminContacts = () => {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search by name, email, message…"
+              placeholder="Search by name, phone, message…"
               className="w-full rounded-full bg-white/[0.03] border border-white/10 pl-10 pr-4 h-10 text-[13px] text-white placeholder-white/30 focus:border-white/40 outline-none"
             />
           </label>
@@ -214,10 +214,10 @@ const AdminContacts = () => {
                       )}
                     </div>
                     <a
-                      href={`mailto:${c.email}`}
+                      href={`tel:${c.phone}`}
                       className="inline-flex items-center gap-2 text-[13px] text-white/65 hover:text-white"
                     >
-                      <Mail size={12} /> {c.email}
+                      <Phone size={12} /> {c.phone}
                     </a>
                   </div>
                   <div className="text-right shrink-0">

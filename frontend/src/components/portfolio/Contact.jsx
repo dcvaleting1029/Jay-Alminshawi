@@ -18,7 +18,7 @@ const PROJECT_TYPES = [
 export const Contact = () => {
   const [form, setForm] = useState({
     name: "",
-    email: "",
+    phone: "",
     company: "",
     project_type: "",
     message: "",
@@ -30,8 +30,8 @@ export const Contact = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
-      toast.error("Please fill in name, email and message.");
+    if (!form.name || !form.phone || !form.message) {
+      toast.error("Please fill in name, phone and message.");
       return;
     }
     setLoading(true);
@@ -39,7 +39,7 @@ export const Contact = () => {
       await axios.post(`${API}/contact`, form);
       setSent(true);
       toast.success("Message sent — I'll be in touch soon.");
-      setForm({ name: "", email: "", company: "", project_type: "", message: "" });
+      setForm({ name: "", phone: "", company: "", project_type: "", message: "" });
     } catch (err) {
       const detail = err?.response?.data?.detail || "Something went wrong. Please try again.";
       toast.error(typeof detail === "string" ? detail : "Submission failed.");
@@ -74,7 +74,7 @@ export const Contact = () => {
             </p>
 
             <div className="mt-12 space-y-3 font-mono-grotesk text-[12px] tracking-[0.2em] uppercase text-white/45">
-              <p><span className="text-white/30 mr-3">EMAIL</span> hello@jayalminshawi.com</p>
+              <p><span className="text-white/30 mr-3">EMAIL</span> jayalminshawi@gmail.com</p>
               <p><span className="text-white/30 mr-3">BASED</span> Edinburgh, UK</p>
               <p><span className="text-white/30 mr-3">AVAILABILITY</span> Open for Q1 2026</p>
             </div>
@@ -104,13 +104,13 @@ export const Contact = () => {
                 />
               </label>
               <label className="block">
-                <span className="font-mono-grotesk text-[10.5px] tracking-[0.26em] uppercase text-white/40">Email *</span>
+                <span className="font-mono-grotesk text-[10.5px] tracking-[0.26em] uppercase text-white/40">Phone *</span>
                 <input
-                  data-testid="contact-email"
-                  type="email"
-                  value={form.email}
-                  onChange={update("email")}
-                  placeholder="you@brand.com"
+                  data-testid="contact-phone"
+                  type="tel"
+                  value={form.phone}
+                  onChange={update("phone")}
+                  placeholder="+44 7700 900000"
                   className={inputClasses}
                   required
                 />

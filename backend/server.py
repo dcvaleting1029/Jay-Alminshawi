@@ -5,7 +5,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict, EmailStr
+from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
@@ -37,7 +37,7 @@ class StatusCheckCreate(BaseModel):
 
 class ContactCreate(BaseModel):
     name: str = Field(..., min_length=1, max_length=120)
-    email: EmailStr
+    phone: str = Field(..., min_length=4, max_length=40)
     company: Optional[str] = Field(default=None, max_length=160)
     project_type: Optional[str] = Field(default=None, max_length=120)
     message: str = Field(..., min_length=1, max_length=5000)
@@ -47,7 +47,7 @@ class Contact(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: str
-    email: str
+    phone: str
     company: Optional[str] = None
     project_type: Optional[str] = None
     message: str

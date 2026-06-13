@@ -131,7 +131,7 @@ export const Hero = () => {
               custom={4}
               className="mt-16 font-mono-grotesk text-[10.5px] sm:text-[11px] tracking-[0.32em] uppercase text-white/35"
             >
-              Designed by Jay Alminshawi <span className="text-white/20">/</span> Powered by Webflow
+              Designed by Jay Alminshawi
             </motion.p>
           </div>
 
