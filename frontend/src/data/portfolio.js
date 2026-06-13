@@ -49,36 +49,43 @@ export const PROJECTS = [
   {
     name: "City Civils Construction Ltd",
     category: "Construction",
+    url: "https://www.citycivilsconstructionltd.co.uk/",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/yhaksnqh_ChatGPT%20Image%20Jun%2013%2C%202026%2C%2006_08_36%20AM.png",
   },
   {
     name: "Ace of Spades Landscapes",
     category: "Landscaping",
+    url: "https://www.aceofspadeslandscapes.org/",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/79at75kh_Ace%20of%20Spades%20Landscapes%20Homepage%20%281%29.png",
   },
   {
     name: "LASHMEK&CO.",
     category: "Beauty",
+    url: "https://www.lashmekco.com/",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/4jswi790_Beauty%20and%20Aesthetics%20Clinic%20Website%20Homepage%20%281%29.png",
   },
   {
     name: "MA Home Interiors",
     category: "Interior Design",
+    url: "https://www.mahomeinteriors.com/",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/bm7kozd2_Luxury%20Interior%20Design%20Website%20Landing%20Page.png",
   },
   {
     name: "DC Valeting",
     category: "Valeting",
+    url: "https://www.dcvaleting.company/",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/15hcg86z_June%2013%2C%202026%206_41_19%20am%20-%20Screenshot.png",
   },
   {
     name: "Crawford Tree Surgery",
     category: "Tree Surgery",
+    url: "https://crawfordtreesurgery.com/",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/jhls5tgj_Crawford%20Tree%20Surgery%20Website%20Homepage.png",
   },
   {
     name: "Jay Alminshawi | Fitness",
     category: "Coaching",
+    url: "https://www.jayalminshawifitness.com/",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/c7ekj4qk_June%2013%2C%202026%206_45_10%20am%20-%20Screenshot.png",
   },
 ];

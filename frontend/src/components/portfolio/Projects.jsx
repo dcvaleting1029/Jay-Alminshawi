@@ -15,8 +15,12 @@ const cardVariants = {
 
 const ProjectCard = ({ project, index }) => {
   return (
-    <motion.article
+    <motion.a
       data-testid={`project-card-${index}`}
+      href={project.url || "#"}
+      target={project.url ? "_blank" : undefined}
+      rel={project.url ? "noopener noreferrer" : undefined}
+      aria-label={`Visit ${project.name}`}
       variants={cardVariants}
       custom={index}
       initial="hidden"
@@ -24,7 +28,7 @@ const ProjectCard = ({ project, index }) => {
       viewport={{ once: true, margin: "-60px" }}
       whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 220, damping: 22 }}
-      className="group relative flex flex-col rounded-2xl border border-white/[0.07] bg-gradient-to-b from-[#0c0c0c] to-[#070707] p-5 sm:p-6 overflow-hidden glow-hover transition-all duration-500"
+      className="group relative flex flex-col rounded-2xl border border-white/[0.07] bg-gradient-to-b from-[#0c0c0c] to-[#070707] p-5 sm:p-6 overflow-hidden glow-hover transition-all duration-500 cursor-pointer"
     >
       {/* top row: category + arrow */}
       <header className="flex items-start justify-between gap-3">
@@ -55,7 +59,7 @@ const ProjectCard = ({ project, index }) => {
 
       {/* hover glow line */}
       <div className="pointer-events-none absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-    </motion.article>
+    </motion.a>
   );
 };
 

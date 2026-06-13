@@ -47,7 +47,7 @@ export const LaptopMockup = ({
                   src={screen}
                   alt=""
                   loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover object-top"
+                  className="absolute inset-0 w-full h-full object-contain object-center"
                   draggable={false}
                 />
               )}
