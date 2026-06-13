@@ -29,7 +29,7 @@ export const Hero = () => {
         aria-hidden
         className="absolute inset-0 flex items-center justify-center pointer-events-none"
       >
-        <div className="w-[120%] sm:w-[105%] lg:w-[88%] xl:w-[82%] max-w-[1600px] opacity-[0.55]">
+        <div className="w-[120%] sm:w-[105%] lg:w-[88%] xl:w-[82%] max-w-[1600px] opacity-[0.95]">
           <LaptopMockup
             screen={HERO_LAPTOP_SCREEN}
             tilt={-6}
@@ -49,7 +49,7 @@ export const Hero = () => {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at center, rgba(5,5,5,0.55) 0%, rgba(5,5,5,0.78) 45%, rgba(5,5,5,0.92) 85%)",
+            "radial-gradient(ellipse at center, rgba(5,5,5,0.18) 0%, rgba(5,5,5,0.42) 50%, rgba(5,5,5,0.78) 90%)",
         }}
       />
       {/* Top + bottom dark fades */}
