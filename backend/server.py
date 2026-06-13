@@ -5,8 +5,9 @@ from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, field_validator
 from typing import List, Optional
+import re
 import uuid
 from datetime import datetime, timezone
 
@@ -35,12 +36,26 @@ class StatusCheckCreate(BaseModel):
     client_name: str
 
 
+_E164_RE = re.compile(r"^\+[1-9]\d{6,14}$")
+
+
 class ContactCreate(BaseModel):
     name: str = Field(..., min_length=1, max_length=120)
     phone: str = Field(..., min_length=4, max_length=40)
     company: Optional[str] = Field(default=None, max_length=160)
     project_type: Optional[str] = Field(default=None, max_length=120)
     message: str = Field(..., min_length=1, max_length=5000)
+
+    @field_validator("phone")
+    @classmethod
+    def _validate_phone_e164(cls, v: str) -> str:
+        # Normalise: strip common separators
+        normalised = re.sub(r"[\s\-\(\)\.]", "", v or "")
+        if not _E164_RE.match(normalised):
+            raise ValueError(
+                "Phone must be in international E.164 format (e.g. +447700900000)"
+            )
+        return normalised
 
 
 class Contact(BaseModel):

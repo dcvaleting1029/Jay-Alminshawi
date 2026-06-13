@@ -41,8 +41,14 @@ export const Contact = () => {
       toast.success("Message sent — I'll be in touch soon.");
       setForm({ name: "", phone: "", company: "", project_type: "", message: "" });
     } catch (err) {
-      const detail = err?.response?.data?.detail || "Something went wrong. Please try again.";
-      toast.error(typeof detail === "string" ? detail : "Submission failed.");
+      const data = err?.response?.data?.detail;
+      let msg = "Something went wrong. Please try again.";
+      if (typeof data === "string") {
+        msg = data;
+      } else if (Array.isArray(data) && data[0]?.msg) {
+        msg = data[0].msg.replace(/^Value error,\s*/i, "");
+      }
+      toast.error(msg);
     } finally {
       setLoading(false);
     }
@@ -104,13 +110,15 @@ export const Contact = () => {
                 />
               </label>
               <label className="block">
-                <span className="font-mono-grotesk text-[10.5px] tracking-[0.26em] uppercase text-white/40">Phone *</span>
+                <span className="font-mono-grotesk text-[10.5px] tracking-[0.26em] uppercase text-white/40">Phone * <span className="text-white/25 normal-case tracking-normal ml-1">(international format, e.g. +447700900000)</span></span>
                 <input
                   data-testid="contact-phone"
                   type="tel"
+                  inputMode="tel"
                   value={form.phone}
                   onChange={update("phone")}
                   placeholder="+44 7700 900000"
+                  pattern="^[+][1-9][\d\s\-().]{6,20}$"
                   className={inputClasses}
                   required
                 />
