@@ -52,7 +52,8 @@ export const About = () => {
                 hidden: {},
                 show: { transition: { staggerChildren: 0.012 } },
               }}
-              className="mt-8 font-heading text-2xl sm:text-3xl lg:text-[34px] leading-[1.25] tracking-tight text-white/55 max-w-3xl"
+              className="mt-8 text-2xl sm:text-3xl lg:text-[34px] leading-[1.25] tracking-tight text-white/55 max-w-3xl"
+              style={{ fontFamily: "Montserrat, system-ui, sans-serif", fontWeight: 300 }}
             >
               {paragraph.map((seg, i) => (
                 <motion.span
