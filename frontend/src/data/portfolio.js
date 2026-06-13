@@ -47,17 +47,17 @@ export const PARTNERS = [
 
 export const PROJECTS = [
   {
-    name: "City Civils",
+    name: "City Civils Construction Ltd",
     category: "Construction",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/yhaksnqh_ChatGPT%20Image%20Jun%2013%2C%202026%2C%2006_08_36%20AM.png",
   },
   {
-    name: "Ace Of Spades",
+    name: "Ace of Spades Landscapes",
     category: "Landscaping",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/79at75kh_Ace%20of%20Spades%20Landscapes%20Homepage%20%281%29.png",
   },
   {
-    name: "LashMek & Co",
+    name: "LASHMEK&CO.",
     category: "Beauty",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/4jswi790_Beauty%20and%20Aesthetics%20Clinic%20Website%20Homepage%20%281%29.png",
   },
@@ -77,7 +77,7 @@ export const PROJECTS = [
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/jhls5tgj_Crawford%20Tree%20Surgery%20Website%20Homepage.png",
   },
   {
-    name: "Play_Co",
+    name: "Jay Alminshawi | Fitness",
     category: "Coaching",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/c7ekj4qk_June%2013%2C%202026%206_45_10%20am%20-%20Screenshot.png",
   },
