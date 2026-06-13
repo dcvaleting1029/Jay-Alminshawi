@@ -91,7 +91,7 @@ export const PROJECTS = [
   {
     name: "Celunéa Skincare",
     category: "Skincare",
-    url: null,
+    url: "https://celunea-luxury.preview.emergentagent.com/",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/gqq19nad_Skincare%20Brand%20Website%20Homepage.png",
   },
 ];
