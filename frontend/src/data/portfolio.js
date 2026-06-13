@@ -56,13 +56,13 @@ export const PROJECTS = [
     name: "Ace of Spades Landscapes",
     category: "Landscaping",
     url: "https://www.aceofspadeslandscapes.org/",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/79at75kh_Ace%20of%20Spades%20Landscapes%20Homepage%20%281%29.png",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/qi631dz2_Ace%20of%20Spades%20Landscapes%20Homepage%20%281%29.png",
   },
   {
     name: "LASHMEK&CO.",
     category: "Beauty",
     url: "https://www.lashmekco.com/",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/4jswi790_Beauty%20and%20Aesthetics%20Clinic%20Website%20Homepage%20%281%29.png",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/0h3e648b_Beauty%20and%20Aesthetics%20Clinic%20Website%20Homepage%20%281%29.png",
   },
   {
     name: "MA Home Interiors",
@@ -74,7 +74,7 @@ export const PROJECTS = [
     name: "DC Valeting",
     category: "Valeting",
     url: "https://www.dcvaleting.company/",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/15hcg86z_June%2013%2C%202026%206_41_19%20am%20-%20Screenshot.png",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/i99t12qo_June%2013%2C%202026%206_41_19%20am%20-%20Screenshot.png",
   },
   {
     name: "Crawford Tree Surgery",
@@ -86,7 +86,13 @@ export const PROJECTS = [
     name: "Jay Alminshawi | Fitness",
     category: "Coaching",
     url: "https://www.jayalminshawifitness.com/",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/c7ekj4qk_June%2013%2C%202026%206_45_10%20am%20-%20Screenshot.png",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/r3tj5h1o_June%2013%2C%202026%206_45_10%20am%20-%20Screenshot.png",
+  },
+  {
+    name: "Celunéa Skincare",
+    category: "Skincare",
+    url: null,
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/gqq19nad_Skincare%20Brand%20Website%20Homepage.png",
   },
 ];
 

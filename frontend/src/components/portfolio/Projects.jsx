@@ -14,13 +14,15 @@ const cardVariants = {
 };
 
 const ProjectCard = ({ project, index }) => {
+  const hasUrl = !!project.url;
   return (
     <motion.a
       data-testid={`project-card-${index}`}
-      href={project.url || "#"}
-      target={project.url ? "_blank" : undefined}
-      rel={project.url ? "noopener noreferrer" : undefined}
-      aria-label={`Visit ${project.name}`}
+      href={hasUrl ? project.url : undefined}
+      target={hasUrl ? "_blank" : undefined}
+      rel={hasUrl ? "noopener noreferrer" : undefined}
+      onClick={hasUrl ? undefined : (e) => e.preventDefault()}
+      aria-label={hasUrl ? `Visit ${project.name}` : project.name}
       variants={cardVariants}
       custom={index}
       initial="hidden"
@@ -28,7 +30,7 @@ const ProjectCard = ({ project, index }) => {
       viewport={{ once: true, margin: "-60px" }}
       whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 220, damping: 22 }}
-      className="group relative flex flex-col rounded-2xl border border-white/[0.07] bg-gradient-to-b from-[#0c0c0c] to-[#070707] p-5 sm:p-6 overflow-hidden glow-hover transition-all duration-500 cursor-pointer"
+      className={`group relative flex flex-col rounded-2xl border border-white/[0.07] bg-gradient-to-b from-[#0c0c0c] to-[#070707] p-5 sm:p-6 overflow-hidden glow-hover transition-all duration-500 ${hasUrl ? "cursor-pointer" : "cursor-default"}`}
     >
       {/* top row: category + arrow */}
       <header className="flex items-start justify-between gap-3">
