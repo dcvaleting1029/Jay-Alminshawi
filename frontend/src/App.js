@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Toaster } from "sonner";
 
 import Navbar from "@/components/portfolio/Navbar";
@@ -12,7 +12,10 @@ import Testimonials from "@/components/portfolio/Testimonials";
 import About from "@/components/portfolio/About";
 import Contact from "@/components/portfolio/Contact";
 import Footer from "@/components/portfolio/Footer";
+import LoadingScreen from "@/components/portfolio/LoadingScreen";
 import AdminContacts from "@/components/admin/AdminContacts";
+
+const LOADER_KEY = "jay_loader_seen";
 
 const Home = () => {
   return (
@@ -27,6 +30,32 @@ const Home = () => {
       <Contact />
       <Footer />
     </main>
+  );
+};
+
+const AppShell = () => {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+  // Only show loader on the home route AND if not already shown this session
+  const [showLoader, setShowLoader] = useState(
+    () => isHome && sessionStorage.getItem(LOADER_KEY) !== "1"
+  );
+
+  return (
+    <>
+      {showLoader && (
+        <LoadingScreen
+          onComplete={() => {
+            sessionStorage.setItem(LOADER_KEY, "1");
+            setShowLoader(false);
+          }}
+        />
+      )}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<AdminContacts />} />
+      </Routes>
+    </>
   );
 };
 
@@ -46,10 +75,7 @@ function App() {
             },
           }}
         />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/admin" element={<AdminContacts />} />
-        </Routes>
+        <AppShell />
       </BrowserRouter>
     </div>
   );

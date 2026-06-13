@@ -80,13 +80,13 @@ export const PROJECTS = [
     name: "Crawford Tree Surgery",
     category: "Tree Surgery",
     url: "https://crawfordtreesurgery.com/",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/jhls5tgj_Crawford%20Tree%20Surgery%20Website%20Homepage.png",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/cp2rwk15_Crawford%20Tree%20Surgery%20Website%20Homepage.png",
   },
   {
     name: "Jay Alminshawi | Fitness",
     category: "Coaching",
     url: "https://www.jayalminshawifitness.com/",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/r3tj5h1o_June%2013%2C%202026%206_45_10%20am%20-%20Screenshot.png",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/fle4rtyg_June%2013%2C%202026%206_45_10%20am%20-%20Screenshot.png",
   },
   {
     name: "Celunéa Skincare",

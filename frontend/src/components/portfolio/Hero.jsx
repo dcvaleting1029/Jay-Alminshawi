@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { LaptopMockup } from "./LaptopMockup";
 import { HERO_LAPTOP_SCREEN } from "../../data/portfolio";
@@ -15,9 +15,41 @@ const fadeUp = {
 };
 
 export const Hero = () => {
+  const sectionRef = useRef(null);
+
+  // Track normalized cursor position (-0.5 .. 0.5) relative to the hero section
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const sx = useSpring(mx, { stiffness: 80, damping: 18, mass: 0.6 });
+  const sy = useSpring(my, { stiffness: 80, damping: 18, mass: 0.6 });
+
+  // Map mouse to gentle parallax / rotation
+  const rotateY = useTransform(sx, [-0.5, 0.5], [-26, -6]);
+  const rotateX = useTransform(sy, [-0.5, 0.5], [12, 0]);
+  const translateX = useTransform(sx, [-0.5, 0.5], [-32, 32]);
+  const translateY = useTransform(sy, [-0.5, 0.5], [-18, 18]);
+
+  const handleMouseMove = (e) => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mx.set(x);
+    my.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mx.set(0);
+    my.set(0);
+  };
+
   return (
     <section
       id="home"
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       data-testid="hero-section"
       className="relative min-h-[100svh] w-full overflow-hidden bg-[#050505] pt-28 sm:pt-32 lg:pt-36"
     >
@@ -103,7 +135,7 @@ export const Hero = () => {
             </motion.p>
           </div>
 
-          {/* Right: Laptop mockup */}
+          {/* Right: Laptop mockup with cursor parallax */}
           <motion.div
             initial={{ opacity: 0, x: 40, filter: "blur(12px)" }}
             animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
@@ -111,18 +143,30 @@ export const Hero = () => {
             className="lg:col-span-6 xl:col-span-6 order-1 lg:order-2 relative"
           >
             <div className="relative mx-auto w-full max-w-[640px] lg:max-w-none">
-              <div className="relative pb-10">
-                <LaptopMockup
-                  screen={HERO_LAPTOP_SCREEN}
-                  tilt={-16}
-                  shine
-                  floating
-                  testId="hero-laptop"
-                  className="w-full"
-                />
+              <motion.div
+                className="relative pb-10 [perspective:1600px] will-change-transform"
+                style={{ x: translateX, y: translateY }}
+              >
+                <motion.div
+                  className="relative"
+                  style={{
+                    rotateX,
+                    rotateY,
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <LaptopMockup
+                    screen={HERO_LAPTOP_SCREEN}
+                    tilt={0}
+                    shine
+                    floating
+                    testId="hero-laptop"
+                    className="w-full"
+                  />
+                </motion.div>
                 <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-[78%] h-2 rounded-[2px] bg-gradient-to-r from-transparent via-white/15 to-transparent" />
                 <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[60%] h-14 bg-black blur-2xl rounded-full opacity-80" />
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
