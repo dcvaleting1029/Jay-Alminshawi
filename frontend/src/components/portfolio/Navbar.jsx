@@ -94,7 +94,7 @@ export const Navbar = () => {
                         smoothScrollTo(link.id);
                         setOpen(false);
                       }}
-                      className="font-display text-5xl sm:text-7xl uppercase tracking-tight text-white/80 hover:text-white transition-colors"
+                      className="font-display text-4xl sm:text-6xl uppercase tracking-tight text-white/80 hover:text-white transition-colors"
                     >
                       {link.label}
                     </button>

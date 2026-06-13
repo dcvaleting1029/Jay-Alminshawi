@@ -106,10 +106,10 @@ export const Footer = () => {
         >
           <h2
             data-testid="footer-bigname"
-            className="font-display uppercase text-white/95 leading-[0.78] tracking-[-0.04em] text-[20vw] sm:text-[18vw] lg:text-[15.5vw] text-center sm:text-left"
-            style={{ wordBreak: "break-word" }}
+            className="font-display uppercase text-white/95 leading-[0.82] tracking-[-0.04em] text-[15vw] sm:text-[14vw] lg:text-[11.5vw] text-left"
           >
-            Jay Alminshawi
+            <span className="block">Jay</span>
+            <span className="block">Alminshawi</span>
           </h2>
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#050505] to-transparent" />
         </motion.div>

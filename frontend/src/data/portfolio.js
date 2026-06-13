@@ -28,7 +28,7 @@ export const PROJECTS = [
   {
     name: "Ace Of Spades",
     category: "Landscaping",
-    image: "https://images.unsplash.com/photo-1776186243408-3c0489503faa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTN8MHwxfHNlYXJjaHwxfHxkYXJrJTIwYWVzdGhldGljJTIwbW9kZXJuJTIwbGFuZHNjYXBpbmd8ZW58MHx8fHwxNzgxMzU2MzQwfDA&ixlib=rb-4.1.0&q=85",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/79at75kh_Ace%20of%20Spades%20Landscapes%20Homepage%20%281%29.png",
   },
   {
     name: "LashMek & Co",
@@ -38,7 +38,7 @@ export const PROJECTS = [
   {
     name: "MA Home Interiors",
     category: "Interior Design",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/d87iar8q_Skincare%20Brand%20Website%20Homepage.png",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/bm7kozd2_Luxury%20Interior%20Design%20Website%20Landing%20Page.png",
   },
   {
     name: "DC Valeting",
@@ -46,9 +46,9 @@ export const PROJECTS = [
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/15hcg86z_June%2013%2C%202026%206_41_19%20am%20-%20Screenshot.png",
   },
   {
-    name: "Trim2Fresh",
-    category: "Barbers",
-    image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBkYXJrJTIwYmFyYmVyJTIwbW9kZXJufGVufDB8fHx8MTc4MTM1NjM0MHww&ixlib=rb-4.1.0&q=85",
+    name: "Crawford Tree Surgery",
+    category: "Tree Surgery",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/jhls5tgj_Crawford%20Tree%20Surgery%20Website%20Homepage.png",
   },
   {
     name: "Play_Co",
