@@ -110,7 +110,7 @@ export const LoadingScreen = ({ minDuration = 2200, onProgressComplete }) => {
             <span className="inline-block h-px w-8 align-middle ml-3 bg-white/30" />
           </motion.p>
 
-          <h1 className="font-display uppercase text-white leading-[0.84] tracking-[-0.04em] text-center text-[14vw] sm:text-[12vw] lg:text-[9.5vw] xl:text-[9vw]">
+          <h1 className="font-display uppercase text-white leading-[0.84] tracking-[-0.04em] text-center text-[11vw] sm:text-[12vw] lg:text-[9.5vw] xl:text-[9vw]">
             <span className="block overflow-hidden">
               <span className="block">
                 {letters("Jay").map((c, i) => (
