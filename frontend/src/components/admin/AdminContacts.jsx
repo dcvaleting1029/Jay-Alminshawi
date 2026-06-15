@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import axios from "axios";
-import { Lock, RefreshCw, Phone, ArrowLeft, Search } from "lucide-react";
+import { Lock, RefreshCw, Phone, ArrowLeft, Search, Copy, MessageCircle } from "lucide-react";
+import { toast } from "sonner";
 import { Link } from "react-router-dom";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
@@ -213,12 +214,42 @@ const AdminContacts = () => {
                         </span>
                       )}
                     </div>
-                    <a
-                      href={`tel:${c.phone}`}
-                      className="inline-flex items-center gap-2 text-[13px] text-white/65 hover:text-white"
-                    >
-                      <Phone size={12} /> {c.phone}
-                    </a>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <a
+                        href={`tel:${c.phone}`}
+                        data-testid={`admin-row-phone-${c.id}`}
+                        className="inline-flex items-center gap-2 text-[13px] text-white/65 hover:text-white"
+                      >
+                        <Phone size={12} /> {c.phone}
+                      </a>
+                      <button
+                        type="button"
+                        data-testid={`admin-row-copy-${c.id}`}
+                        onClick={async (e) => {
+                          e.preventDefault();
+                          try {
+                            await navigator.clipboard.writeText(c.phone);
+                            toast.success("Phone copied to clipboard");
+                          } catch {
+                            toast.error("Could not copy");
+                          }
+                        }}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.02] px-2.5 h-7 text-[10.5px] tracking-[0.2em] uppercase text-white/65 hover:bg-white hover:text-black transition-all"
+                        title="Tap to copy phone number"
+                      >
+                        <Copy size={11} /> Copy
+                      </button>
+                      <a
+                        data-testid={`admin-row-whatsapp-${c.id}`}
+                        href={`https://wa.me/${(c.phone || "").replace(/[^\d]/g, "")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/[0.04] px-2.5 h-7 text-[10.5px] tracking-[0.2em] uppercase text-emerald-300 hover:bg-emerald-400 hover:text-black hover:border-emerald-400 transition-all"
+                        title="Open chat on WhatsApp"
+                      >
+                        <MessageCircle size={11} /> WhatsApp
+                      </a>
+                    </div>
                   </div>
                   <div className="text-right shrink-0">
                     {c.project_type && (

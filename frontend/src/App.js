@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "@/App.css";
+import { AnimatePresence } from "framer-motion";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Toaster } from "sonner";
 
@@ -43,14 +44,17 @@ const AppShell = () => {
 
   return (
     <>
-      {showLoader && (
-        <LoadingScreen
-          onComplete={() => {
-            sessionStorage.setItem(LOADER_KEY, "1");
-            setShowLoader(false);
-          }}
-        />
-      )}
+      <AnimatePresence mode="wait">
+        {showLoader && (
+          <LoadingScreen
+            key="loading-screen"
+            onProgressComplete={() => {
+              sessionStorage.setItem(LOADER_KEY, "1");
+              setShowLoader(false);
+            }}
+          />
+        )}
+      </AnimatePresence>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<AdminContacts />} />
