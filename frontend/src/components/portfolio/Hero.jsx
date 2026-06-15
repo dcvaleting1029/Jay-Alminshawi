@@ -60,10 +60,10 @@ export const Hero = () => {
       {/* Noise */}
       <div className="absolute inset-0 noise-overlay pointer-events-none" />
 
-      <div className="relative mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12 pb-24 sm:pb-32">
+      <div className="relative mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12 pb-20 sm:pb-32">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          {/* Left content */}
-          <div className="lg:col-span-6 xl:col-span-6 order-2 lg:order-1">
+          {/* Left content (also appears first on mobile) */}
+          <div className="lg:col-span-6 xl:col-span-6 lg:order-1">
             <motion.p
               variants={fadeUp}
               initial="hidden"
@@ -80,7 +80,7 @@ export const Hero = () => {
               initial="hidden"
               animate="show"
               custom={1}
-              className="font-display uppercase text-white leading-[0.85] tracking-[-0.035em] text-[15vw] sm:text-[11vw] lg:text-[5.6vw] xl:text-[5.4vw]"
+              className="font-display uppercase text-white leading-[0.85] tracking-[-0.035em] text-[13vw] sm:text-[11vw] lg:text-[5.6vw] xl:text-[5.4vw] break-words"
             >
               <span className="block">Jay</span>
               <span className="block text-white/95">Alminshawi</span>
@@ -104,12 +104,12 @@ export const Hero = () => {
               initial="hidden"
               animate="show"
               custom={3}
-              className="mt-12 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-7"
+              className="mt-8 sm:mt-10 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-7"
             >
               <button
                 data-testid="hero-cta-build"
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="group relative inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white text-black px-6 h-12 text-[12px] tracking-[0.22em] uppercase font-medium hover:bg-transparent hover:text-white transition-all duration-300"
+                className="group relative inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white text-black w-full sm:w-auto px-6 h-12 text-[12px] tracking-[0.22em] uppercase font-medium hover:bg-transparent hover:text-white transition-all duration-300"
               >
                 Build Your Website
                 <span className="inline-block w-4 h-px bg-current group-hover:w-6 transition-all" />
@@ -117,7 +117,7 @@ export const Hero = () => {
               <button
                 data-testid="hero-cta-projects"
                 onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-                className="inline-flex items-center gap-3 text-[12px] tracking-[0.22em] uppercase text-white/70 hover:text-white transition-colors"
+                className="inline-flex items-center justify-center sm:justify-start gap-3 w-full sm:w-auto text-[12px] tracking-[0.22em] uppercase text-white/70 hover:text-white transition-colors"
               >
                 View Projects
                 <span className="inline-block w-8 h-px bg-white/40" />
@@ -129,18 +129,18 @@ export const Hero = () => {
               initial="hidden"
               animate="show"
               custom={4}
-              className="mt-16 font-mono-grotesk text-[10.5px] sm:text-[11px] tracking-[0.32em] uppercase text-white/35"
+              className="mt-10 sm:mt-16 font-mono-grotesk text-[10.5px] sm:text-[11px] tracking-[0.32em] uppercase text-white/35"
             >
               Designed by Jay Alminshawi
             </motion.p>
           </div>
 
-          {/* Right: Laptop mockup with cursor parallax */}
+          {/* Right: Laptop mockup with cursor parallax (appears below text on mobile) */}
           <motion.div
             initial={{ opacity: 0, x: 40, filter: "blur(12px)" }}
             animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-            className="lg:col-span-6 xl:col-span-6 order-1 lg:order-2 relative"
+            className="lg:col-span-6 xl:col-span-6 lg:order-2 relative"
           >
             <div className="relative mx-auto w-full max-w-[640px] lg:max-w-none">
               <motion.div
@@ -176,7 +176,7 @@ export const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.8 }}
-          className="mt-16 sm:mt-24 flex items-center justify-between gap-4"
+          className="mt-10 sm:mt-24 flex items-center justify-between gap-4"
         >
           <div className="flex items-center gap-3 text-white/40 text-[10.5px] sm:text-[11px] tracking-[0.3em] uppercase">
             <span className="animate-scroll-bounce inline-flex"><ChevronDown size={14} /></span>

@@ -46,7 +46,7 @@ const ProjectCard = ({ project, index }) => {
       </header>
 
       {/* Laptop mockup */}
-      <div className="relative mt-7 mb-12 sm:mb-14 px-2 sm:px-3 [perspective:1400px]">
+      <div className="relative mt-6 sm:mt-7 mb-10 sm:mb-14 px-1 sm:px-3 [perspective:1400px]">
         <div className="transform-gpu transition-transform duration-700 group-hover:[transform:rotateX(8deg)_rotateY(-8deg)]">
           <LaptopMockup screen={project.image} tilt={0} className="w-full" testId={`project-laptop-${index}`} />
         </div>
@@ -70,11 +70,11 @@ export const Projects = () => {
     <section
       id="projects"
       data-testid="projects-section"
-      className="relative py-24 sm:py-32 bg-[#050505]"
+      className="relative py-20 sm:py-28 lg:py-32 bg-[#050505]"
     >
       <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
         {/* Heading row */}
-        <div className="grid lg:grid-cols-12 gap-6 items-end mb-14 sm:mb-20">
+        <div className="grid lg:grid-cols-12 gap-6 items-end mb-10 sm:mb-16 lg:mb-20">
           <div className="lg:col-span-6">
             <p className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/40 mb-5">
               <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
@@ -85,7 +85,7 @@ export const Projects = () => {
             </h2>
           </div>
           <div className="lg:col-span-5 lg:col-start-8">
-            <p className="text-[15px] sm:text-base text-white/55 max-w-md leading-relaxed">
+            <p className="mt-2 text-[15px] sm:text-base text-white/55 max-w-md leading-relaxed">
               A selection of recent websites I&apos;ve designed and developed
               that are built to be modern, responsive and high performing.
             </p>
@@ -95,7 +95,7 @@ export const Projects = () => {
         {/* Grid */}
         <div
           data-testid="projects-grid"
-          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6"
         >
           {PROJECTS.map((p, i) => (
             <ProjectCard key={p.name} project={p} index={i} />
@@ -103,7 +103,7 @@ export const Projects = () => {
         </div>
 
         {/* View all */}
-        <div className="mt-16 flex justify-center">
+        <div className="mt-12 sm:mt-16 flex justify-center">
           <button
             data-testid="projects-view-all"
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}

@@ -88,10 +88,10 @@ export const Contact = () => {
     <section
       id="contact"
       data-testid="contact-section"
-      className="relative py-24 sm:py-32 bg-[#050505] border-t border-white/[0.05]"
+      className="relative py-20 sm:py-28 lg:py-32 bg-[#050505] border-t border-white/[0.05]"
     >
       <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
           {/* Heading */}
           <div className="lg:col-span-5">
             <p className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/40 mb-5">
@@ -121,7 +121,7 @@ export const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-7 rounded-2xl border border-white/[0.08] bg-gradient-to-b from-[#0c0c0c] to-[#070707] p-7 sm:p-10"
+            className="lg:col-span-7 rounded-2xl border border-white/[0.08] bg-gradient-to-b from-[#0c0c0c] to-[#070707] p-6 sm:p-10"
           >
             <div className="grid sm:grid-cols-2 gap-6">
               <label className="block">
@@ -195,7 +195,7 @@ export const Contact = () => {
               />
             </label>
 
-            <div className="mt-10 flex items-center justify-between gap-4 flex-wrap">
+            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 sm:gap-6">
               <p className="font-mono-grotesk text-[10.5px] tracking-[0.26em] uppercase text-white/30">
                 * Required fields
               </p>
@@ -203,7 +203,7 @@ export const Contact = () => {
                 data-testid="contact-submit"
                 type="submit"
                 disabled={loading}
-                className="group inline-flex items-center gap-3 rounded-full border border-white/20 bg-white text-black px-7 h-12 text-[12px] tracking-[0.22em] uppercase font-medium hover:bg-transparent hover:text-white disabled:opacity-60 transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-3 rounded-full border border-white/20 bg-white text-black w-full sm:w-auto px-7 h-12 text-[12px] tracking-[0.22em] uppercase font-medium hover:bg-transparent hover:text-white disabled:opacity-60 transition-all duration-300"
               >
                 {loading ? (
                   <>

@@ -67,10 +67,10 @@ export const Services = () => {
     <section
       id="services"
       data-testid="services-section"
-      className="relative py-24 sm:py-32 bg-[#070707] border-y border-white/[0.05]"
+      className="relative py-20 sm:py-28 lg:py-32 bg-[#070707] border-y border-white/[0.05]"
     >
       <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
-        <div className="grid lg:grid-cols-12 gap-6 items-end mb-14 sm:mb-20">
+        <div className="grid lg:grid-cols-12 gap-6 items-end mb-10 sm:mb-16 lg:mb-20">
           <div className="lg:col-span-6">
             <p className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/40 mb-5">
               <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
@@ -90,7 +90,7 @@ export const Services = () => {
 
         <div
           data-testid="services-grid"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
         >
           {SERVICES.map((s, i) => (
             <ServiceCard key={s.title} service={s} index={i} />

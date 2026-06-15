@@ -39,9 +39,9 @@ export const Footer = () => {
       data-testid="site-footer"
       className="relative bg-[#050505] border-t border-white/[0.06] overflow-hidden"
     >
-      <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12 pt-20 sm:pt-24 pb-10">
+      <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12 pt-16 sm:pt-20 lg:pt-24 pb-10">
         {/* Top grid */}
-        <div className="grid lg:grid-cols-12 gap-12 mb-16">
+        <div className="grid lg:grid-cols-12 gap-10 sm:gap-12 mb-12 sm:mb-16">
           <div className="lg:col-span-6">
             <p className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/40 mb-5">
               <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
@@ -50,11 +50,11 @@ export const Footer = () => {
             <button
               data-testid="footer-cta"
               onClick={() => smoothTo("contact")}
-              className="group inline-flex items-center gap-3 font-heading text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white hover:text-white/80 transition-colors"
+              className="group inline-flex items-center gap-3 sm:gap-4 font-heading text-2xl sm:text-4xl lg:text-5xl tracking-tight text-white hover:text-white/80 transition-colors"
             >
               Start a project
-              <span className="grid place-items-center h-12 w-12 rounded-full border border-white/15 group-hover:bg-white group-hover:text-black transition-all">
-                <ArrowUpRight size={18} />
+              <span className="grid place-items-center h-10 w-10 sm:h-12 sm:w-12 rounded-full border border-white/15 group-hover:bg-white group-hover:text-black transition-all">
+                <ArrowUpRight size={16} />
               </span>
             </button>
           </div>
@@ -126,7 +126,7 @@ export const Footer = () => {
         >
           <h2
             data-testid="footer-bigname"
-            className="font-display uppercase text-white/95 leading-[0.82] tracking-[-0.04em] text-[15vw] sm:text-[14vw] lg:text-[11.5vw] text-left"
+            className="font-display uppercase text-white/95 leading-[0.84] tracking-[-0.04em] text-[11.5vw] sm:text-[14vw] lg:text-[11.5vw] text-left"
           >
             <span className="block">Jay</span>
             <span className="block">Alminshawi</span>

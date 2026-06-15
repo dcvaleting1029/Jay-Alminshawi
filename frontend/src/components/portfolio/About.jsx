@@ -28,10 +28,10 @@ export const About = () => {
     <section
       id="about"
       data-testid="about-section"
-      className="relative py-24 sm:py-32 bg-[#070707] border-t border-white/[0.05]"
+      className="relative py-20 sm:py-28 lg:py-32 bg-[#070707] border-t border-white/[0.05]"
     >
       <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           {/* Left text */}
           <div className="lg:col-span-7">
             <motion.span
@@ -52,7 +52,7 @@ export const About = () => {
                 hidden: {},
                 show: { transition: { staggerChildren: 0.012 } },
               }}
-              className="mt-8 text-2xl sm:text-3xl lg:text-[34px] leading-[1.25] tracking-tight text-white/55 max-w-3xl"
+              className="mt-7 sm:mt-8 text-xl sm:text-3xl lg:text-[34px] leading-[1.3] sm:leading-[1.25] tracking-tight text-white/55 max-w-3xl"
               style={{ fontFamily: "Montserrat, system-ui, sans-serif", fontWeight: 300 }}
             >
               {paragraph.map((seg, i) => (
@@ -77,13 +77,13 @@ export const About = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              className="relative gradient-fade-x"
+              className="relative gradient-fade-x -mx-5 sm:mx-0 px-5 sm:px-0"
             >
-              <div className="flex gap-3 overflow-hidden">
+              <div className="flex gap-3 overflow-x-auto sm:overflow-hidden scrollbar-hide snap-x snap-mandatory">
                 {previews.map((p) => (
                   <div
                     key={p.name}
-                    className="relative shrink-0 w-40 sm:w-48 aspect-[16/11] rounded-lg overflow-hidden border border-white/[0.08] bg-[#0a0a0a]"
+                    className="relative shrink-0 w-36 sm:w-44 lg:w-48 aspect-[16/11] rounded-lg overflow-hidden border border-white/[0.08] bg-[#0a0a0a] snap-start"
                     data-testid={`about-preview-${p.name.replace(/\s+/g, '-').toLowerCase()}`}
                   >
                     <img src={p.image} alt={p.name} loading="lazy" className="absolute inset-0 w-full h-full object-cover object-top" />

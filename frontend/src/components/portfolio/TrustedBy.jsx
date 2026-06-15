@@ -8,7 +8,7 @@ export const TrustedBy = () => {
   return (
     <section
       data-testid="trusted-by"
-      className="relative py-16 sm:py-20 border-y border-white/[0.06] bg-[#070707] overflow-hidden"
+      className="relative py-12 sm:py-16 lg:py-20 border-y border-white/[0.06] bg-[#070707] overflow-hidden"
     >
       <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
         <motion.p
@@ -29,7 +29,7 @@ export const TrustedBy = () => {
             {items.map((p, i) => (
               <div
                 key={`${p.name}-${i}`}
-                className="shrink-0 h-16 sm:h-20 w-40 sm:w-52 grid place-items-center opacity-90 hover:opacity-100 transition-opacity duration-300"
+                className="shrink-0 h-12 sm:h-16 lg:h-20 w-32 sm:w-44 lg:w-52 grid place-items-center opacity-90 hover:opacity-100 transition-opacity duration-300"
                 title={p.name}
                 aria-label={p.name}
               >

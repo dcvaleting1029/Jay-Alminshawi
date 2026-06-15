@@ -52,9 +52,10 @@ export const Navbar = () => {
             <button
               data-testid="nav-build-website"
               onClick={() => smoothScrollTo("contact")}
-              className="group relative inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-4 sm:px-5 h-9 sm:h-10 text-[11px] sm:text-[12px] tracking-[0.22em] uppercase font-medium text-white hover:bg-white hover:text-black transition-all duration-300"
+              className="group relative inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-3.5 sm:px-5 h-9 sm:h-10 text-[10.5px] sm:text-[12px] tracking-[0.22em] uppercase font-medium text-white hover:bg-white hover:text-black transition-all duration-300 whitespace-nowrap"
             >
-              <span>Build Your Website</span>
+              <span className="hidden sm:inline">Build Your Website</span>
+              <span className="sm:hidden">Get In Touch</span>
               <ArrowUpRight size={14} className="opacity-80 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </button>
             <button

@@ -48,7 +48,7 @@ export const Testimonials = () => {
   return (
     <section
       data-testid="testimonials-section"
-      className="relative py-24 sm:py-32 bg-[#050505]"
+      className="relative py-20 sm:py-28 lg:py-32 bg-[#050505]"
     >
       <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12">
