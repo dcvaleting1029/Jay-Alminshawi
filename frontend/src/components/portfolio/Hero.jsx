@@ -80,7 +80,7 @@ export const Hero = () => {
               initial="hidden"
               animate="show"
               custom={1}
-              className="font-display uppercase text-white leading-[0.85] tracking-[-0.035em] text-[13vw] sm:text-[11vw] lg:text-[5.6vw] xl:text-[5.4vw] break-words"
+              className="font-display uppercase text-white leading-[0.85] tracking-[-0.035em] text-[12vw] sm:text-[10vw] lg:text-[5vw] xl:text-[4.8vw] break-words"
             >
               <span className="block">Jay</span>
               <span className="block text-white/95">Alminshawi</span>
