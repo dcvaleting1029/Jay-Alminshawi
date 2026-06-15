@@ -13,6 +13,15 @@ const cardVariants = {
   }),
 };
 
+const headRevealParent = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12 } },
+};
+const headRevealChild = {
+  hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
+  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
+};
+
 const ProjectCard = ({ project, index }) => {
   const hasUrl = !!project.url;
   return (
@@ -74,8 +83,14 @@ export const Projects = () => {
     >
       <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
         {/* Heading row */}
-        <div className="grid lg:grid-cols-12 gap-6 items-end mb-10 sm:mb-16 lg:mb-20">
-          <div className="lg:col-span-6">
+        <motion.div
+          variants={headRevealParent}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="grid lg:grid-cols-12 gap-6 items-end mb-10 sm:mb-16 lg:mb-20"
+        >
+          <motion.div variants={headRevealChild} className="lg:col-span-6">
             <p className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/40 mb-5">
               <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
               Selected Work
@@ -83,14 +98,14 @@ export const Projects = () => {
             <h2 className="font-display uppercase text-white leading-[0.9] tracking-tight text-5xl sm:text-6xl lg:text-7xl">
               Projects
             </h2>
-          </div>
-          <div className="lg:col-span-5 lg:col-start-8">
+          </motion.div>
+          <motion.div variants={headRevealChild} className="lg:col-span-5 lg:col-start-8">
             <p className="mt-2 text-[15px] sm:text-base text-white/55 max-w-md leading-relaxed">
               A selection of recent websites I&apos;ve designed and developed
               that are built to be modern, responsive and high performing.
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Grid */}
         <div

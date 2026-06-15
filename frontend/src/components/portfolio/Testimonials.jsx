@@ -54,19 +54,47 @@ export const Testimonials = () => {
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12">
           {/* Left: header + cards */}
           <div className="lg:col-span-7">
-            <p className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/40 mb-5">
-              <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
-              Client Words
-            </p>
-            <h2 className="font-display uppercase text-white leading-[0.9] tracking-tight text-5xl sm:text-6xl lg:text-7xl">
-              Testimonials
-            </h2>
-            <p className="mt-7 text-[15px] sm:text-base text-white/55 max-w-md leading-relaxed">
-              What clients say about working with me and the results we&apos;ve
-              achieved.
-            </p>
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={{
+                hidden: {},
+                show: { transition: { staggerChildren: 0.12 } },
+              }}
+            >
+              <motion.p
+                variants={{
+                  hidden: { opacity: 0, y: 20, filter: "blur(6px)" },
+                  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.7 } },
+                }}
+                className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/40 mb-5"
+              >
+                <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
+                Client Words
+              </motion.p>
+              <motion.h2
+                variants={{
+                  hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
+                  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.85 } },
+                }}
+                className="font-display uppercase text-white leading-[0.9] tracking-tight text-5xl sm:text-6xl lg:text-7xl"
+              >
+                Testimonials
+              </motion.h2>
+              <motion.p
+                variants={{
+                  hidden: { opacity: 0, y: 18 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+                }}
+                className="mt-6 sm:mt-7 text-[15px] sm:text-base text-white/55 max-w-md leading-relaxed"
+              >
+                What clients say about working with me and the results we&apos;ve
+                achieved.
+              </motion.p>
+            </motion.div>
 
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="mt-10 sm:mt-12 grid grid-cols-1 md:grid-cols-2 gap-5">
               {TESTIMONIALS.map((t, i) => (
                 <TestimonialCard key={t.brand} t={t} i={i} />
               ))}

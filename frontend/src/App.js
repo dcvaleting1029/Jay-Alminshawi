@@ -14,6 +14,7 @@ import About from "@/components/portfolio/About";
 import Contact from "@/components/portfolio/Contact";
 import Footer from "@/components/portfolio/Footer";
 import LoadingScreen from "@/components/portfolio/LoadingScreen";
+import MobileStickyCTA from "@/components/portfolio/MobileStickyCTA";
 import AdminContacts from "@/components/admin/AdminContacts";
 
 const LOADER_KEY = "jay_loader_seen";
@@ -30,6 +31,7 @@ const Home = () => {
       <About />
       <Contact />
       <Footer />
+      <MobileStickyCTA />
     </main>
   );
 };

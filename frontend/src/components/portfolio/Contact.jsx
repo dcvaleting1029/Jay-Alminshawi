@@ -93,25 +93,58 @@ export const Contact = () => {
       <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
           {/* Heading */}
-          <div className="lg:col-span-5">
-            <p className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/40 mb-5">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.12 } },
+            }}
+            className="lg:col-span-5"
+          >
+            <motion.p
+              variants={{
+                hidden: { opacity: 0, y: 20, filter: "blur(6px)" },
+                show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.7 } },
+              }}
+              className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/40 mb-5"
+            >
               <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
               Get In Touch
-            </p>
-            <h2 className="font-display uppercase text-white leading-[0.9] tracking-tight text-5xl sm:text-6xl lg:text-7xl">
+            </motion.p>
+            <motion.h2
+              variants={{
+                hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
+                show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.85 } },
+              }}
+              className="font-display uppercase text-white leading-[0.9] tracking-tight text-5xl sm:text-6xl lg:text-7xl"
+            >
               Build Your <br /> Website.
-            </h2>
-            <p className="mt-7 text-[15px] sm:text-base text-white/55 max-w-md leading-relaxed">
+            </motion.h2>
+            <motion.p
+              variants={{
+                hidden: { opacity: 0, y: 18 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+              }}
+              className="mt-6 sm:mt-7 text-[15px] sm:text-base text-white/55 max-w-md leading-relaxed"
+            >
               Tell me about your brand, project, and goals. I&apos;ll reply
               with ideas, scope, and next steps within 24 hours.
-            </p>
+            </motion.p>
 
-            <div className="mt-12 space-y-3 font-mono-grotesk text-[12px] tracking-[0.2em] uppercase text-white/45">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 18 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+              }}
+              className="mt-10 sm:mt-12 space-y-3 font-mono-grotesk text-[12px] tracking-[0.2em] uppercase text-white/45"
+            >
               <p><span className="text-white/30 mr-3">EMAIL</span> jayalminshawi@gmail.com</p>
               <p><span className="text-white/30 mr-3">BASED</span> Edinburgh, UK</p>
               <p><span className="text-white/30 mr-3">AVAILABILITY</span> Open for Q1 2026</p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Form */}
           <motion.form
