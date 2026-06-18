@@ -42,9 +42,17 @@ export const Contact = () => {
       toast.error("Please fill in name, phone and message.");
       return;
     }
-    // Compose E.164: dial code + national digits only
-    const digits = form.nationalPhone.replace(/[^\d]/g, "").replace(/^0+/, "");
-    const fullPhone = `${country.dial}${digits}`;
+    // Compose E.164. If the user already entered an international number with a
+    // leading "+", use it as-is and ignore the country picker. Otherwise prepend
+    // the selected dial code to the digits-only national portion.
+    const raw = (form.nationalPhone || "").trim();
+    let fullPhone;
+    if (raw.startsWith("+")) {
+      fullPhone = "+" + raw.slice(1).replace(/[^\d]/g, "");
+    } else {
+      const digits = raw.replace(/[^\d]/g, "").replace(/^0+/, "");
+      fullPhone = `${country.dial}${digits}`;
+    }
 
     const payload = {
       name: form.name,
