@@ -109,10 +109,23 @@ async def create_contact(payload: ContactCreate):
 @api_router.get("/contact", response_model=List[Contact])
 async def list_contacts():
     items = await db.contacts.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
+    result: List[Contact] = []
     for c in items:
+        # Skip malformed legacy documents missing required fields rather than 500
+        if not c.get("phone") or not c.get("name") or not c.get("message"):
+            continue
         if isinstance(c.get('created_at'), str):
-            c['created_at'] = datetime.fromisoformat(c['created_at'])
-    return items
+            try:
+                c['created_at'] = datetime.fromisoformat(c['created_at'])
+            except ValueError:
+                c['created_at'] = datetime.now(timezone.utc)
+        try:
+            result.append(Contact(**c))
+        except Exception:
+            # Don't let one broken row take down the whole list
+            logging.warning("Skipped malformed contact row: %s", c.get('id'))
+            continue
+    return result
 
 
 app.include_router(api_router)
