@@ -34,7 +34,12 @@ export const Contact = () => {
     [form.countryCode]
   );
 
-  const update = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
+  const update = (k) => (e) => {
+    setForm((f) => ({ ...f, [k]: e.target.value }));
+    // Touching the form after a successful send should reset the "Sent" state
+    // so the button reverts from "Sent ✓" back to "Send Message".
+    if (sent) setSent(false);
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -75,6 +80,9 @@ export const Contact = () => {
         project_type: "",
         message: "",
       });
+      // Auto-revert the SENT button label after 4 seconds so the form
+      // always looks ready to take another enquiry.
+      setTimeout(() => setSent(false), 4000);
     } catch (err) {
       const data = err?.response?.data?.detail;
       let msg = "Something went wrong. Please try again.";
