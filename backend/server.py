@@ -1,13 +1,12 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict, field_validator
-from typing import List, Optional
-import re
+from pydantic import BaseModel, Field, ConfigDict
+from typing import List
 import uuid
 from datetime import datetime, timezone
 
@@ -15,7 +14,6 @@ from datetime import datetime, timezone
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
@@ -24,7 +22,6 @@ app = FastAPI(title="Jay Alminshawi Portfolio API")
 api_router = APIRouter(prefix="/api")
 
 
-# ---------- Models ----------
 class StatusCheck(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
@@ -36,40 +33,6 @@ class StatusCheckCreate(BaseModel):
     client_name: str
 
 
-_E164_RE = re.compile(r"^\+[1-9]\d{6,14}$")
-
-
-class ContactCreate(BaseModel):
-    name: str = Field(..., min_length=1, max_length=120)
-    phone: str = Field(..., min_length=4, max_length=40)
-    company: Optional[str] = Field(default=None, max_length=160)
-    project_type: Optional[str] = Field(default=None, max_length=120)
-    message: str = Field(..., min_length=1, max_length=5000)
-
-    @field_validator("phone")
-    @classmethod
-    def _validate_phone_e164(cls, v: str) -> str:
-        # Normalise: strip common separators
-        normalised = re.sub(r"[\s\-\(\)\.]", "", v or "")
-        if not _E164_RE.match(normalised):
-            raise ValueError(
-                "Phone must be in international E.164 format (e.g. +447700900000)"
-            )
-        return normalised
-
-
-class Contact(BaseModel):
-    model_config = ConfigDict(extra="ignore")
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    name: str
-    phone: str
-    company: Optional[str] = None
-    project_type: Optional[str] = None
-    message: str
-    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-
-
-# ---------- Routes ----------
 @api_router.get("/")
 async def root():
     return {"message": "Jay Alminshawi Portfolio API"}
@@ -86,46 +49,11 @@ async def create_status_check(input: StatusCheckCreate):
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
-    for check in status_checks:
-        if isinstance(check.get('timestamp'), str):
-            check['timestamp'] = datetime.fromisoformat(check['timestamp'])
-    return status_checks
-
-
-@api_router.post("/contact", response_model=Contact, status_code=201)
-async def create_contact(payload: ContactCreate):
-    obj = Contact(**payload.model_dump())
-    doc = obj.model_dump()
-    doc['created_at'] = doc['created_at'].isoformat()
-    try:
-        await db.contacts.insert_one(doc)
-    except Exception as e:
-        logging.exception("Failed to insert contact")
-        raise HTTPException(status_code=500, detail="Could not store contact") from e
-    return obj
-
-
-@api_router.get("/contact", response_model=List[Contact])
-async def list_contacts():
-    items = await db.contacts.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
-    result: List[Contact] = []
+    items = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
     for c in items:
-        # Skip malformed legacy documents missing required fields rather than 500
-        if not c.get("phone") or not c.get("name") or not c.get("message"):
-            continue
-        if isinstance(c.get('created_at'), str):
-            try:
-                c['created_at'] = datetime.fromisoformat(c['created_at'])
-            except ValueError:
-                c['created_at'] = datetime.now(timezone.utc)
-        try:
-            result.append(Contact(**c))
-        except Exception:
-            # Don't let one broken row take down the whole list
-            logging.warning("Skipped malformed contact row: %s", c.get('id'))
-            continue
-    return result
+        if isinstance(c.get('timestamp'), str):
+            c['timestamp'] = datetime.fromisoformat(c['timestamp'])
+    return items
 
 
 app.include_router(api_router)
