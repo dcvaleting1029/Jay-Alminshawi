@@ -68,7 +68,7 @@ export const PROJECTS = [
     name: "MA Home Interiors",
     category: "Interior Design",
     url: "https://www.mahomeinteriors.com/",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/30wcgyke_Luxury%20Interior%20Design%20Website%20Landing%20Page.png",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/20tovakn_Luxury%20Home%20Interior%20Design%20Website%20Landing%20Page.png",
   },
   {
     name: "DC Valeting",
@@ -86,7 +86,7 @@ export const PROJECTS = [
     name: "Jay Alminshawi | Fitness",
     category: "Coaching",
     url: "https://www.jayalminshawifitness.com/",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/fle4rtyg_June%2013%2C%202026%206_45_10%20am%20-%20Screenshot.png",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/7fw75ue3_June%2024%2C%202026%202_46_40%20pm%20-%20Screenshot.png",
   },
   {
     name: "Celunéa Skincare",
