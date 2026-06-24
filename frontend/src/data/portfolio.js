@@ -74,7 +74,7 @@ export const PROJECTS = [
     name: "DC Valeting",
     category: "Valeting",
     url: "https://www.dcvaleting.company/",
-    image: "/dcvaleting-live.jpg",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/gjxb3hxq_ChatGPT%20Image%20Jun%2013%2C%202026%2C%2006_29_10%20AM.png",
   },
   {
     name: "Crawford Tree Surgery",
