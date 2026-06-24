@@ -80,7 +80,7 @@ export const PROJECTS = [
     name: "Crawford Tree Surgery",
     category: "Tree Surgery",
     url: "https://crawfordtreesurgery.com/",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/cp2rwk15_Crawford%20Tree%20Surgery%20Website%20Homepage.png",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/pxi38kdg_Crawford%20Tree%20Surgery%20Website%20Homepage%20%281%29.png",
   },
   {
     name: "Jay Alminshawi | Fitness",
