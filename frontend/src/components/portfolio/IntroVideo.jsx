@@ -8,24 +8,21 @@ const POSTER_SRC = "/intro-poster.jpg";
 export const IntroVideo = () => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // Restart from beginning every time the video enters the viewport
+  // Reset to start whenever the video scrolls out of view (so it always
+  // starts from the beginning the next time the user clicks play)
   useEffect(() => {
     const v = videoRef.current;
     const el = containerRef.current;
     if (!v || !el) return;
 
-    v.muted = true;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          v.currentTime = 0;
-          v.play().catch(() => {});
-        } else {
+        if (!entry.isIntersecting) {
           v.pause();
+          v.currentTime = 0;
         }
       },
       { threshold: 0.4 }
@@ -39,7 +36,15 @@ export const IntroVideo = () => {
     const v = videoRef.current;
     if (!v) return;
     if (v.paused) {
-      v.play().catch(() => {});
+      // start unmuted so the user hears the intro when they hit play
+      v.muted = false;
+      setIsMuted(false);
+      v.play().catch(() => {
+        // fallback: if browser blocks unmuted play, retry muted
+        v.muted = true;
+        setIsMuted(true);
+        v.play().catch(() => {});
+      });
     } else {
       v.pause();
     }
@@ -81,9 +86,6 @@ export const IntroVideo = () => {
             src={VIDEO_SRC}
             poster={POSTER_SRC}
             playsInline
-            muted
-            loop
-            autoPlay
             preload="auto"
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
