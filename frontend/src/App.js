@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 
 import Navbar from "@/components/portfolio/Navbar";
 import Hero from "@/components/portfolio/Hero";
+import IntroVideo from "@/components/portfolio/IntroVideo";
 import TrustedBy from "@/components/portfolio/TrustedBy";
 import Projects from "@/components/portfolio/Projects";
 import Services from "@/components/portfolio/Services";
@@ -23,6 +24,7 @@ const Home = () => {
     <main data-testid="home-main" className="relative bg-[#050505] text-white">
       <Navbar />
       <Hero />
+      <IntroVideo />
       <TrustedBy />
       <Projects />
       <Services />
