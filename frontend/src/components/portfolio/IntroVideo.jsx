@@ -53,7 +53,7 @@ export const IntroVideo = () => {
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         className="relative w-full"
       >
-        <div className="relative w-full aspect-[21/9] sm:aspect-[21/9] md:aspect-[21/8] lg:aspect-[21/9] max-h-[88vh] overflow-hidden">
+        <div className="relative w-full h-[92vh] min-h-[600px] max-h-[1100px] overflow-hidden">
           <video
             ref={videoRef}
             data-testid="intro-video-player"
