@@ -7,21 +7,31 @@ const POSTER_SRC = "/intro-poster.jpg";
 
 export const IntroVideo = () => {
   const videoRef = useRef(null);
+  const containerRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
 
-  // Ensure muted autoplay kicks in across all browsers
+  // Restart from beginning every time the video enters the viewport
   useEffect(() => {
     const v = videoRef.current;
-    if (!v) return;
+    const el = containerRef.current;
+    if (!v || !el) return;
+
     v.muted = true;
-    const tryPlay = async () => {
-      try {
-        await v.play();
-      } catch {
-        /* autoplay blocked — user can click to unmute/play */
-      }
-    };
-    tryPlay();
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          v.currentTime = 0;
+          v.play().catch(() => {});
+        } else {
+          v.pause();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   const toggleMute = () => {
@@ -53,7 +63,7 @@ export const IntroVideo = () => {
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         className="relative w-full"
       >
-        <div className="relative w-full h-[92vh] min-h-[600px] max-h-[1100px] overflow-hidden">
+        <div ref={containerRef} className="relative w-full h-[92vh] min-h-[600px] max-h-[1100px] overflow-hidden">
           <video
             ref={videoRef}
             data-testid="intro-video-player"
