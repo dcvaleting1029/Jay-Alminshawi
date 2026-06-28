@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Volume2, VolumeX } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Play, Pause, Volume2, VolumeX } from "lucide-react";
 
 const VIDEO_SRC = "/intro.mp4";
 const POSTER_SRC = "/intro-poster.jpg";
@@ -9,6 +9,7 @@ export const IntroVideo = () => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // Restart from beginning every time the video enters the viewport
   useEffect(() => {
@@ -33,6 +34,16 @@ export const IntroVideo = () => {
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  const togglePlay = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play().catch(() => {});
+    } else {
+      v.pause();
+    }
+  };
 
   const toggleMute = () => {
     const v = videoRef.current;
@@ -74,8 +85,47 @@ export const IntroVideo = () => {
             loop
             autoPlay
             preload="auto"
-            className="absolute inset-0 w-full h-full object-cover"
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+            onClick={togglePlay}
+            className="absolute inset-0 w-full h-full object-cover cursor-pointer"
           />
+
+          {/* Center Play / Pause button */}
+          <AnimatePresence>
+            {!isPlaying && (
+              <motion.button
+                key="play"
+                data-testid="intro-video-play-btn"
+                onClick={togglePlay}
+                aria-label="Play video"
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.85 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0 z-20 grid place-items-center bg-black/30 backdrop-blur-[2px]"
+              >
+                <span className="relative grid place-items-center h-20 w-20 sm:h-24 sm:w-24 rounded-full bg-white text-black hover:scale-105 transition-transform duration-300">
+                  <Play size={28} className="translate-x-[2px]" fill="currentColor" />
+                  <span className="absolute inset-0 rounded-full ring-1 ring-white/40 animate-ping" />
+                </span>
+              </motion.button>
+            )}
+          </AnimatePresence>
+
+          {/* Subtle pause hint — only visible when playing & hovering */}
+          {isPlaying && (
+            <button
+              data-testid="intro-video-pause-btn"
+              onClick={togglePlay}
+              aria-label="Pause video"
+              className="group absolute inset-0 z-10 grid place-items-center cursor-pointer"
+            >
+              <span className="grid place-items-center h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <Pause size={22} fill="currentColor" />
+              </span>
+            </button>
+          )}
 
           {/* Cinematic vignette / gradient overlays */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/30 to-transparent" />
