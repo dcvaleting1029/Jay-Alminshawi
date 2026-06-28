@@ -131,24 +131,56 @@ export const SERVICES = [
 
 export const TESTIMONIALS = [
   {
-    brand: "LashMek & Co",
+    author: "Dylan Cramb",
+    initial: "D",
+    color: "#000000",
     quote:
-      "Jay completely elevated our online presence. The site feels premium, loads instantly and clients comment on it daily. Bookings have climbed noticeably since launch.",
+      "Jay built our website for our business page and it is absolutely amazing. Jay listened to everything I was looking for and delivered exactly what I had in mind.",
     rating: 5,
+    date: "5 days ago",
   },
   {
-    brand: "Ace Of Spades Landscapes",
+    author: "Kirima Alam",
+    initial: "K",
+    color: "#7E3FA8",
     quote:
-      "Working with Jay was effortless. He understood the brand instantly and delivered a website that looks better than anything our competitors have.",
+      "Jay is amazing at what he does! Websites are always immaculate, any tweaks or changes you need it's done on the day! Fast, reliable and just 5 stars.",
     rating: 5,
+    date: "6 days ago",
   },
   {
-    brand: "DC Valeting",
+    author: "Joe Crawford",
+    initial: "J",
+    color: "#1A73E8",
+    badge: "Local Guide",
     quote:
-      "The new site is fast, modern and converts. The booking flow is seamless and the design is something I'm genuinely proud to share.",
+      "Excellent service. I have had a terrific response from the website Jay developed. Great attention to detail and always on hand to help. Great value. Highly recommended.",
     rating: 5,
+    date: "9 weeks ago",
+  },
+  {
+    author: "Trevor",
+    initial: "T",
+    color: "#4F6BED",
+    quote:
+      "He took my very plain website and transformed it into a professionally designed website. He is great to work with and does everything that you want done to provide an excellent website. I can't praise him enough.",
+    rating: 5,
+    date: "9 weeks ago",
+  },
+  {
+    author: "Kirima Alam",
+    initial: "K",
+    color: "#7E3FA8",
+    quote:
+      "This man has created my website and I have gained clients from my website and always hear how good my website looks! If you're looking for an 11/10 website then this is your man! Nothing but professionalism.",
+    rating: 5,
+    date: "9 weeks ago",
   },
 ];
+
+// Google Business profile — public reviews page
+export const GOOGLE_REVIEWS_URL =
+  "https://www.google.com/search?q=Jay+Alminshawi+/+Web+Designer&stick=H4sIAAAAAAAA_-NgU1IxqEhMMTYyTbI0MjC0MLcwT7MyqLA0NU0zsTA1TEpLMTBMTDJfxCrrlVip4JiTm5lXnJFYnqmgrxCemqTgklqcmZ6XWgQAPhKGgEgAAAA&hl=en-GB&mat=CRuKhEH0xsoyElcBa0lj_9aQDHCKwukOZXSoJZ8aGbyitKFxtGrys2jGZMfXKhMqSOAl0Fvx_P8ifkRLVRmyjXgUNe21RSSpTN4DO1BfDt5gZTAspysKxiPDFNvtFegKQDA&authuser=0";
 
 // Hero displays City Civils (verified)
 export const HERO_LAPTOP_SCREEN =
