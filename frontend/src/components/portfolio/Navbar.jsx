@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const NAV_LINKS = [
-  { label: "HOME", id: "home" },
-  { label: "PROJECTS", id: "projects" },
-  { label: "SERVICES", id: "services" },
-  { label: "ABOUT", id: "about" },
-  { label: "CONTACT", id: "contact" },
+  { label: "HOME", target: "/#home" },
+  { label: "PROJECTS", target: "/#projects" },
+  { label: "SERVICES", target: "/#services" },
+  { label: "PRICING", target: "/pricing" },
+  { label: "ABOUT", target: "/#about" },
+  { label: "CONTACT", target: "/#contact" },
 ];
-
-const smoothScrollTo = (id) => {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-};
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -25,6 +24,24 @@ export const Navbar = () => {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleNav = (target) => {
+    setOpen(false);
+    if (target.startsWith("/#")) {
+      const id = target.replace("/#", "");
+      if (location.pathname === "/") {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        navigate(target);
+      }
+    } else {
+      navigate(target);
+    }
+  };
+
+  const goContact = () => handleNav("/#contact");
+  const goHome = () => handleNav("/#home");
 
   return (
     <>
@@ -42,7 +59,7 @@ export const Navbar = () => {
         <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between">
           <button
             data-testid="nav-brand"
-            onClick={() => smoothScrollTo("home")}
+            onClick={goHome}
             className="font-heading text-[11px] sm:text-[13px] tracking-[0.28em] uppercase text-white/90 hover:text-white transition"
           >
             Jay Alminshawi
@@ -51,7 +68,7 @@ export const Navbar = () => {
           <div className="flex items-center gap-2 sm:gap-3">
             <button
               data-testid="nav-build-website"
-              onClick={() => smoothScrollTo("contact")}
+              onClick={goContact}
               className="group relative inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-3.5 sm:px-5 h-9 sm:h-10 text-[10.5px] sm:text-[12px] tracking-[0.22em] uppercase font-medium text-white hover:bg-white hover:text-black transition-all duration-300 whitespace-nowrap"
             >
               <span className="hidden sm:inline">Build Your Website</span>
@@ -84,17 +101,14 @@ export const Navbar = () => {
               <ul className="flex flex-col items-center gap-7 sm:gap-9">
                 {NAV_LINKS.map((link, i) => (
                   <motion.li
-                    key={link.id}
+                    key={link.target}
                     initial={{ y: 30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.1 + i * 0.05, duration: 0.5 }}
                   >
                     <button
-                      data-testid={`nav-link-${link.id}`}
-                      onClick={() => {
-                        smoothScrollTo(link.id);
-                        setOpen(false);
-                      }}
+                      data-testid={`nav-link-${link.label.toLowerCase()}`}
+                      onClick={() => handleNav(link.target)}
                       className="font-display text-4xl sm:text-6xl uppercase tracking-tight text-white/80 hover:text-white transition-colors"
                     >
                       {link.label}

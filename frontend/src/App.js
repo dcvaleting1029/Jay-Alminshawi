@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "@/App.css";
 import { AnimatePresence } from "framer-motion";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
@@ -16,10 +16,25 @@ import Contact from "@/components/portfolio/Contact";
 import Footer from "@/components/portfolio/Footer";
 import LoadingScreen from "@/components/portfolio/LoadingScreen";
 import MobileStickyCTA from "@/components/portfolio/MobileStickyCTA";
+import PricingPage from "@/pages/PricingPage";
 
 const LOADER_KEY = "jay_loader_seen";
 
 const Home = () => {
+  const location = useLocation();
+
+  // Scroll to hash target (e.g. /#contact from Pricing page) after mount
+  useEffect(() => {
+    if (!location.hash) return;
+    const id = location.hash.replace("#", "");
+    // Delay so sections mount before we scroll
+    const t = setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 300);
+    return () => clearTimeout(t);
+  }, [location.hash]);
+
   return (
     <main data-testid="home-main" className="relative bg-[#050505] text-white">
       <Navbar />
@@ -60,6 +75,7 @@ const AppShell = () => {
       </AnimatePresence>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/pricing" element={<PricingPage />} />
       </Routes>
     </>
   );

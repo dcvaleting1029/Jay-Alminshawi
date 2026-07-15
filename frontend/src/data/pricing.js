@@ -1,0 +1,141 @@
+// Pricing data — single source of truth for the /pricing page
+export const PLANS = [
+  {
+    id: "launch",
+    name: "Launch",
+    price: 99,
+    priceLabel: "£99",
+    tagline: "Perfect for businesses that need an affordable professional website.",
+    features: [
+      "One-page landing page",
+      "Modern custom design",
+      "Mobile responsive",
+      "Contact form",
+      "WhatsApp integration",
+      "Google Maps",
+      "Social media links",
+      "Basic SEO setup",
+      "7-day delivery",
+    ],
+    cta: "Get Started",
+  },
+  {
+    id: "growth",
+    name: "Growth",
+    price: 499,
+    priceLabel: "£499",
+    tagline: "Ideal for businesses wanting more enquiries and a stronger online presence.",
+    badge: "Most Popular",
+    highlight: true,
+    features: [
+      "Everything in Launch",
+      "Up to 5 pages",
+      "Custom animations",
+      "Conversion-focused layout",
+      "Google Analytics",
+      "Google Search Console",
+      "Lead capture forms",
+      "Speed optimisation",
+      "Basic copywriting assistance",
+      "14-day delivery",
+    ],
+    cta: "Choose Growth",
+  },
+  {
+    id: "pro",
+    name: "Pro",
+    price: 1500,
+    priceLabel: "£1,500",
+    tagline: "A premium website designed to become your best salesperson.",
+    features: [
+      "Everything in Growth",
+      "Fully bespoke design",
+      "Cinematic scrolling experience",
+      "Premium animations",
+      "Advanced SEO structure",
+      "CMS integration",
+      "Portfolio & case studies",
+      "Booking or quote system",
+      "Advanced optimisation",
+      "30 days support",
+    ],
+    cta: "Book a Call",
+  },
+  {
+    id: "scale",
+    name: "Scale",
+    price: null,
+    priceLabel: "Custom",
+    tagline: "For businesses looking to dominate their market.",
+    features: [
+      "Everything in Pro",
+      "Unlimited pages",
+      "Custom functionality",
+      "AI Chatbot integration",
+      "CRM integration",
+      "Google Ads landing pages",
+      "API integrations",
+      "Monthly optimisation",
+      "Strategy sessions",
+    ],
+    cta: "Request Quote",
+  },
+];
+
+export const CARE_PLAN = {
+  title: "Website Care Plan",
+  price: 40,
+  priceLabel: "£40",
+  period: "/month",
+  subtitle: "Keep your website fast, secure and always performing.",
+  features: [
+    "Secure Hosting",
+    "SSL Certificate",
+    "Daily Backups",
+    "Website Updates",
+    "Performance Monitoring",
+    "Security Monitoring",
+    "Minor Content Changes",
+    "Priority Support",
+  ],
+  cta: "Protect My Website",
+};
+
+export const ADD_ONS = [
+  { name: "Extra Page", price: "£75" },
+  { name: "Logo Design", price: "£150" },
+  { name: "Google Business Profile Setup", price: "£99" },
+  { name: "Booking System", price: "From £150" },
+  { name: "Blog Setup", price: "£100" },
+  { name: "Copywriting", price: "From £150" },
+  { name: "Google Ads Setup", price: "From £300" },
+  { name: "Google Ads Management", price: "From £200/month" },
+  { name: "AI Chatbot", price: "From £250" },
+];
+
+export const PRICING_FAQ = [
+  {
+    q: "How long does a website take?",
+    a: "Delivery times depend on the package — anywhere from 7 days for Launch, 14 days for Growth, up to 30 days for Pro. Scale timelines are agreed on a project-by-project basis. You'll always receive a clear delivery schedule on our discovery call.",
+  },
+  {
+    q: "Can I upgrade later?",
+    a: "Absolutely. Every website is built on a foundation that scales — you can start with Launch and upgrade to Growth, Pro or Scale at any point. You only pay the difference between the plans plus any new custom work.",
+  },
+  {
+    q: "Do you offer payment plans?",
+    a: "Yes. For Growth, Pro and Scale, I offer a 50% deposit to start and 50% on launch. Longer instalment plans are also available on request for Pro and Scale — just let me know on our call.",
+  },
+  {
+    q: "Do I own the website?",
+    a: "100%. You own the domain, hosting account, content, code and all creative assets once the project is complete. Nothing is locked to me — you have full control.",
+  },
+  {
+    q: "Do you provide hosting?",
+    a: "Hosting is included free for the first month with every package. After that, hosting is included as part of the Website Care Plan (£40/month), or you're free to arrange your own hosting anywhere you like.",
+  },
+  {
+    q: "Can you redesign my current website?",
+    a: "Yes — redesigns are one of my specialities. If you already have a website that's outdated, slow or not converting, book a discovery call and I'll audit it, identify the issues and recommend the right package to bring it up to premium standard.",
+  },
+];
