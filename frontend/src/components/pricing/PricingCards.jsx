@@ -22,17 +22,17 @@ const Price = ({ plan }) => {
   return (
     <div ref={ref} className="flex items-baseline gap-1">
       {plan.price === null ? (
-        <span className="font-display text-5xl sm:text-6xl lg:text-5xl xl:text-[56px] text-white leading-none tracking-tight whitespace-nowrap">
+        <span className="font-display text-5xl sm:text-6xl lg:text-[36px] xl:text-[46px] 2xl:text-[56px] text-white leading-none tracking-tight whitespace-nowrap">
           Custom
         </span>
       ) : (
         <>
-          <span className="font-display text-2xl sm:text-3xl lg:text-2xl xl:text-3xl text-white/70 leading-none">
+          <span className="font-display text-2xl sm:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl text-white/70 leading-none">
             £
           </span>
           <span
             data-testid={`plan-price-${plan.id}`}
-            className="font-display text-5xl sm:text-6xl lg:text-5xl xl:text-[60px] text-white leading-none tracking-tight tabular-nums whitespace-nowrap"
+            className="font-display text-5xl sm:text-6xl lg:text-[40px] xl:text-[52px] 2xl:text-[60px] text-white leading-none tracking-tight tabular-nums whitespace-nowrap"
           >
             {count.toLocaleString()}
           </span>
@@ -77,7 +77,7 @@ const PlanCard = ({ plan, i }) => {
 
       {/* Inner card — this one clips its own content */}
       <div
-        className={`relative flex-1 flex flex-col rounded-[22px] p-7 sm:p-8 backdrop-blur-xl overflow-hidden transition-all duration-500 ${
+        className={`relative flex-1 flex flex-col rounded-[22px] p-7 sm:p-8 lg:p-6 xl:p-7 2xl:p-8 backdrop-blur-xl overflow-hidden transition-all duration-500 ${
           isHighlight
             ? "bg-[#0a0a0a] border border-white/20 shadow-[0_40px_120px_-30px_rgba(255,255,255,0.15)]"
             : "bg-white/[0.03] border border-white/[0.08] group-hover:border-white/25 group-hover:shadow-[0_30px_80px_-30px_rgba(255,255,255,0.08)]"

@@ -1,0 +1,76 @@
+{
+  "summary": "Frontend retest of /pricing card price visibility fix (iteration_4). ALL prices at ALL requested viewports (1024, 1280, 1440, 820, 390) now render with >=15px breathing room. Fix is verified WORKING. Regression checks (MOST POPULAR badge, CTA alignment, uniform width, FAQ accordion, console errors) all pass.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "detailed_measurements": {
+    "method": "Measured each price element's real text width by summing scrollWidth of each child span (£ prefix + numeric span, OR just 'Custom' span) plus gap-1 (4px). Content width = inner card innerWidth minus computed padding-left minus computed padding-right. Breathing room = contentWidth - requiredWidth. This avoids the false-negative from measuring the flex wrapper's own width.",
+    "viewport_1024x900": {
+      "content_width_per_card": "166px (card 214px - 24px*2 padding at lg:p-6)",
+      "launch_99": "req=68px, breathingRoom=98px [PASS]",
+      "growth_499": "req=95px, breathingRoom=71px [PASS]",
+      "pro_1500": "req=132px, breathingRoom=34px [PASS]",
+      "scale_Custom": "req=141px, breathingRoom=25px [PASS]",
+      "verdict": "PASS at 1024 (tightest case, still >=15px for every card)"
+    },
+    "viewport_1280x900": {
+      "content_width_per_card": "222px (card 278px - 28px*2 padding at xl:p-7)",
+      "launch_99": "req=88px, breathingRoom=134px [PASS]",
+      "growth_499": "req=123px, breathingRoom=99px [PASS]",
+      "pro_1500": "req=171px, breathingRoom=51px [PASS]",
+      "scale_Custom": "req=181px, breathingRoom=41px [PASS]",
+      "verdict": "PASS at 1280"
+    },
+    "viewport_1440x900": {
+      "content_width_per_card": "262px",
+      "launch_99": "breathingRoom=174px [PASS]",
+      "growth_499": "breathingRoom=139px [PASS]",
+      "pro_1500": "breathingRoom=91px [PASS]",
+      "scale_Custom": "breathingRoom=81px [PASS]",
+      "verdict": "PASS at 1440"
+    },
+    "viewport_820x1024_tablet_2x2": {
+      "content_width_per_card": "302px",
+      "launch_99": "breathingRoom=198px [PASS]",
+      "growth_499": "breathingRoom=158px [PASS]",
+      "pro_1500": "breathingRoom=102px [PASS]",
+      "scale_Custom": "breathingRoom=66px [PASS]",
+      "verdict": "PASS at 820 (2x2 grid)"
+    },
+    "viewport_390x844_mobile_stacked": {
+      "content_width_per_card": "294px",
+      "launch_99": "breathingRoom=209px [PASS]",
+      "growth_499": "breathingRoom=177px [PASS]",
+      "pro_1500": "breathingRoom=131px [PASS]",
+      "scale_Custom": "breathingRoom=104px [PASS]",
+      "verdict": "PASS at 390 (stacked)"
+    }
+  },
+  "regression_checks": {
+    "most_popular_badge_visible_on_growth": "PASS at all 5 viewports (badge element rendered, non-zero size, text='Most Popular')",
+    "cta_uniform_width": "PASS - all 4 CTAs width=260px at 1440, 292px at 390 (matching)",
+    "cta_bottom_alignment_desktop": "PASS - all 4 CTAs share the same bottom coordinate at 1440 (bottom=6)",
+    "faq_accordion_toggle": "PASS - aria-expanded transitions from true to false on click",
+    "console_errors": "0 errors captured during full test run",
+    "mobile_stacked_layout": "PASS (1 col at 390)",
+    "tablet_2x2_layout": "PASS (2 cols at 820)"
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "PricingCards.jsx: fix is effective. Numeric price lg:text-[40px] xl:text-[52px] 2xl:text-[60px] plus reduced £ prefix (lg:text-lg) plus reduced inner card padding (lg:p-6) collectively give >=25px breathing room at the tightest viewport (1024).",
+    "Recommendation (non-blocking): consider adding a runtime dev-only warning or visual test that measures scrollWidth vs contentWidth so future font/padding changes don't silently reintroduce clipping (overflow-hidden on inner card would hide it).",
+    "Iteration_3 measurement used getBoundingClientRect on a clipped element; iteration_4 measurement using per-child scrollWidth is the correct method and should be preserved in future regressions."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped per request)", "frontend": "100% (5/5 viewports pass, 20/20 price cells >=15px breathing room)"},
+  "test_credentials": "N/A",
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Fix verified. If further changes are made to PricingCards.jsx font sizes or padding, re-run the same measurement approach: for each card, sum scrollWidth of children in div.flex.items-baseline plus 4px gap per child gap, compare to (innerRect.width - computedPaddingLeft - computedPaddingRight). Requirement is >=15px. Viewports to check: 1024, 1280, 1440, 820, 390.",
+  "rca_of_the_issue": "Previous iterations 2 and 3 failed at 1024/1280 because font sizes at lg/xl were too large relative to the narrow 4-column card content widths (~150-214px). The iteration_4 fix reduced lg numeric to text-[40px], lg Custom to text-[36px], lg £ prefix to text-lg, AND reduced lg padding from p-8 to p-6, yielding 166px content width at 1024 and 25-98px breathing room for all 4 cards. Also reduced xl sizes symmetrically. Verified at 1024, 1280, 1440, 820, 390 — all pass."
+}
