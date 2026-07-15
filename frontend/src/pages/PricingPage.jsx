@@ -3,6 +3,7 @@ import Navbar from "@/components/portfolio/Navbar";
 import Footer from "@/components/portfolio/Footer";
 import MobileStickyCTA from "@/components/portfolio/MobileStickyCTA";
 import PricingHero from "@/components/pricing/PricingHero";
+import PricingQuiz from "@/components/pricing/PricingQuiz";
 import PricingCards from "@/components/pricing/PricingCards";
 import CarePlan from "@/components/pricing/CarePlan";
 import AddOnsTable from "@/components/pricing/AddOnsTable";
@@ -21,6 +22,7 @@ const PricingPage = () => {
     >
       <Navbar />
       <PricingHero />
+      <PricingQuiz />
       <PricingCards />
       <CarePlan />
       <AddOnsTable />
