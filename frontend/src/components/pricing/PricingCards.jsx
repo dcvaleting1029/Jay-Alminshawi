@@ -55,37 +55,34 @@ const PlanCard = ({ plan, i }) => {
       viewport={{ once: true, margin: "-60px" }}
       whileHover={{ y: -8 }}
       transition={{ type: "spring", stiffness: 220, damping: 22 }}
-      className={`group relative flex flex-col rounded-[22px] overflow-hidden transition-all duration-500 ${
-        isHighlight
-          ? "lg:-mt-6 lg:mb-[-24px]"
-          : ""
-      }`}
+      className="group relative flex flex-col h-full"
     >
+      {/* Badge — placed outside overflow so it isn't clipped */}
+      {plan.badge && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-30">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-black text-[9.5px] tracking-[0.28em] uppercase font-heading font-medium shadow-[0_8px_24px_-4px_rgba(0,0,0,0.6)] whitespace-nowrap">
+            <Sparkles size={11} className="fill-black" />
+            {plan.badge}
+          </span>
+        </div>
+      )}
+
       {/* Animated gradient border for highlight card */}
       {isHighlight && (
         <div
           aria-hidden
-          className="pointer-events-none absolute -inset-px rounded-[23px] bg-[conic-gradient(from_0deg_at_50%_50%,rgba(255,255,255,0.6)_0%,rgba(255,255,255,0.05)_25%,rgba(255,255,255,0.6)_50%,rgba(255,255,255,0.05)_75%,rgba(255,255,255,0.6)_100%)] opacity-70 animate-[spin_8s_linear_infinite]"
+          className="pointer-events-none absolute -inset-px rounded-[23px] bg-[conic-gradient(from_0deg_at_50%_50%,rgba(255,255,255,0.6)_0%,rgba(255,255,255,0.05)_25%,rgba(255,255,255,0.6)_50%,rgba(255,255,255,0.05)_75%,rgba(255,255,255,0.6)_100%)] opacity-60 animate-[spin_8s_linear_infinite]"
         />
       )}
 
+      {/* Inner card — this one clips its own content */}
       <div
-        className={`relative flex-1 flex flex-col rounded-[22px] p-7 sm:p-8 backdrop-blur-xl transition-all duration-500 ${
+        className={`relative flex-1 flex flex-col rounded-[22px] p-7 sm:p-8 backdrop-blur-xl overflow-hidden transition-all duration-500 ${
           isHighlight
             ? "bg-[#0a0a0a] border border-white/20 shadow-[0_40px_120px_-30px_rgba(255,255,255,0.15)]"
             : "bg-white/[0.03] border border-white/[0.08] group-hover:border-white/25 group-hover:shadow-[0_30px_80px_-30px_rgba(255,255,255,0.08)]"
         }`}
       >
-        {/* Badge */}
-        {plan.badge && (
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-black text-[9.5px] tracking-[0.28em] uppercase font-heading font-medium shadow-lg">
-              <Sparkles size={11} className="fill-black" />
-              {plan.badge}
-            </span>
-          </div>
-        )}
-
         {/* Plan name */}
         <p className="font-mono-grotesk text-[10.5px] tracking-[0.32em] uppercase text-white/45 mb-6">
           {plan.name}
@@ -120,11 +117,11 @@ const PlanCard = ({ plan, i }) => {
           ))}
         </ul>
 
-        {/* CTA */}
+        {/* CTA — full width so all buttons align */}
         <a
           href={CTA_LINK}
           data-testid={`plan-cta-${plan.id}`}
-          className={`group/btn mt-8 inline-flex items-center justify-between gap-3 rounded-full h-12 px-5 text-[11.5px] tracking-[0.24em] uppercase font-medium transition-all duration-300 ${
+          className={`group/btn mt-8 flex items-center justify-center gap-2 rounded-full h-12 px-5 text-[11.5px] tracking-[0.24em] uppercase font-medium transition-all duration-300 whitespace-nowrap ${
             isHighlight
               ? "bg-white text-black hover:bg-white/90"
               : "bg-white/[0.04] border border-white/15 text-white hover:bg-white hover:text-black hover:border-white"
@@ -148,9 +145,10 @@ export const PricingCards = () => {
       className="relative py-12 sm:py-16 lg:py-20 bg-[#050505]"
     >
       <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
+        {/* pt-3 to leave headroom for the "Most Popular" badge sitting at -top-3 on the highlight card */}
         <div
           data-testid="pricing-grid"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 items-stretch"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 items-stretch pt-3"
         >
           {PLANS.map((p, i) => (
             <PlanCard key={p.id} plan={p} i={i} />
