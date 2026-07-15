@@ -71,7 +71,7 @@ const PlanCard = ({ plan, i }) => {
       {isHighlight && (
         <div
           aria-hidden
-          className="pointer-events-none absolute -inset-px rounded-[23px] bg-[conic-gradient(from_0deg_at_50%_50%,rgba(255,255,255,0.6)_0%,rgba(255,255,255,0.05)_25%,rgba(255,255,255,0.6)_50%,rgba(255,255,255,0.05)_75%,rgba(255,255,255,0.6)_100%)] opacity-60 animate-[spin_8s_linear_infinite]"
+          className="pointer-events-none absolute -inset-px rounded-[23px] bg-white/20"
         />
       )}
 
