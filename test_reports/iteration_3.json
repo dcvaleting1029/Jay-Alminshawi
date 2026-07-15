@@ -1,0 +1,93 @@
+{
+  "summary": "Frontend-only retest of /pricing card price visibility fix. Fix works at 1440x900 desktop but STILL FAILS at 1280 (xl) and 1024 (lg) breakpoints — Scale 'Custom' text and Pro '£1,500' text overflow their card content area. Count-up animation, badge, tablet/mobile layouts, and prior regressions are OK.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "PricingCards.jsx - Price component",
+        "issue": "At 1024x900 (lg 4-col layout), Pro £1,500 overflows card content by 13px and Scale 'Custom' overflows by 40px. Font-size lg:text-5xl (48px) is still too large for the 150px inner content width (card 214px - 64px padding).",
+        "selector": "[data-testid='plan-card-pro'] [data-testid='plan-price-pro'] and [data-testid='plan-card-scale'] span.font-display",
+        "priority": "HIGH"
+      },
+      {
+        "component": "PricingCards.jsx - Price component",
+        "issue": "At 1280x900 (xl breakpoint), Scale 'Custom' overflows content by 6px (needs 220px, has 214px). Pro £1,500 fits with only 14px breathing room (user required >=15px).",
+        "selector": "[data-testid='plan-card-scale'] span.font-display",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "detailed_measurements": {
+    "method": "Measured via scrollWidth of price glyphs (unclipped by overflow-hidden) vs inner card content width (innerRect.width - paddingLeft - paddingRight). Breathing room = contentWidth - requiredWidth.",
+    "viewport_1440x900": {
+      "content_width_per_card": "254px",
+      "launch_99": "req=104, br=150px OK",
+      "growth_499": "req=144, br=110px OK",
+      "pro_1500": "req=200, br=54px OK",
+      "scale_Custom": "req=220, br=34px OK",
+      "verdict": "PASS at 1440"
+    },
+    "viewport_1280x900": {
+      "content_width_per_card": "214px",
+      "launch_99": "req=104, br=110px OK",
+      "growth_499": "req=144, br=70px OK",
+      "pro_1500": "req=200, br=14px TIGHT (<15px requested)",
+      "scale_Custom": "req=220, br=-6px OVERFLOW",
+      "verdict": "FAIL at 1280"
+    },
+    "viewport_1024x900": {
+      "content_width_per_card": "150px",
+      "launch_99": "req=85, br=65px OK",
+      "growth_499": "req=117, br=33px OK",
+      "pro_1500": "req=163, br=-13px OVERFLOW (scrollWidth 143 vs clientWidth 148 — text is clipped by overflow-hidden)",
+      "scale_Custom": "req=190, br=-40px OVERFLOW (scrollWidth 190 vs clientWidth 148 — text clipped)",
+      "verdict": "FAIL at 1024 (lg breakpoint, exactly the reported case)"
+    },
+    "viewport_820x1024": {
+      "content_width_per_card": "302px (2x2 grid uses sm:text-6xl = 60px)",
+      "all_prices": "OK, min breathing room 66px (Custom)",
+      "verdict": "PASS at tablet"
+    },
+    "viewport_390x844": {
+      "content_width_per_card": "294px (stacked, text-5xl = 48px)",
+      "all_prices": "OK, min breathing room 104px (Custom)",
+      "verdict": "PASS at mobile"
+    }
+  },
+  "count_up_animation": {
+    "verified": true,
+    "samples_pro": ["0", "427", "868", "1170", "1300", "1409", "1449", "1481"],
+    "note": "Count-up animates 0 → 1,500 as expected. useCountUp hook works."
+  },
+  "regression_checks": {
+    "most_popular_badge_visible_above_growth": "PASS at 1440/1280/1024/820/390 (badge y-position measurable and above card top or half-inset per design)",
+    "all_4_cards_present": "PASS across all viewports",
+    "cta_buttons_present_and_aligned": "PASS (verified in prior iteration_2, no regression from font-size-only change)",
+    "mobile_stacked_layout": "PASS (1 col at 390)",
+    "tablet_2x2_layout": "PASS (2 cols at 820)",
+    "console_errors": "0 errors"
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Reduce lg:text-5xl (48px) further for numeric prices AND Custom text OR reduce £ prefix and switch to a smaller size at lg. Suggested: at lg breakpoint use ~text-[36px]-text-[40px] so 'Custom' width fits 150px content and '£1,500' fits with 15+px breathing room. Anton at 40px: '1,500' ≈ 120px + £ prefix ~20px = 140px, fits 150px with 10px br — still tight, may need to also relax card padding at lg (currently p-8 = 32px). Consider lg:p-6 (24px) which would give 166px content — then 48px price with 40-50px br works.",
+    "Alternative: at lg breakpoint set price to text-[42px] and set 'Custom' to text-[38px] AND reduce card lg padding to lg:p-6 (24px). Then Pro fits with ~35px br and Custom fits with ~40px br.",
+    "At xl (1280): reduce xl:text-[60px] to xl:text-[52px] for numeric (so £1,500 ≈ 152 + 20 = 172 < 214 content) and xl:text-[48px] for 'Custom' (≈188 < 214). Provides >=25px breathing room.",
+    "Re-run the same measurement script after fix to verify breathing room >= 15px at every breakpoint for every price."
+  ],
+  "critical_code_review_comments": [
+    "PricingCards.jsx line 25 and 35: font-size responsive scale insufficient at lg and xl breakpoints when 4-column layout produces narrow ~214px cards. The main agent's calculation for available space was over-optimistic — 'Anton character widths narrower than typical' does not fully compensate; measured widths: '1,500' at 60px Anton = 176px; 'Custom' at 56px Anton = 220px; both exceed content width at 1024-1280 4-col layouts.",
+    "Root cause is not just font-size — the card padding (p-7 sm:p-8 = 28-32px each side) also eats into narrow columns at lg. Consider lg:p-6 to yield more room without shrinking type as aggressively.",
+    "Suggest also whitespace-nowrap prevents wrap but does NOT prevent overflow — overflow-hidden on parent inner card silently clips visible text (why user could still see the bug). Consider adding a runtime CSS test or Storybook visual regression.",
+    "No file exceeds 700 lines; overall code quality remains good."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped)", "frontend": "40% (2/5 viewports fail requested criteria for Pro/Scale price visibility)"},
+  "test_credentials": "N/A",
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "main_agent_can_self_test": false,
+  "context_for_next_testing_agent": "Use scrollWidth (NOT getBoundingClientRect) to measure real text width — overflow-hidden on inner card silently clips the visible bounding box, so bounding-box based checks give false positives. Content width = innerRect.width - paddingLeft - paddingRight. Requirement per problem statement: text end must have >=15px gap from content right edge. Check at 1440/1280/1024/820/390 viewports, focus on Pro £1,500 and Scale Custom. Font family is Anton (condensed).",
+  "rca_of_the_issue": "The main agent's fix (lg:text-5xl xl:text-[60px] for numeric, lg:text-5xl xl:text-[56px] for Custom) reduces font size but not enough. At 1024px viewport, the 4-col grid produces ~214px card widths. With p-8 (32px each side), content width is only ~150px. At lg:text-5xl (48px Anton), '1,500' renders 143px wide and 'Custom' renders 190px wide — both plus £ prefix (for Pro) exceed the 150px content area. Similarly at 1280 xl breakpoint, xl:text-[56px] Custom renders 220px vs 214px content width. Reproduction: open /pricing at 1024x900 or 1280x900 and observe Scale card — 'Custom' extends past right edge of card (clipped by parent overflow-hidden). Mitigation: further reduce font sizes at lg and xl breakpoints, or additionally reduce lg card padding from p-8 to p-6."
+}

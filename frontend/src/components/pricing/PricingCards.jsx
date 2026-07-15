@@ -22,17 +22,17 @@ const Price = ({ plan }) => {
   return (
     <div ref={ref} className="flex items-baseline gap-1">
       {plan.price === null ? (
-        <span className="font-display text-5xl sm:text-6xl text-white leading-none tracking-tight">
+        <span className="font-display text-5xl sm:text-6xl lg:text-5xl xl:text-[56px] text-white leading-none tracking-tight whitespace-nowrap">
           Custom
         </span>
       ) : (
         <>
-          <span className="font-display text-2xl sm:text-3xl text-white/70 leading-none">
+          <span className="font-display text-2xl sm:text-3xl lg:text-2xl xl:text-3xl text-white/70 leading-none">
             £
           </span>
           <span
             data-testid={`plan-price-${plan.id}`}
-            className="font-display text-5xl sm:text-6xl lg:text-[72px] text-white leading-none tracking-tight tabular-nums"
+            className="font-display text-5xl sm:text-6xl lg:text-5xl xl:text-[60px] text-white leading-none tracking-tight tabular-nums whitespace-nowrap"
           >
             {count.toLocaleString()}
           </span>
