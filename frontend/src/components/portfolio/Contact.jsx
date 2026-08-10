@@ -93,7 +93,7 @@ export const Contact = () => {
               }}
               className="mt-6 sm:mt-7 text-[15px] sm:text-base text-white/55 max-w-md leading-relaxed"
             >
-              Pick a time that suits you and we&apos;ll jump on a 15-minute
+              Pick a time that suits you and we&apos;ll jump on a 45-minute
               discovery call. We&apos;ll talk about your brand, project, and
               goals — and how I can bring it to life.
             </motion.p>
