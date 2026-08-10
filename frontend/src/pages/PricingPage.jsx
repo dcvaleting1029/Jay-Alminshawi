@@ -13,9 +13,10 @@ import PricingCTA from "@/components/pricing/PricingCTA";
 const PAGE_TITLE = "Website Pricing | Affordable Website Packages from £99.";
 const PAGE_DESCRIPTION =
   "Explore website packages starting from just £99. Professionally designed, conversion-focused websites built to help businesses generate more enquiries and grow online.";
-const DEFAULT_TITLE = "Jay Alminshawi — Web Designer & Developer";
+const DEFAULT_TITLE =
+  "£0 Upfront Website Design | Pay Monthly Web Design UK | Jay Alminshawi";
 const DEFAULT_DESCRIPTION =
-  "Jay Alminshawi — a one-man creative & developer building high-performing, fast and modern websites that elevate brands and drive results.";
+  "Get a professional website built for £0 upfront. Only pay a simple monthly hosting fee. Modern, mobile-friendly web design for UK businesses with no large upfront cost.";
 
 const setMeta = (name, content, attr = "name") => {
   let tag = document.querySelector(`meta[${attr}="${name}"]`);
