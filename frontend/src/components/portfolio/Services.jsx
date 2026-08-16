@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, PenTool, Code2, Sparkles, ShoppingBag, Search, Wrench } from "lucide-react";
+import { ArrowUpRight, PenTool, Code2, Sparkles, ShoppingBag, Search, Wrench, Users, Target } from "lucide-react";
 import { SERVICES } from "../../data/portfolio";
 
-const ICONS = { PenTool, Code2, Sparkles, ShoppingBag, Search, Wrench };
+const ICONS = { PenTool, Code2, Sparkles, ShoppingBag, Search, Wrench, Users, Target };
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },

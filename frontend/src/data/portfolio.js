@@ -87,6 +87,16 @@ export const SERVICES = [
     items: ["Old site rebuilds", "Modern responsive design", "Faster load times", "Better conversion"],
   },
   {
+    title: "CRM Integrations",
+    icon: "Users",
+    items: ["HubSpot / Zoho / Pipedrive", "Auto-sync new leads", "Quote pipeline tracking", "Follow-up automations"],
+  },
+  {
+    title: "Google Ads",
+    icon: "Target",
+    items: ["Campaign setup", "High-converting landing pages", "Local geo-targeting", "Monthly ad management"],
+  },
+  {
     title: "Care & Hosting",
     icon: "Wrench",
     items: ["UK-based hosting", "SSL & daily backups", "Content updates", "Priority support"],
