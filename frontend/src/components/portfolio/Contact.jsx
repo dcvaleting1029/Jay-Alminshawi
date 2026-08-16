@@ -6,7 +6,7 @@ const CALENDLY_URL =
 const CALENDLY_SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
 
 // WhatsApp — international format, no leading + or spaces
-const WHATSAPP_NUMBER = "447000000000";
+const WHATSAPP_NUMBER = "447376926302";
 const WHATSAPP_MESSAGE =
   "Hi Jay, I'm interested in a new website for my construction/renovation business. Can we chat?";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
