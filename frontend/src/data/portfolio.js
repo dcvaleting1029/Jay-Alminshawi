@@ -53,12 +53,6 @@ export const PROJECTS = [
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/20tovakn_Luxury%20Home%20Interior%20Design%20Website%20Landing%20Page.png",
   },
   {
-    name: "DC Valeting",
-    category: "Trades",
-    url: "https://www.dcvaleting.company/",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/gjxb3hxq_ChatGPT%20Image%20Jun%2013%2C%202026%2C%2006_29_10%20AM.png",
-  },
-  {
     name: "Crawford Tree Surgery",
     category: "Tree Surgery",
     url: "https://crawfordtreesurgery.com/",
