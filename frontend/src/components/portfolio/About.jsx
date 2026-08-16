@@ -4,19 +4,17 @@ import { ArrowUpRight } from "lucide-react";
 
 // The paragraph rendered with selective bolded keywords
 const paragraph = [
-  { t: "Web design is about ", strong: false },
-  { t: "creation", strong: true },
-  { t: ". I started off by creating my own ", strong: false },
-  { t: "personal brand", strong: true },
-  { t: ". Here is where my creativity lies. ", strong: false },
-  { t: "Modern aesthetic", strong: true },
-  { t: " websites instead of old dated ones. Creating websites is something that changes the whole ", strong: false },
-  { t: "dynamic", strong: true },
-  { t: " and ", strong: false },
-  { t: "look", strong: true },
-  { t: " of a company — websites bring ", strong: false },
+  { t: "I build websites for one type of business — ", strong: false },
+  { t: "construction & renovation", strong: true },
+  { t: ". Builders, contractors, joiners, plumbers, electricians, roofers, decorators, groundworks and landscapers. ", strong: false },
+  { t: "Modern, mobile-first", strong: true },
+  { t: " websites that replace the old, dated ones your competitors are still stuck with. Every site is designed to ", strong: false },
+  { t: "win bigger jobs", strong: true },
+  { t: ", generate ", strong: false },
+  { t: "quote requests", strong: true },
+  { t: " and give your business the ", strong: false },
   { t: "professionalism", strong: true },
-  { t: ".", strong: false },
+  { t: " your work deserves.", strong: false },
 ];
 
 export const About = () => {

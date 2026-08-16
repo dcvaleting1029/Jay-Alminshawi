@@ -1,16 +1,8 @@
 // Portfolio data — single source of truth
 export const PARTNERS = [
   {
-    name: "City Civils",
+    name: "City Civils Construction",
     src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/afl9bojg_Copy%20of%20C%20%281%29.png",
-  },
-  {
-    name: "LashMek & Co",
-    src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/cumbqz89_Copy%20of%20C%20%282%29.png",
-  },
-  {
-    name: "Celunéa Skincare",
-    src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/d5aoyplk_Copy%20of%20C%20%2813%29.png",
   },
   {
     name: "EDN Renovation Group",
@@ -27,10 +19,6 @@ export const PARTNERS = [
   {
     name: "Refined Spaces",
     src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/21sqgwu2_Copy%20of%20C%20%2817%29.png",
-  },
-  {
-    name: "Pulse Performance",
-    src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/vojuu1i2_Copy%20of%20C%20%2816%29.png",
   },
   {
     name: "Ace Of Spades Landscapes",
@@ -59,20 +47,14 @@ export const PROJECTS = [
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/qi631dz2_Ace%20of%20Spades%20Landscapes%20Homepage%20%281%29.png",
   },
   {
-    name: "LASHMEK&CO.",
-    category: "Beauty",
-    url: "https://www.lashmekco.com/",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/0h3e648b_Beauty%20and%20Aesthetics%20Clinic%20Website%20Homepage%20%281%29.png",
-  },
-  {
     name: "MA Home Interiors",
-    category: "Interior Design",
+    category: "Interior Renovation",
     url: "https://www.mahomeinteriors.com/",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/20tovakn_Luxury%20Home%20Interior%20Design%20Website%20Landing%20Page.png",
   },
   {
     name: "DC Valeting",
-    category: "Valeting",
+    category: "Trades",
     url: "https://www.dcvaleting.company/",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/gjxb3hxq_ChatGPT%20Image%20Jun%2013%2C%202026%2C%2006_29_10%20AM.png",
   },
@@ -82,50 +64,38 @@ export const PROJECTS = [
     url: "https://crawfordtreesurgery.com/",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/pxi38kdg_Crawford%20Tree%20Surgery%20Website%20Homepage%20%281%29.png",
   },
-  {
-    name: "Jay Alminshawi | Fitness",
-    category: "Coaching",
-    url: "https://www.jayalminshawifitness.com/",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/7fw75ue3_June%2024%2C%202026%202_46_40%20pm%20-%20Screenshot.png",
-  },
-  {
-    name: "Celunéa Skincare",
-    category: "Skincare",
-    url: "https://celunea-luxury.preview.emergentagent.com/",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/gqq19nad_Skincare%20Brand%20Website%20Homepage.png",
-  },
 ];
 
 export const SERVICES = [
   {
-    title: "Website Design",
+    title: "Trade Websites",
     icon: "PenTool",
-    items: ["Custom website design", "Modern & responsive", "Conversion focused", "High performance"],
+    items: ["Built for builders & trades", "Portfolio-led design", "Mobile-first layout", "Local UK focus"],
   },
   {
-    title: "Webflow Development",
+    title: "Quote & Enquiry Forms",
     icon: "Code2",
-    items: ["Custom Webflow builds", "CMS & dynamic sites", "Smooth animations", "Scalable & fast"],
+    items: ["High-converting forms", "WhatsApp & call CTAs", "Instant email alerts", "Spam protection"],
   },
   {
-    title: "Brand Identity",
+    title: "Project Galleries",
     icon: "Sparkles",
-    items: ["Brand strategy", "Visual identity", "Typography", "Brand guidelines"],
+    items: ["Before & after showcase", "Job case studies", "Site & finished shots", "Client reviews built-in"],
   },
   {
-    title: "E-commerce Solutions",
-    icon: "ShoppingBag",
-    items: ["Shopify/Webflow ecom", "Product pages", "Cart & checkout", "Optimised UX/UI"],
-  },
-  {
-    title: "SEO & Search Visibility",
+    title: "Local SEO",
     icon: "Search",
-    items: ["SEO optimised", "Fast load times", "On-page SEO", "Better rankings"],
+    items: ["Rank for your trade", "Google Business setup", "Location pages", "Fast, indexable pages"],
   },
   {
-    title: "Maintenance & Support",
+    title: "Redesigns & Rescues",
+    icon: "ShoppingBag",
+    items: ["Old site rebuilds", "Modern responsive design", "Faster load times", "Better conversion"],
+  },
+  {
+    title: "Care & Hosting",
     icon: "Wrench",
-    items: ["Ongoing maintenance", "Updates & backups", "Performance monitoring", "Technical support"],
+    items: ["UK-based hosting", "SSL & daily backups", "Content updates", "Priority support"],
   },
 ];
 

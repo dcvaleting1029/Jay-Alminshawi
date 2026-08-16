@@ -72,7 +72,7 @@ export const Hero = () => {
               className="font-heading text-[11px] sm:text-[12px] tracking-[0.32em] uppercase text-white/55 mb-7"
             >
               <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
-              Web Designer &amp; Developer
+              Web Design For Construction &amp; Renovation
             </motion.p>
 
             <motion.h1
@@ -80,10 +80,10 @@ export const Hero = () => {
               initial="hidden"
               animate="show"
               custom={1}
-              className="font-display uppercase text-white leading-[0.85] tracking-[-0.035em] text-[12vw] sm:text-[10vw] lg:text-[5vw] xl:text-[4.8vw] break-words"
+              className="font-display uppercase text-white leading-[0.85] tracking-[-0.035em] text-[10vw] sm:text-[9vw] lg:text-[4.6vw] xl:text-[4.4vw] break-words"
             >
-              <span className="block">Jay</span>
-              <span className="block text-white/95">Alminshawi</span>
+              <span className="block">Websites that</span>
+              <span className="block text-white/95">win bigger jobs.</span>
             </motion.h1>
 
             <motion.p
@@ -93,10 +93,10 @@ export const Hero = () => {
               custom={2}
               className="mt-8 max-w-xl text-[15px] sm:text-base text-white/55 leading-relaxed"
             >
-              I&apos;m a one-man creative and developer building high-performing,
-              fast and modern websites that elevate brands, convert visitors
-              and drive real results — bringing companies&apos; online presence
-              to life with brand development and strategy.
+              I&apos;m the web design partner for builders, contractors and
+              renovation businesses across the UK — building modern,
+              conversion-focused websites that turn site visitors into
+              quote requests and higher-value jobs.
             </motion.p>
 
             <motion.div
@@ -183,7 +183,7 @@ export const Hero = () => {
             Scroll Down To Explore
           </div>
           <div className="hidden sm:block font-mono-grotesk text-[10.5px] tracking-[0.32em] uppercase text-white/30">
-            EST. 2025 — Edinburgh, UK
+            EST. 2025 — UK-Wide
           </div>
         </motion.div>
       </div>

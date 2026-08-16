@@ -84,7 +84,7 @@ export const Contact = () => {
               }}
               className="font-display uppercase text-white leading-[0.9] tracking-tight text-5xl sm:text-6xl lg:text-7xl"
             >
-              Build Your <br /> Website.
+              Win Your <br /> Next Job.
             </motion.h2>
             <motion.p
               variants={{
@@ -94,8 +94,8 @@ export const Contact = () => {
               className="mt-6 sm:mt-7 text-[15px] sm:text-base text-white/55 max-w-md leading-relaxed"
             >
               Pick a time that suits you and we&apos;ll jump on a 30-minute
-              discovery call. We&apos;ll talk about your brand, project, and
-              goals — and how I can bring it to life.
+              discovery call. Tell me about your business, the jobs you want to
+              win, and I&apos;ll show you what your new website could look like.
             </motion.p>
 
             <motion.div
@@ -106,7 +106,7 @@ export const Contact = () => {
               className="mt-10 sm:mt-12 space-y-3 font-mono-grotesk text-[12px] tracking-[0.2em] uppercase text-white/45"
             >
               <p><span className="text-white/30 mr-3">EMAIL</span> jayalminshawi@gmail.com</p>
-              <p><span className="text-white/30 mr-3">BASED</span> Edinburgh, UK</p>
+              <p><span className="text-white/30 mr-3">SERVING</span> Construction &amp; Renovation, UK-Wide</p>
               <p><span className="text-white/30 mr-3">AVAILABILITY</span> Open for Q1 2026</p>
             </motion.div>
           </motion.div>

@@ -115,6 +115,10 @@ export const ADD_ONS = [
 
 export const PRICING_FAQ = [
   {
+    q: "Do you only work with construction & renovation businesses?",
+    a: "Yes — every website I build is designed specifically for builders, contractors, joiners, plumbers, electricians, roofers, decorators, groundworks and landscaping firms. That focus means I know exactly what makes a trade website win jobs: fast quote forms, project galleries, trust signals and local SEO — not generic templates.",
+  },
+  {
     q: "How long does a website take?",
     a: "Delivery times depend on the package — anywhere from 7 days for Launch, 14 days for Growth, up to 30 days for Pro. Scale timelines are agreed on a project-by-project basis. You'll always receive a clear delivery schedule on our discovery call.",
   },
@@ -131,11 +135,7 @@ export const PRICING_FAQ = [
     a: "100%. You own the domain, hosting account, content, code and all creative assets once the project is complete. Nothing is locked to me — you have full control.",
   },
   {
-    q: "Do you provide hosting?",
-    a: "Hosting is included free for the first month with every package. After that, hosting is included as part of the Website Care Plan (£40/month), or you're free to arrange your own hosting anywhere you like.",
-  },
-  {
     q: "Can you redesign my current website?",
-    a: "Yes — redesigns are one of my specialities. If you already have a website that's outdated, slow or not converting, book a discovery call and I'll audit it, identify the issues and recommend the right package to bring it up to premium standard.",
+    a: "Yes — redesigns are one of my specialities. If your current trade website looks outdated, loads slowly or isn't generating enquiries, book a discovery call and I'll audit it, identify the issues and recommend the right package to bring it up to premium standard.",
   },
 ];

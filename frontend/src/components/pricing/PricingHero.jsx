@@ -52,8 +52,8 @@ export const PricingHero = () => {
             }}
             className="font-display uppercase text-white leading-[0.9] tracking-tight text-5xl sm:text-6xl lg:text-7xl xl:text-[88px]"
           >
-            Affordable websites <br className="hidden sm:block" />
-            <span className="text-white/60">that grow with your business.</span>
+            Websites for builders <br className="hidden sm:block" />
+            <span className="text-white/60">that pay for themselves.</span>
           </motion.h1>
 
           <motion.p
@@ -63,9 +63,9 @@ export const PricingHero = () => {
             }}
             className="mt-8 sm:mt-10 text-[16px] sm:text-lg text-white/60 max-w-2xl leading-relaxed"
           >
-            Whether you&apos;re just getting started or ready to scale, choose the
-            package that fits your business today. Every website is designed to
-            generate enquiries and create a professional first impression.
+            Whether you&apos;re a solo trade or a full construction firm, choose
+            the package that fits your business today. Every website is designed
+            to bring in quote requests and win higher-value jobs from day one.
           </motion.p>
         </motion.div>
       </div>

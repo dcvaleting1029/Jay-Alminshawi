@@ -9,10 +9,10 @@ const QUESTIONS = [
     id: "stage",
     label: "Where's your business right now?",
     options: [
-      { text: "Just starting out", weights: { launch: 3, growth: 1 } },
+      { text: "Just starting my trade", weights: { launch: 3, growth: 1 } },
       { text: "Getting steady enquiries", weights: { growth: 3, launch: 1, pro: 1 } },
-      { text: "Established & growing fast", weights: { pro: 3, growth: 1, scale: 1 } },
-      { text: "Ready to dominate my market", weights: { scale: 3, pro: 1 } },
+      { text: "Established & winning bigger jobs", weights: { pro: 3, growth: 1, scale: 1 } },
+      { text: "Ready to dominate my region", weights: { scale: 3, pro: 1 } },
     ],
   },
   {
@@ -32,7 +32,7 @@ const QUESTIONS = [
       { text: "Within a week", weights: { launch: 2 } },
       { text: "Around 2 weeks", weights: { growth: 2 } },
       { text: "Within a month", weights: { pro: 2 } },
-      { text: "I'll take my time to get it perfect", weights: { scale: 2, pro: 1 } },
+      { text: "I'll take my time to get it right", weights: { scale: 2, pro: 1 } },
     ],
   },
 ];

@@ -55,7 +55,7 @@ export const PricingCTA = () => {
           >
             Ready to build a <br className="hidden sm:block" />
             website that <br className="hidden sm:block" />
-            <span className="text-white/60">actually generates enquiries?</span>
+            <span className="text-white/60">wins bigger jobs?</span>
           </motion.h2>
 
           <motion.p
@@ -65,9 +65,9 @@ export const PricingCTA = () => {
             }}
             className="mt-8 sm:mt-10 text-[16px] sm:text-lg text-white/55 max-w-2xl mx-auto leading-relaxed"
           >
-            Whether you&apos;re looking for a simple landing page or a premium
-            cinematic website, let&apos;s create something your customers will
-            remember.
+            Whether you&apos;re a solo tradesman or a full construction firm,
+            let&apos;s build the online presence your work deserves — and start
+            bringing in the enquiries that fill your calendar.
           </motion.p>
 
           <motion.div
