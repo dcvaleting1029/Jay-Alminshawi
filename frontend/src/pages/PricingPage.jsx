@@ -3,16 +3,16 @@ import Navbar from "@/components/portfolio/Navbar";
 import Footer from "@/components/portfolio/Footer";
 import MobileStickyCTA from "@/components/portfolio/MobileStickyCTA";
 import PricingHero from "@/components/pricing/PricingHero";
-import PricingQuiz from "@/components/pricing/PricingQuiz";
 import PricingCards from "@/components/pricing/PricingCards";
 import CarePlan from "@/components/pricing/CarePlan";
 import AddOnsTable from "@/components/pricing/AddOnsTable";
 import PricingFAQ from "@/components/pricing/PricingFAQ";
 import PricingCTA from "@/components/pricing/PricingCTA";
 
-const PAGE_TITLE = "Website Pricing | Affordable Website Packages from £99.";
+const PAGE_TITLE =
+  "Website Pricing | Signature Web Design Package for Construction & Renovation";
 const PAGE_DESCRIPTION =
-  "Explore website packages starting from just £99. Professionally designed, conversion-focused websites built to help businesses generate more enquiries and grow online.";
+  "The Signature package (£4,495) is the complete website solution for construction & renovation firms — bespoke design, unlimited pages, AI chatbot, quote system and everything needed to win bigger jobs.";
 const DEFAULT_TITLE =
   "Web Design For Construction & Renovation Businesses UK | Jay Alminshawi";
 const DEFAULT_DESCRIPTION =
@@ -59,7 +59,6 @@ const PricingPage = () => {
     >
       <Navbar />
       <PricingHero />
-      <PricingQuiz />
       <PricingCards />
       <CarePlan />
       <AddOnsTable />

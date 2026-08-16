@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
 import { PRICING_FAQ } from "../../data/pricing";
 
-const FAQItem = ({ item, i, isOpen, onToggle }) => {
+const FAQItem = ({ item, i, isOpen, isLast, onToggle }) => {
   return (
     <motion.div
       data-testid={`faq-item-${i}`}
@@ -15,18 +15,18 @@ const FAQItem = ({ item, i, isOpen, onToggle }) => {
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className={`border-b border-white/[0.08] transition-colors duration-300 ${
-        isOpen ? "bg-white/[0.02]" : ""
-      }`}
+      className={`transition-colors duration-300 ${
+        isLast ? "" : "border-b border-white/[0.08]"
+      } ${isOpen ? "bg-white/[0.02]" : ""}`}
     >
       <button
         data-testid={`faq-trigger-${i}`}
         onClick={onToggle}
         aria-expanded={isOpen}
-        className="w-full flex items-center justify-between gap-6 py-6 sm:py-7 text-left group"
+        className="w-full flex items-center justify-between gap-6 py-5 sm:py-6 text-left group"
       >
         <span
-          className={`font-heading text-lg sm:text-xl lg:text-2xl tracking-tight transition-colors duration-300 ${
+          className={`font-heading text-base sm:text-lg lg:text-xl tracking-tight leading-snug transition-colors duration-300 ${
             isOpen ? "text-white" : "text-white/80 group-hover:text-white"
           }`}
         >
@@ -34,13 +34,13 @@ const FAQItem = ({ item, i, isOpen, onToggle }) => {
         </span>
         <span
           aria-hidden
-          className={`grid place-items-center h-10 w-10 rounded-full border shrink-0 transition-all duration-500 ${
+          className={`grid place-items-center h-9 w-9 rounded-full border shrink-0 transition-all duration-500 ${
             isOpen
               ? "bg-white text-black border-white rotate-45"
               : "border-white/15 text-white/70 group-hover:border-white/40 group-hover:text-white"
           }`}
         >
-          <Plus size={16} />
+          <Plus size={14} />
         </span>
       </button>
       <AnimatePresence initial={false}>
@@ -53,7 +53,7 @@ const FAQItem = ({ item, i, isOpen, onToggle }) => {
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-7 pr-14 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-3xl">
+            <p className="pt-1 pb-6 pr-4 sm:pr-14 text-[14.5px] sm:text-[15px] text-white/60 leading-relaxed max-w-3xl">
               {item.a}
             </p>
           </motion.div>
@@ -69,10 +69,10 @@ export const PricingFAQ = () => {
   return (
     <section
       data-testid="pricing-faq-section"
-      className="relative py-16 sm:py-24 lg:py-28 bg-[#050505]"
+      className="relative py-14 sm:py-20 lg:py-24 bg-[#050505]"
     >
       <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-14">
           {/* Heading */}
           <motion.div
             initial="hidden"
@@ -82,7 +82,7 @@ export const PricingFAQ = () => {
               hidden: {},
               show: { transition: { staggerChildren: 0.1 } },
             }}
-            className="lg:col-span-4"
+            className="lg:col-span-5 xl:col-span-4"
           >
             <motion.p
               variants={{
@@ -126,7 +126,7 @@ export const PricingFAQ = () => {
           </motion.div>
 
           {/* Accordion */}
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-7 xl:col-span-8">
             <div className="border-t border-white/[0.08]">
               {PRICING_FAQ.map((item, i) => (
                 <FAQItem
@@ -134,6 +134,7 @@ export const PricingFAQ = () => {
                   item={item}
                   i={i}
                   isOpen={openIndex === i}
+                  isLast={i === PRICING_FAQ.length - 1}
                   onToggle={() => setOpenIndex(openIndex === i ? -1 : i)}
                 />
               ))}
