@@ -17,6 +17,7 @@ import Footer from "@/components/portfolio/Footer";
 import LoadingScreen from "@/components/portfolio/LoadingScreen";
 import MobileStickyCTA from "@/components/portfolio/MobileStickyCTA";
 import PricingPage from "@/pages/PricingPage";
+import BookPage from "@/pages/BookPage";
 
 const LOADER_KEY = "jay_loader_seen";
 
@@ -76,6 +77,7 @@ const AppShell = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/book" element={<BookPage />} />
       </Routes>
     </>
   );
