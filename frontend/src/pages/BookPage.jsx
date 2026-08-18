@@ -29,26 +29,22 @@ const setMeta = (name, content, attr = "name") => {
 const VSLPlayer = () => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [started, setStarted] = useState(false);
-
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    v.muted = true;
-    v.play().catch(() => {});
-  }, []);
 
   const togglePlay = () => {
     const v = videoRef.current;
     if (!v) return;
     if (v.paused) {
-      // On first click, unmute for full VSL experience
-      if (!started) {
-        v.muted = false;
-        setIsMuted(false);
-      }
-      v.play().catch(() => {});
+      // Play with sound from the beginning
+      v.muted = false;
+      setIsMuted(false);
+      v.play().catch(() => {
+        // Browser blocked unmuted playback — fall back to muted
+        v.muted = true;
+        setIsMuted(true);
+        v.play().catch(() => {});
+      });
       setStarted(true);
     } else {
       v.pause();
@@ -77,9 +73,7 @@ const VSLPlayer = () => {
           src={VSL_SRC}
           poster={VSL_POSTER}
           playsInline
-          muted
-          autoPlay
-          preload="auto"
+          preload="metadata"
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
           className="absolute inset-0 w-full h-full object-cover"
