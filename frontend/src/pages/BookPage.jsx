@@ -6,7 +6,7 @@ const VSL_SRC = "/vsl.mp4";
 const VSL_POSTER = "/vsl-poster.jpg";
 
 const CALENDLY_URL =
-  "https://calendly.com/jay_alminshawi/discovery-call?background_color=1a1a1a&text_color=ffffff&primary_color=ffffff";
+  "https://calendly.com/contact-jayalminshawi/30min?background_color=1a1a1a&text_color=ffffff&primary_color=ffffff";
 const CALENDLY_SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
 
 const PAGE_TITLE =
