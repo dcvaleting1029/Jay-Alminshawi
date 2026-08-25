@@ -10,9 +10,9 @@ const CALENDLY_URL =
 const CALENDLY_SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
 
 const PAGE_TITLE =
-  "Book Your Free Discovery Call | Jay Alminshawi — Web Design for UK Builders";
+  "Book Your Free Discovery Call | Jay Alminshawi — Web Designer";
 const PAGE_DESCRIPTION =
-  "Free 30-minute discovery call for UK construction & renovation firms. Watch the intro, then pick a time that suits you.";
+  "Free 30-minute discovery call for ambitious businesses ready to build a modern, high-performing website. Watch the intro, then pick a time that suits you.";
 
 /* -------------------------------------------------------------- Meta */
 const setMeta = (name, content, attr = "name") => {
@@ -303,8 +303,8 @@ const BookPage = () => {
             }}
             className="mt-6 text-[15px] sm:text-base text-white/55 max-w-xl mx-auto leading-relaxed"
           >
-            A quick intro to how I help construction &amp; renovation businesses
-            win bigger jobs online — then pick a time that suits you.
+            A quick intro to how I help ambitious businesses grow online — then
+            pick a time that suits you.
           </motion.p>
         </motion.div>
 
@@ -406,7 +406,7 @@ const BookPage = () => {
         className="relative mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12 py-10 border-t border-white/[0.06] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono-grotesk text-[10.5px] tracking-[0.28em] uppercase text-white/35"
       >
         <p>© 2025 Jay Alminshawi — All Rights Reserved</p>
-        <p>Web Design for Construction &amp; Renovation, UK-Wide</p>
+        <p>Modern Web Design — UK-Wide</p>
       </footer>
     </main>
   );

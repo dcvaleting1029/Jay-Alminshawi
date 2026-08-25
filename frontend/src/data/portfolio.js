@@ -62,24 +62,24 @@ export const PROJECTS = [
 
 export const SERVICES = [
   {
-    title: "Trade Websites",
+    title: "Website Design",
     icon: "PenTool",
-    items: ["Built for builders & trades", "Portfolio-led design", "Mobile-first layout", "Local UK focus"],
+    items: ["Bespoke custom design", "Modern & responsive", "Conversion-focused", "Mobile-first layout"],
   },
   {
-    title: "Quote & Enquiry Forms",
+    title: "Contact & Enquiry Forms",
     icon: "Code2",
     items: ["High-converting forms", "WhatsApp & call CTAs", "Instant email alerts", "Spam protection"],
   },
   {
-    title: "Project Galleries",
+    title: "Portfolio & Galleries",
     icon: "Sparkles",
-    items: ["Before & after showcase", "Job case studies", "Site & finished shots", "Client reviews built-in"],
+    items: ["Case study layouts", "Before & after showcase", "Project galleries", "Client reviews built-in"],
   },
   {
     title: "Local SEO",
     icon: "Search",
-    items: ["Rank for your trade", "Google Business setup", "Location pages", "Fast, indexable pages"],
+    items: ["Rank in your area", "Google Business setup", "Location pages", "Fast, indexable pages"],
   },
   {
     title: "Redesigns & Rescues",
@@ -89,7 +89,7 @@ export const SERVICES = [
   {
     title: "CRM Integrations",
     icon: "Users",
-    items: ["HubSpot / Zoho / Pipedrive", "Auto-sync new leads", "Quote pipeline tracking", "Follow-up automations"],
+    items: ["HubSpot / Zoho / Pipedrive", "Auto-sync new leads", "Sales pipeline tracking", "Follow-up automations"],
   },
   {
     title: "Google Ads",

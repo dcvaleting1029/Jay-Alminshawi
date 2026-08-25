@@ -4,17 +4,15 @@ import { ArrowUpRight } from "lucide-react";
 
 // The paragraph rendered with selective bolded keywords
 const paragraph = [
-  { t: "I build websites for one type of business — ", strong: false },
-  { t: "construction & renovation", strong: true },
-  { t: ". Builders, contractors, joiners, plumbers, electricians, roofers, decorators, groundworks and landscapers. ", strong: false },
+  { t: "I build websites for ", strong: false },
+  { t: "ambitious businesses", strong: true },
+  { t: " — the ones ready to invest in their brand, elevate their online presence and stand out from the competition. ", strong: false },
   { t: "Modern, mobile-first", strong: true },
   { t: " websites that replace the old, dated ones your competitors are still stuck with. Every site is designed to ", strong: false },
-  { t: "win bigger jobs", strong: true },
-  { t: ", generate ", strong: false },
-  { t: "quote requests", strong: true },
-  { t: " and give your business the ", strong: false },
+  { t: "generate enquiries", strong: true },
+  { t: ", convert visitors into customers and give your business the ", strong: false },
   { t: "professionalism", strong: true },
-  { t: " your work deserves.", strong: false },
+  { t: " your brand deserves.", strong: false },
 ];
 
 export const About = () => {

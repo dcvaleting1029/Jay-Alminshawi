@@ -72,7 +72,7 @@ export const Hero = () => {
               className="font-heading text-[11px] sm:text-[12px] tracking-[0.32em] uppercase text-white/55 mb-7"
             >
               <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
-              Web Design For Construction &amp; Renovation
+              Web Designer &amp; Developer
             </motion.p>
 
             <motion.h1
@@ -83,7 +83,7 @@ export const Hero = () => {
               className="font-display uppercase text-white leading-[0.85] tracking-[-0.035em] text-[10vw] sm:text-[9vw] lg:text-[4.6vw] xl:text-[4.4vw] break-words"
             >
               <span className="block">Websites that</span>
-              <span className="block text-white/95">win bigger jobs.</span>
+              <span className="block text-white/95">grow your business.</span>
             </motion.h1>
 
             <motion.p
@@ -93,10 +93,10 @@ export const Hero = () => {
               custom={2}
               className="mt-8 max-w-xl text-[15px] sm:text-base text-white/55 leading-relaxed"
             >
-              I&apos;m the web design partner for builders, contractors and
-              renovation businesses across the UK — building modern,
-              conversion-focused websites that turn site visitors into
-              quote requests and higher-value jobs.
+              I&apos;m the web design partner for ambitious businesses ready to
+              elevate their brand — building modern, conversion-focused
+              websites that turn site visitors into loyal customers and drive
+              real growth.
             </motion.p>
 
             <motion.div

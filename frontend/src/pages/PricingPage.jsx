@@ -10,13 +10,13 @@ import PricingFAQ from "@/components/pricing/PricingFAQ";
 import PricingCTA from "@/components/pricing/PricingCTA";
 
 const PAGE_TITLE =
-  "Pricing | £4,495 Signature Web Design for UK Builders & Renovators";
+  "Pricing | £4,495 Signature Web Design Package | Jay Alminshawi";
 const PAGE_DESCRIPTION =
-  "The £4,495 Signature package: a complete website for UK construction & renovation firms — bespoke design, quote system, AI chatbot and 30 days launch support.";
+  "The £4,495 Signature package: a complete website for ambitious businesses — bespoke design, AI chatbot, CRM integrations, contact system and 30 days launch support.";
 const DEFAULT_TITLE =
-  "Web Design for Construction & Renovation Firms UK | Jay Alminshawi";
+  "Modern Web Design & Development for Ambitious Businesses | Jay Alminshawi";
 const DEFAULT_DESCRIPTION =
-  "Modern, mobile-first websites for UK builders, contractors and renovation firms. Win bigger jobs, generate quote requests and outrank your local competitors.";
+  "Modern, high-performing websites for ambitious businesses. Elevate your brand, generate more enquiries and turn site visitors into loyal customers.";
 
 const setMeta = (name, content, attr = "name") => {
   let tag = document.querySelector(`meta[${attr}="${name}"]`);

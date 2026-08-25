@@ -6,15 +6,15 @@ export const PLANS = [
     price: 4495,
     priceLabel: "£4,495",
     tagline:
-      "The complete website solution for construction & renovation firms ready to dominate their market — bespoke design, advanced functionality and every tool needed to win bigger jobs.",
+      "The complete website solution for ambitious businesses ready to grow — bespoke design, advanced functionality and every tool needed to convert visitors into customers.",
     badge: "Flagship Package",
     highlight: true,
     features: [
       "Fully bespoke, cinematic design",
       "Unlimited pages",
       "Premium scroll animations",
-      "Project galleries & case studies",
-      "Quote & booking system",
+      "Portfolio & case studies",
+      "Contact & booking system",
       "Advanced SEO structure",
       "AI Chatbot integration",
       "CRM & API integrations",
@@ -61,10 +61,6 @@ export const ADD_ONS = [
 
 export const PRICING_FAQ = [
   {
-    q: "Do you only work with construction & renovation businesses?",
-    a: "Yes — every website I build is designed specifically for builders, contractors, joiners, plumbers, electricians, roofers, decorators, groundworks and landscaping firms. That focus means I know exactly what makes a trade website win jobs: fast quote forms, project galleries, trust signals and local SEO — not generic templates.",
-  },
-  {
     q: "How long does the Signature website take?",
     a: "Typical delivery for the Signature package is 3–4 weeks from kick-off to launch, depending on how quickly content and imagery are supplied. You'll receive a clear, week-by-week delivery schedule on our discovery call, plus 30 days of launch support after go-live.",
   },
@@ -82,6 +78,6 @@ export const PRICING_FAQ = [
   },
   {
     q: "Can you redesign my current website?",
-    a: "Yes — redesigns are one of my specialities. If your current trade website looks outdated, loads slowly or isn't generating enquiries, book a discovery call and I'll audit it, identify the issues and rebuild it to Signature standard.",
+    a: "Yes — redesigns are one of my specialities. If your current website looks outdated, loads slowly or isn't generating enquiries, book a discovery call and I'll audit it, identify the issues and rebuild it to Signature standard.",
   },
 ];
