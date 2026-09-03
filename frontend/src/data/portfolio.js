@@ -83,12 +83,6 @@ export const PROJECTS = [
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/pxi38kdg_Crawford%20Tree%20Surgery%20Website%20Homepage%20%281%29.png",
   },
   {
-    name: "Jay Alminshawi | Fitness",
-    category: "Coaching",
-    url: "https://www.jayalminshawifitness.com/",
-    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/7fw75ue3_June%2024%2C%202026%202_46_40%20pm%20-%20Screenshot.png",
-  },
-  {
     name: "Celunéa Skincare",
     category: "Skincare",
     url: "https://celunea-luxury.preview.emergentagent.com/",
