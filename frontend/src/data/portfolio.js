@@ -5,6 +5,14 @@ export const PARTNERS = [
     src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/afl9bojg_Copy%20of%20C%20%281%29.png",
   },
   {
+    name: "LashMek & Co",
+    src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/cumbqz89_Copy%20of%20C%20%282%29.png",
+  },
+  {
+    name: "Celunéa Skincare",
+    src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/d5aoyplk_Copy%20of%20C%20%2813%29.png",
+  },
+  {
     name: "EDN Renovation Group",
     src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/ecm2ahxa_Copy%20of%20C%20%2814%29.png",
   },
@@ -19,6 +27,10 @@ export const PARTNERS = [
   {
     name: "Refined Spaces",
     src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/21sqgwu2_Copy%20of%20C%20%2817%29.png",
+  },
+  {
+    name: "Pulse Performance",
+    src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/vojuu1i2_Copy%20of%20C%20%2816%29.png",
   },
   {
     name: "Ace Of Spades Landscapes",
@@ -47,16 +59,40 @@ export const PROJECTS = [
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/qi631dz2_Ace%20of%20Spades%20Landscapes%20Homepage%20%281%29.png",
   },
   {
+    name: "LASHMEK&CO.",
+    category: "Beauty",
+    url: "https://www.lashmekco.com/",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/0h3e648b_Beauty%20and%20Aesthetics%20Clinic%20Website%20Homepage%20%281%29.png",
+  },
+  {
     name: "MA Home Interiors",
-    category: "Interior Renovation",
+    category: "Interior Design",
     url: "https://www.mahomeinteriors.com/",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/20tovakn_Luxury%20Home%20Interior%20Design%20Website%20Landing%20Page.png",
+  },
+  {
+    name: "DC Valeting",
+    category: "Valeting",
+    url: "https://www.dcvaleting.company/",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/gjxb3hxq_ChatGPT%20Image%20Jun%2013%2C%202026%2C%2006_29_10%20AM.png",
   },
   {
     name: "Crawford Tree Surgery",
     category: "Tree Surgery",
     url: "https://crawfordtreesurgery.com/",
     image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/pxi38kdg_Crawford%20Tree%20Surgery%20Website%20Homepage%20%281%29.png",
+  },
+  {
+    name: "Jay Alminshawi | Fitness",
+    category: "Coaching",
+    url: "https://www.jayalminshawifitness.com/",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/7fw75ue3_June%2024%2C%202026%202_46_40%20pm%20-%20Screenshot.png",
+  },
+  {
+    name: "Celunéa Skincare",
+    category: "Skincare",
+    url: "https://celunea-luxury.preview.emergentagent.com/",
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/gqq19nad_Skincare%20Brand%20Website%20Homepage.png",
   },
 ];
 
