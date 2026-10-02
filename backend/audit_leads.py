@@ -107,6 +107,30 @@ def _build_email(lead: AuditLeadCreate) -> str:
     )
 
 
+def _build_confirmation(lead: AuditLeadCreate) -> str:
+    name = escape(lead.first_name)
+    site = escape(lead.website)
+    brand = escape(os.environ["EMAIL_FROM_NAME"])
+    p = 'style="margin:0 0 16px;color:#111;font-size:15px;line-height:1.65"'
+    return (
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
+        'style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto">'
+        '<tr><td style="padding:28px 14px">'
+        f'<p {p}>Hi {name},</p>'
+        f'<p {p}>Thanks for requesting a website audit — I&#39;ve got your details and I&#39;ll be '
+        f'taking a proper look at <strong>{site}</strong> myself over the next 48 hours.</p>'
+        f'<p {p}>Just so you know what to expect: this isn&#39;t an automated report. I&#39;ll personally '
+        f'review your design, user experience, positioning and enquiry journey, then record a short '
+        f'video walking you through what I find and where the biggest opportunities are.</p>'
+        f'<p {p}>If anything changes or you&#39;d like to add some context before I start, just reply '
+        f'to this email.</p>'
+        f'<p {p}>Speak soon,<br>Jay</p>'
+        f'<p style="margin:28px 0 0;font-size:12px;color:#999;line-height:1.6">{brand} — Web Designer &amp; Developer<br>'
+        f'<a href="https://jayalminshawi.com" style="color:#999">jayalminshawi.com</a></p>'
+        '</td></tr></table>'
+    )
+
+
 @router.post("", response_model=AuditLeadResponse)
 async def create_audit_lead(payload: AuditLeadCreate):
     from database import db
