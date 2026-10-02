@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { label: "PROJECTS", target: "/projects" },
   { label: "SERVICES", target: "/#services" },
   { label: "PRICING", target: "/pricing" },
+  { label: "FREE AUDIT", target: "/audit" },
   { label: "ABOUT", target: "/#about" },
   { label: "CONTACT", target: "/#contact" },
 ];
@@ -98,7 +99,7 @@ export const Navbar = () => {
             className="fixed inset-0 z-40 bg-black/85 backdrop-blur-2xl"
           >
             <div className="absolute inset-0 flex items-center justify-center">
-              <ul className="flex flex-col items-center gap-7 sm:gap-9">
+              <ul className="flex flex-col items-center gap-5 sm:gap-7">
                 {NAV_LINKS.map((link, i) => (
                   <motion.li
                     key={link.target}
@@ -107,9 +108,9 @@ export const Navbar = () => {
                     transition={{ delay: 0.1 + i * 0.05, duration: 0.5 }}
                   >
                     <button
-                      data-testid={`nav-link-${link.label.toLowerCase()}`}
+                      data-testid={`nav-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
                       onClick={() => handleNav(link.target)}
-                      className="font-display text-4xl sm:text-6xl uppercase tracking-tight text-white/80 hover:text-white transition-colors"
+                      className="font-display text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-white/80 hover:text-white transition-colors"
                     >
                       {link.label}
                     </button>

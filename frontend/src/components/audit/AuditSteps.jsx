@@ -116,7 +116,17 @@ export const ContactStep = ({ answers, set, errors }) => (
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
       </span>
       <span className="text-[14px] sm:text-[14.5px] text-white/70 leading-relaxed">
-        I&apos;m happy for Jay to contact me regarding my website audit.
+        I&apos;m happy for Jay to contact me regarding my website audit.{" "}
+        <a
+          href="/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-testid="consent-privacy-link"
+          onClick={(e) => e.stopPropagation()}
+          className="text-white/45 underline underline-offset-4 decoration-white/20 hover:text-white hover:decoration-white/60 transition-colors"
+        >
+          Privacy policy
+        </a>
       </span>
     </label>
     <FieldError testId="error-consent">{errors.consent}</FieldError>

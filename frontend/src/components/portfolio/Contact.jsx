@@ -113,7 +113,7 @@ export const Contact = () => {
               }}
               className="mt-10 sm:mt-12 space-y-3 font-mono-grotesk text-[12px] tracking-[0.2em] uppercase text-white/45"
             >
-              <p><span className="text-white/30 mr-3">EMAIL</span> jayalminshawi@gmail.com</p>
+              <p><span className="text-white/30 mr-3">EMAIL</span> contact@jayalminshawi.com</p>
               <p><span className="text-white/30 mr-3">SERVING</span> Ambitious Businesses, UK-Wide</p>
               <p><span className="text-white/30 mr-3">AVAILABILITY</span> Open for Q1 2026</p>
             </motion.div>

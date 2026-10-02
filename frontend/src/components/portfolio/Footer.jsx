@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Instagram, Linkedin, ArrowUpRight } from "lucide-react";
 
 // Inline TikTok glyph (lucide-react has no native TikTok icon)
@@ -73,6 +74,16 @@ export const Footer = () => {
                   </button>
                 </li>
               ))}
+              <li className="pt-2">
+                <Link
+                  to="/audit"
+                  data-testid="footer-link-audit"
+                  className="group inline-flex items-center gap-2 text-[13px] tracking-[0.22em] uppercase text-white/80 hover:text-white transition-colors"
+                >
+                  Free Website Audit
+                  <ArrowUpRight size={12} className="opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </Link>
+              </li>
             </ul>
           </nav>
 
@@ -137,7 +148,12 @@ export const Footer = () => {
         {/* Copyright row */}
         <div className="mt-10 pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono-grotesk text-[10.5px] tracking-[0.28em] uppercase text-white/35">
           <p>© 2025 Jay Alminshawi — All Rights Reserved</p>
-          <p>Designed &amp; Built by Jay Alminshawi</p>
+          <div className="flex items-center gap-6">
+            <Link to="/privacy" data-testid="footer-link-privacy" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <p>Designed &amp; Built by Jay Alminshawi</p>
+          </div>
         </div>
       </div>
     </footer>

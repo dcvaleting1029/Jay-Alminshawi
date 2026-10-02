@@ -50,15 +50,17 @@ typography, smooth cinematic animations, immersive 3D laptop mockups, Webflow-ag
 ### Session 3 (2026-06) — Website Audit Funnel
 - [x] `/audit` lead-gen funnel: minimal topbar (wordmark + "Back to website"), hero ("See what's holding your website back."), CSS-built laptop audit mockup (wireframe site, annotations, cursor, JA video bubble), trust points, CTA scrolls into funnel.
 - [x] 10-step multi-step form (`components/audit/*`, config in `data/audit.js`): business info + specialism chips → objectives (multi) → lead sources (multi + other) → project value → enquiry volume → website issue (optional textarea) → investment → timeline → decision makers (+ other) → contact (email, phone, consent). Progress "01 — 10" + hairline bar, Back preserves answers, slide transitions, validation per step.
-- [x] Backend `POST /api/audit-leads` (`backend/audit_leads.py`): validates, stores in Mongo `audit_leads` (id, created_at, status, email_sent, utm), emails owner via Emergent email proxy (`backend/email_service.py`, guardrail gate). Env: `EMERGENT_EMAIL_KEY`, `EMAIL_FROM_NAME`, `OWNER_EMAIL=jayalminshawi@gmail.com`.
+- [x] Backend `POST /api/audit-leads` (`backend/audit_leads.py`): validates, stores in Mongo `audit_leads` (id, created_at, status, email_sent, utm), emails owner via Emergent email proxy (`backend/email_service.py`, guardrail gate). Env: `EMERGENT_EMAIL_KEY`, `EMAIL_FROM_NAME`, `OWNER_EMAIL=contact@jayalminshawi.com`.
 - [x] Success screen personalised (first name, company, website, "within 48 hours") + optional inline Calendly strategy-call embed. UTM params captured from URL.
 - [x] Shared `CalendlyInline` component extracted (`components/portfolio/CalendlyInline.jsx`); `database.py` split out of `server.py`.
 - [x] Testing agent iteration_6: 100% pass (backend pytest + full UI flow desktop/mobile + regression).
+- [x] "FREE AUDIT" link added to nav drawer; "Free Website Audit" + "Privacy Policy" links in Footer.
+- [x] `/privacy` page (8 plain-English sections, UK GDPR) linked from the audit consent checkbox (opens new tab).
+- [x] Applicant confirmation email ("Got your website audit request, {name}") sent on submission; `confirmation_sent` tracked in DB. Reply-to = `contact@jayalminshawi.com`.
+- [x] All owner email references switched to `contact@jayalminshawi.com` (Contact section, privacy page, OWNER_EMAIL, EMAIL_REPLY_TO).
 
 ## P0/P1 Backlog
 - P1: Private leads dashboard / export for `audit_leads` (currently only via email + DB).
-- P1: Link `/audit` from main site (nav or footer) if desired for warm traffic.
-- P2: Privacy policy page (consent copy on /audit can then link to it).
 - P2: SEO meta tags + OpenGraph card image.
 - P2: Cookie/analytics consent banner.
 - P2: Case study detail pages `/projects/:slug`.

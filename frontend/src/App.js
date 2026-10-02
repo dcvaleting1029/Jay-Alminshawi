@@ -20,6 +20,7 @@ import PricingPage from "@/pages/PricingPage";
 import ProjectsPage from "@/pages/ProjectsPage";
 import BookPage from "@/pages/BookPage";
 import AuditPage from "@/pages/AuditPage";
+import PrivacyPage from "@/pages/PrivacyPage";
 
 const LOADER_KEY = "jay_loader_seen";
 
@@ -82,6 +83,7 @@ const AppShell = () => {
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/book" element={<BookPage />} />
         <Route path="/audit" element={<AuditPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
       </Routes>
     </>
   );
