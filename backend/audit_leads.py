@@ -131,7 +131,21 @@ async def create_audit_lead(payload: AuditLeadCreate):
     except Exception as e:  # lead is already saved; never fail the submission on email
         logger.error(f"Audit lead email failed for {lead_id}: {e}")
 
-    await db.audit_leads.update_one({"id": lead_id}, {"$set": {"email_sent": email_sent}})
+    confirmation_sent = False
+    try:
+        await send_email(
+            to=payload.email,
+            subject=f"Got your website audit request, {payload.first_name}",
+            html=_build_confirmation(payload),
+        )
+        confirmation_sent = True
+    except Exception as e:
+        logger.error(f"Audit confirmation email failed for {lead_id}: {e}")
+
+    await db.audit_leads.update_one(
+        {"id": lead_id},
+        {"$set": {"email_sent": email_sent, "confirmation_sent": confirmation_sent}},
+    )
     return AuditLeadResponse(
         id=lead_id,
         first_name=payload.first_name,
