@@ -1,4 +1,5 @@
 import React from "react";
+import { Eye } from "lucide-react";
 import { STATUS_LABELS, formatDate } from "./adminApi";
 
 export const StatusBadge = ({ status }) => {
@@ -20,13 +21,14 @@ export const LeadsList = ({ leads, selectedId, onSelect, filter, setFilter }) =>
   const filtered = leads.filter((l) => {
     if (filter === "all") return true;
     if (filter === "new") return l.status === "new" || l.status === "reviewing";
+    if (filter === "opened") return (l.open_count || 0) > 0;
     return l.status === filter;
   });
 
   return (
     <div data-testid="leads-list" className="rounded-2xl border border-white/[0.08] bg-white/[0.015] overflow-hidden">
       <div className="flex items-center gap-1 px-3 py-3 border-b border-white/[0.08] overflow-x-auto scrollbar-hide">
-        {[["all", "All"], ["new", "To review"], ["sent", "Sent"], ["call_booked", "Calls"], ["won", "Won"], ["closed", "Closed"]].map(([k, label]) => (
+        {[["all", "All"], ["new", "To review"], ["sent", "Sent"], ["opened", "Opened"], ["call_booked", "Calls"], ["won", "Won"], ["closed", "Closed"]].map(([k, label]) => (
           <button
             key={k}
             data-testid={`leads-filter-${k}`}
@@ -58,7 +60,20 @@ export const LeadsList = ({ leads, selectedId, onSelect, filter, setFilter }) =>
                     <p className="font-heading text-[15px] text-white truncate">{l.company}</p>
                     <p className="mt-0.5 text-[13px] text-white/50 truncate">{l.first_name} · {l.website}</p>
                   </div>
-                  <StatusBadge status={l.status} />
+                  <div className="flex flex-col items-end gap-1.5 shrink-0">
+                    <StatusBadge status={l.status} />
+                    {l.delivery_sent && (
+                      <span
+                        data-testid="lead-opened-indicator"
+                        className={`inline-flex items-center gap-1.5 font-mono-grotesk text-[9.5px] tracking-[0.18em] uppercase ${
+                          l.open_count ? "text-emerald-400" : "text-white/30"
+                        }`}
+                      >
+                        <Eye size={10} />
+                        {l.open_count ? `Opened ×${l.open_count}` : "Unopened"}
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 font-mono-grotesk text-[10px] tracking-[0.16em] uppercase text-white/35">
                   <span>{l.project_value}</span>

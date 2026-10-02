@@ -67,6 +67,7 @@ typography, smooth cinematic animations, immersive 3D laptop mockups, Webflow-ag
 - [x] `POST /api/audit-leads/{id}/send-audit` emails lead a branded link `{origin}/audit/view/{token}`; email includes personal note, 5★ Google rating, trusted brands. `GET /api/audit-view/{token}` public.
 - [x] `/audit/view/:token` page: heading, Loom embed, personal note, social proof, Calendly CTA; invalid token state.
 - [x] Testing agent iteration_7: 100% pass (12 backend pytest + full admin/view/social-proof UI + regression).
+- [x] Audit opened tracking: `GET /api/audit-view/{token}` records `open_count`, `first_opened_at`, `last_opened_at` (skipped when `?preview=true` — admin preview link uses `?preview=1`). Dashboard shows Opened/Unopened indicator per row, "Opened" filter, and a green status panel in the Send Audit card. Self-tested via curl + screenshots.
 
 ## P0/P1 Backlog
 - P1: Add real Meta Pixel ID to `frontend/.env` → `REACT_APP_META_PIXEL_ID` (user doesn't have it yet).

@@ -36,7 +36,8 @@ const AuditViewPage = () => {
     let m = document.querySelector('meta[name="robots"]');
     if (!m) { m = document.createElement("meta"); m.setAttribute("name", "robots"); document.head.appendChild(m); }
     m.setAttribute("content", "noindex, nofollow");
-    fetch(`${API}/api/audit-view/${token}`)
+    const preview = new URLSearchParams(window.location.search).get("preview") === "1";
+    fetch(`${API}/api/audit-view/${token}${preview ? "?preview=true" : ""}`)
       .then((r) => (r.ok ? r.json() : null))
       .then(setAudit)
       .catch(() => setAudit(null));

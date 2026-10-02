@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Loader2, ExternalLink, Send, Check } from "lucide-react";
+import { Loader2, ExternalLink, Send, Check, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
 import { Label, TextInput, FieldError } from "@/components/audit/FormPrimitives";
-import { adminFetch, formatDate } from "./adminApi";
+import { adminFetch, formatDate, formatDateTime } from "./adminApi";
 
 const defaultNote = (lead) =>
   `Hi ${lead.first_name}, I've spent some time going through ${lead.website} and recorded my thoughts. There are a few quick wins that could make a real difference to the number of enquiries you're getting — I walk through all of them in the video.`;
@@ -12,7 +12,7 @@ export const SendAuditCard = ({ lead, onUpdated }) => {
   const [note, setNote] = useState(lead.personal_note || defaultNote(lead));
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
-  const viewUrl = lead.view_token ? `${window.location.origin}/audit/view/${lead.view_token}` : null;
+  const viewUrl = lead.view_token ? `${window.location.origin}/audit/view/${lead.view_token}?preview=1` : null;
 
   const send = async () => {
     setError("");
@@ -47,6 +47,31 @@ export const SendAuditCard = ({ lead, onUpdated }) => {
           </span>
         )}
       </div>
+
+      {lead.delivery_sent && (
+        <div
+          data-testid="audit-opened-status"
+          className={`mb-6 flex items-center gap-3 rounded-xl border px-4 py-3 ${
+            lead.open_count ? "border-emerald-400/30 bg-emerald-400/[0.05]" : "border-white/[0.08] bg-white/[0.02]"
+          }`}
+        >
+          <span className={`grid place-items-center h-7 w-7 rounded-full ${lead.open_count ? "bg-emerald-400 text-black" : "border border-white/15 text-white/40"}`}>
+            {lead.open_count ? <Eye size={13} /> : <EyeOff size={13} />}
+          </span>
+          <div className="min-w-0">
+            <p className="font-heading text-[13.5px] text-white leading-tight">
+              {lead.open_count
+                ? `Opened ${lead.open_count === 1 ? "once" : `${lead.open_count} times`} — first on ${formatDateTime(lead.first_opened_at)}`
+                : "Not opened yet"}
+            </p>
+            <p className="mt-0.5 text-[12px] text-white/45">
+              {lead.open_count
+                ? `Last viewed ${formatDateTime(lead.last_opened_at)}. Good moment to follow up.`
+                : "You'll see it here the moment they open their audit page."}
+            </p>
+          </div>
+        </div>
+      )}
 
       <div className="space-y-6">
         <div>

@@ -313,12 +313,22 @@ async def send_audit(lead_id: str, body: SendAuditRequest, request: Request):
 
 # ------------------------------------------------------------------ Public audit view
 @public_router.get("/{token}")
-async def view_audit(token: str):
+async def view_audit(token: str, preview: bool = False):
     lead = await db.audit_leads.find_one(
         {"view_token": token, "delivery_sent": True},
         {"_id": 0, "first_name": 1, "company": 1, "website": 1, "video_url": 1, "personal_note": 1, "audit_sent_at": 1},
     )
     if not lead:
         raise HTTPException(status_code=404, detail="Audit not found")
+    if not preview:
+        now = datetime.now(timezone.utc).isoformat()
+        await db.audit_leads.update_one(
+            {"view_token": token},
+            {"$inc": {"open_count": 1}, "$set": {"last_opened_at": now}},
+        )
+        await db.audit_leads.update_one(
+            {"view_token": token, "first_opened_at": {"$exists": False}},
+            {"$set": {"first_opened_at": now}},
+        )
     lead["embed_url"] = f"https://www.loom.com/embed/{_loom_id(lead['video_url'])}?hide_owner=true&hideEmbedTopBar=true"
     return lead
