@@ -45,9 +45,20 @@ typography, smooth cinematic animations, immersive 3D laptop mockups, Webflow-ag
 - [x] `/pricing` dedicated page: PricingHero, 4 PricingCards (Launch £99 / Growth £499 highlight / Pro £1,500 / Scale Custom), CarePlan £40/month horizontal card, AddOnsTable (9 rows), PricingFAQ (6 accordion items), PricingCTA final section. Count-up animated prices. Conic-gradient spinning border on Growth card. All CTAs route to `/#contact` (Calendly).
 - [x] Navbar refactored to support cross-route navigation (hash + pathname targets). PRICING link added.
 - [x] Placement fixes on pricing cards (badge overflow, uniform CTA widths, aligned tops/bottoms).
-- [x] Testing agent: 100% frontend pass on /pricing page.
+- [x] `/projects` dedicated page (projects grid + Google reviews); navbar PROJECTS → `/projects`.
+
+### Session 3 (2026-06) — Website Audit Funnel
+- [x] `/audit` lead-gen funnel: minimal topbar (wordmark + "Back to website"), hero ("See what's holding your website back."), CSS-built laptop audit mockup (wireframe site, annotations, cursor, JA video bubble), trust points, CTA scrolls into funnel.
+- [x] 10-step multi-step form (`components/audit/*`, config in `data/audit.js`): business info + specialism chips → objectives (multi) → lead sources (multi + other) → project value → enquiry volume → website issue (optional textarea) → investment → timeline → decision makers (+ other) → contact (email, phone, consent). Progress "01 — 10" + hairline bar, Back preserves answers, slide transitions, validation per step.
+- [x] Backend `POST /api/audit-leads` (`backend/audit_leads.py`): validates, stores in Mongo `audit_leads` (id, created_at, status, email_sent, utm), emails owner via Emergent email proxy (`backend/email_service.py`, guardrail gate). Env: `EMERGENT_EMAIL_KEY`, `EMAIL_FROM_NAME`, `OWNER_EMAIL=jayalminshawi@gmail.com`.
+- [x] Success screen personalised (first name, company, website, "within 48 hours") + optional inline Calendly strategy-call embed. UTM params captured from URL.
+- [x] Shared `CalendlyInline` component extracted (`components/portfolio/CalendlyInline.jsx`); `database.py` split out of `server.py`.
+- [x] Testing agent iteration_6: 100% pass (backend pytest + full UI flow desktop/mobile + regression).
 
 ## P0/P1 Backlog
+- P1: Private leads dashboard / export for `audit_leads` (currently only via email + DB).
+- P1: Link `/audit` from main site (nav or footer) if desired for warm traffic.
+- P2: Privacy policy page (consent copy on /audit can then link to it).
 - P2: SEO meta tags + OpenGraph card image.
 - P2: Cookie/analytics consent banner.
 - P2: Case study detail pages `/projects/:slug`.

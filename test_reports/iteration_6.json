@@ -1,0 +1,25 @@
+{
+  "summary": "Full backend + frontend testing of the new /audit lead-generation funnel. All 5 pytest cases for POST /api/audit-leads pass (success + mongo persistence, consent=false 422, invalid email 422, empty objectives 422, missing required 422). Full 10-step UI funnel exercised end-to-end on desktop (1920x1080) and mobile 390px — all data-testids present, validation errors shown on empty step 1/2/final, conditional 'Other' inputs reveal for specialism / lead_sources / decision_makers, Back button hidden on step 1 and preserves answers across step1<->step2<->step3, optional textarea step allows empty continue, submit flow returns success screen with first name 'TestJay', company 'Test Builders Ltd', website 'www.testbuilders.co.uk' and '48 hours' copy, Calendly embed container rendered. Mobile layout has zero horizontal overflow (docScrollWidth==vw==390). Regression: /, /book, /pricing, /projects all return 200 with no page errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "/audit hero (desktop)", "issues": ["Innertext of H1 reads 'See what\u2019s holding yourwebsite back.' (no space between 'your' and 'website') because the line break uses a <br>-less span flow; visually it renders on separate lines so it's cosmetic only, but copy-paste / screen-reader users may hear 'yourwebsite' as one word. Low priority."]}
+    ]
+  },
+  "test_report_links": ["/app/backend/tests/test_audit_leads.py", "/app/test_reports/pytest/audit_leads.xml"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "audit_leads.py imports OWNER_EMAIL and email_service.py reads EMERGENT_EMAIL_KEY/EMAIL_FROM_NAME at module import time via os.environ[...] — if any of these env vars go missing the backend will crash on import. Consider .get() with a clear startup check.",
+    "AuditFunnel.jsx: when fetch submission fails, errors are only surfaced via toast but the submit button is re-enabled; no inline fallback message. Acceptable but worth noting.",
+    "funnelLogic.js URL_RE accepts bare 'example.com' style (good) but does not require a TLD>=2 inside path; sufficient for lead-gen.",
+    "audit_leads.py performs insert_one then a second update_one to set email_sent — could be a single insert with the flag after send; current flow intentional to never lose a lead if email fails (good)."
+  ],
+  "updated_files": ["/app/backend/tests/test_audit_leads.py"],
+  "success_rate": {"backend": "100% (5/5)", "frontend": "100% of listed audit flows"},
+  "seed_data_creation": "One live POST via UI (success flow) and one via pytest; pytest row cleaned up by fixture. UI submission produced one real email to OWNER_EMAIL (expected per request note).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Option testids use the raw field key with underscores (e.g. lead_sources-option-other, project_value-option-25-000-50-000, enquiry_volume-option-5-10, decision_makers-option-someone-else). The AuditFunnel success screen uses data-testid audit-success / audit-success-heading / audit-calendly. Backend route is POST /api/audit-leads (not /audit_leads). Mongo collection: audit_leads in DB from backend/.env DB_NAME. Avoid spamming the real inbox — the owner email was already pinged twice this run."
+}
