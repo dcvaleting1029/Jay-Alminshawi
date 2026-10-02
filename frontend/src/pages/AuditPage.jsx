@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { AuditTopbar, AuditFooter } from "@/components/audit/AuditChrome";
 import { AuditHero } from "@/components/audit/AuditHero";
+import { AuditSocialProof } from "@/components/audit/AuditSocialProof";
 import { AuditFunnel } from "@/components/audit/AuditFunnel";
+import { initMetaPixel, trackPixel } from "@/lib/metaPixel";
 
 const PAGE_TITLE = "Free Personalised Website Audit | Jay Alminshawi";
 const PAGE_DESCRIPTION =
@@ -22,6 +24,8 @@ const AuditPage = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
+    initMetaPixel();
+    trackPixel("PageView");
     const prevTitle = document.title;
     document.title = PAGE_TITLE;
     setMeta("description", PAGE_DESCRIPTION);
@@ -44,7 +48,8 @@ const AuditPage = () => {
     <main data-testid="audit-page" className="relative min-h-screen bg-[#050505] text-white">
       <AuditTopbar />
       <AuditHero onStart={startFunnel} />
-      <AuditFunnel ref={funnelRef} />
+      <AuditSocialProof />
+      <AuditFunnel ref={funnelRef} onSuccess={(lead) => trackPixel("Lead", { content_name: "Website Audit", content_category: lead.company })} />
       <AuditFooter />
     </main>
   );

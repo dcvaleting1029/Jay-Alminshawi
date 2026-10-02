@@ -8,7 +8,8 @@ import uuid
 from datetime import datetime, timezone
 
 from database import client, db
-from audit_leads import router as audit_router
+from auth import router as auth_router, seed_admin
+from audit_leads import router as audit_router, public_router as audit_view_router
 
 app = FastAPI(title="Jay Alminshawi Portfolio API")
 api_router = APIRouter(prefix="/api")
@@ -48,8 +49,17 @@ async def get_status_checks():
     return items
 
 
+api_router.include_router(auth_router)
 api_router.include_router(audit_router)
+api_router.include_router(audit_view_router)
 app.include_router(api_router)
+
+
+@app.on_event("startup")
+async def startup():
+    await seed_admin()
+    await db.audit_leads.create_index("id", unique=True)
+    await db.audit_leads.create_index("view_token")
 
 app.add_middleware(
     CORSMiddleware,

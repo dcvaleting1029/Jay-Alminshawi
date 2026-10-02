@@ -25,7 +25,7 @@ const StepBody = ({ step, answers, set, errors }) => {
   return <OptionStep step={step} answers={answers} set={set} errors={errors} />;
 };
 
-export const AuditFunnel = React.forwardRef(function AuditFunnel(_, ref) {
+export const AuditFunnel = React.forwardRef(function AuditFunnel({ onSuccess }, ref) {
   const location = useLocation();
   const topRef = useRef(null);
   const [index, setIndex] = useState(0);
@@ -64,7 +64,9 @@ export const AuditFunnel = React.forwardRef(function AuditFunnel(_, ref) {
         body: JSON.stringify(buildPayload(answers, readUtm(location.search))),
       });
       if (!res.ok) throw new Error(`Request failed (${res.status})`);
-      setResult(await res.json());
+      const data = await res.json();
+      setResult(data);
+      onSuccess?.(data);
       scrollTop();
     } catch (err) {
       toast.error("Something went wrong sending your request. Please try again.");
