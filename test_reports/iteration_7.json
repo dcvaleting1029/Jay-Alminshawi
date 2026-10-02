@@ -1,0 +1,37 @@
+{
+  "summary": "Full test of iteration 7: new admin leads dashboard, send-audit flow, public audit view page, /audit social-proof strip, Meta Pixel no-op. Backend: 12/12 pytest in test_admin_flow.py pass — admin login/me/brute-force, leads list/get requires auth, PATCH status (incl 422 invalid status), PATCH notes, send-audit invalid Loom URL 422; the live send-audit happy path was verified via a direct script (status=sent, delivery_sent=True, view_token issued, public /api/audit-view/{token} returns first_name/company/website/personal_note/embed_url, bad token → 404). Frontend: /admin login wrong-password surfaces admin-login-error, correct login reveals leads-list + admin-lead-count; all filter chips present and filtering works (sent filter narrowed from 9→2); lead row click opens lead-detail with answers/email/phone links; status select change updates lead-status-badge + toast; notes save works; invalid loom URL shows send-audit-error ('Paste a Loom share link…'); admin-logout returns to login form. Mobile 390px: list → detail → lead-detail-back → list all work. Public /audit/view/{valid-token} renders heading with first-name + website, loom embed iframe (fake id → Loom's own 404 inside iframe, expected), personal note, social proof, calendly. Invalid token renders 'This link isn't valid.' + audit-view-request-link. /audit shows audit-social-proof with audit-google-rating ('5.0 Rated on Google · 5 Reviews') and audit-trusted-logos. Zero fbq-related console errors on /audit, /, /pricing. All regression pages (/, /pricing, /projects, /book, /privacy) return 200.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "POST /api/auth/login", "issue": "Brute-force lockout keys on `request.client.host` which is the k8s/ingress proxy IP. Behind the preview ingress at least 2 proxy IPs rotate so an attacker can effectively double the allowed attempts (observed 10+ 401s needed before a 429 for a single email). In production behind Cloudflare every request will share the same proxy IP and the counter would collapse to a single global bucket per email. Consider using X-Forwarded-For (first hop) or keying only on the email."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_admin_flow.py",
+    "/app/backend/tests/test_audit_leads.py",
+    "/app/test_reports/pytest/admin_flow.xml"
+  ],
+  "action_items": [
+    "(Low priority, security) In backend/auth.py, derive the client IP from X-Forwarded-For (first value) instead of request.client.host so the brute-force bucket actually bounds attempts per real client."
+  ],
+  "critical_code_review_comments": [
+    "audit_leads.py POST /send-audit catches ALL email exceptions and raises HTTPException(502). During our run the Emergent email proxy returned 429 Too Many Requests and the backend surfaced that as a 502 — acceptable but the client sees a scary 502 for what is really a 429. Consider passing through the upstream status (or returning 503 Retry-After).",
+    "auth.py seed_admin() correctly updates password_hash when ADMIN_PASSWORD changes and leaves the bcrypt hash ($2b$ format) only in Mongo — never written to .env. Good.",
+    "Public /api/audit-view/{token} intentionally includes video_url and personal_note in the response body — that is fine since anyone with the token already sees them in the UI, but the token is 32 chars url-safe (secrets.token_urlsafe(24)) which is strong enough.",
+    "Admin JWT uses HS256 with os.environ['JWT_SECRET'] and 12h expiry (good). Tokens are stored in sessionStorage (ja_admin_token) so they're cleared on tab close — acceptable for a single-admin dashboard."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_admin_flow.py"
+  ],
+  "success_rate": {"backend": "100% (12/12 pytest + 1 scripted live send-audit)", "frontend": "100% of iteration-7 flows"},
+  "test_credentials": "contact@jayalminshawi.com / Jayisalive_10 (from /app/memory/test_credentials.md)",
+  "seed_data_creation": "3 UITEST audit_leads seeded in Mongo for admin UI testing; all cleaned up after. 1 real send-audit email dispatched to delivered@resend.dev (Resend sink). Live owner-inbox pings during pytest lead creation: ~6 (Emergent proxy briefly rate-limited us — waited 2min and retried send-audit successfully).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Admin UI data-testids: admin-login-form, admin-email-input, admin-password-input, admin-login-submit, admin-login-error, admin-logout, admin-refresh, admin-lead-count, leads-list, leads-filter-{all|new|reviewing|sent|call_booked|won|closed}, lead-row-{id}, lead-detail, lead-detail-back, lead-status-badge, lead-status-select, lead-answers, lead-email-link, lead-phone-link, lead-website-link, lead-notes-input, lead-notes-save, send-audit-card, send-audit-video-input, send-audit-note-input, send-audit-btn, send-audit-error, send-audit-view-link. Public: audit-view-page, audit-view-heading, audit-view-video, audit-view-note, audit-view-cta, audit-view-request-link, audit-view-calendly, audit-social-proof, audit-google-rating, audit-trusted-logos. Admin JWT lives in sessionStorage key `ja_admin_token`. Loom share URL regex requires exactly 32 hex chars after /share/ or /embed/. If pytest's live send-audit test 502s, the Emergent email proxy is rate-limiting — wait 2-3 min or seed the lead directly in Mongo (not via POST /api/audit-leads) to skip the two upfront confirmation/owner emails."
+}

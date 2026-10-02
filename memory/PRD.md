@@ -59,9 +59,22 @@ typography, smooth cinematic animations, immersive 3D laptop mockups, Webflow-ag
 - [x] Applicant confirmation email ("Got your website audit request, {name}") sent on submission; `confirmation_sent` tracked in DB. Reply-to = `contact@jayalminshawi.com`.
 - [x] All owner email references switched to `contact@jayalminshawi.com` (Contact section, privacy page, OWNER_EMAIL, EMAIL_REPLY_TO).
 
+### Session 4 (2026-06) — Social proof, Meta Pixel, Leads Dashboard + Audit Delivery
+- [x] `AuditSocialProof` strip under /audit hero (Google 5.0 rating link + client logo marquee); reused on audit view page.
+- [x] Meta Pixel helper `lib/metaPixel.js` — reads `REACT_APP_META_PIXEL_ID` (currently EMPTY → no-op). Fires `PageView` on /audit and `Lead` on funnel success.
+- [x] Admin auth (`backend/auth.py`): single admin seeded from `ADMIN_EMAIL`/`ADMIN_PASSWORD` (bcrypt), JWT Bearer (12h), brute-force lockout 5/15min. Credentials in `/app/memory/test_credentials.md`.
+- [x] `/admin` leads dashboard: login, filterable list, lead detail (all answers, status select, private notes), `SendAuditCard` (Loom share link + personal note → one-click send).
+- [x] `POST /api/audit-leads/{id}/send-audit` emails lead a branded link `{origin}/audit/view/{token}`; email includes personal note, 5★ Google rating, trusted brands. `GET /api/audit-view/{token}` public.
+- [x] `/audit/view/:token` page: heading, Loom embed, personal note, social proof, Calendly CTA; invalid token state.
+- [x] Testing agent iteration_7: 100% pass (12 backend pytest + full admin/view/social-proof UI + regression).
+
 ## P0/P1 Backlog
-- P1: Private leads dashboard / export for `audit_leads` (currently only via email + DB).
+- P1: Add real Meta Pixel ID to `frontend/.env` → `REACT_APP_META_PIXEL_ID` (user doesn't have it yet).
+- P2: CSV export of leads from /admin.
 - P2: SEO meta tags + OpenGraph card image.
+
+## Test Credentials
+Admin dashboard `/admin`: contact@jayalminshawi.com / Jayisalive_10 (see /app/memory/test_credentials.md).
 - P2: Cookie/analytics consent banner.
 - P2: Case study detail pages `/projects/:slug`.
 - P2: Blog / articles section.
