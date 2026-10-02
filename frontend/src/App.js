@@ -19,6 +19,7 @@ import MobileStickyCTA from "@/components/portfolio/MobileStickyCTA";
 import PricingPage from "@/pages/PricingPage";
 import ProjectsPage from "@/pages/ProjectsPage";
 import BookPage from "@/pages/BookPage";
+import AuditPage from "@/pages/AuditPage";
 
 const LOADER_KEY = "jay_loader_seen";
 
@@ -80,6 +81,7 @@ const AppShell = () => {
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/book" element={<BookPage />} />
+        <Route path="/audit" element={<AuditPage />} />
       </Routes>
     </>
   );

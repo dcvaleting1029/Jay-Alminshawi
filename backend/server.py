@@ -1,22 +1,14 @@
 from fastapi import FastAPI, APIRouter
-from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
-from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
 from typing import List
 import uuid
 from datetime import datetime, timezone
 
-
-ROOT_DIR = Path(__file__).parent
-load_dotenv(ROOT_DIR / '.env')
-
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+from database import client, db
+from audit_leads import router as audit_router
 
 app = FastAPI(title="Jay Alminshawi Portfolio API")
 api_router = APIRouter(prefix="/api")
@@ -56,6 +48,7 @@ async def get_status_checks():
     return items
 
 
+api_router.include_router(audit_router)
 app.include_router(api_router)
 
 app.add_middleware(
