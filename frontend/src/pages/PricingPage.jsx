@@ -12,11 +12,11 @@ import PricingCTA from "@/components/pricing/PricingCTA";
 const PAGE_TITLE =
   "Pricing | £4,495 Signature Website for Building Firms | Jay Alminshawi";
 const PAGE_DESCRIPTION =
-  "The £4,495 Signature package: a complete website for building firms — bespoke design, project galleries, quote forms, CRM integrations and 30 days launch support.";
+  "The £4,495 Signature package: a complete website for building firms — renovation, construction, new build, kitchen & bathroom and extension companies. Bespoke design, project galleries, quote forms, CRM integrations and 30 days launch support.";
 const DEFAULT_TITLE =
-  "Web Design for Building Firms | Jay Alminshawi";
+  "Web Design for Building & Construction Firms UK | Jay Alminshawi";
 const DEFAULT_DESCRIPTION =
-  "Websites for building firms across the UK. Look like the premium choice and turn homeowners into enquiries.";
+  "Premium websites for UK building firms — renovation, construction, new build, kitchen & bathroom and extension companies. Look like the premium choice and win more homeowner enquiries.";
 
 const setMeta = (name, content, attr = "name") => {
   let tag = document.querySelector(`meta[${attr}="${name}"]`);

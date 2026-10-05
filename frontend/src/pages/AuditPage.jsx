@@ -5,9 +5,9 @@ import { AuditSocialProof } from "@/components/audit/AuditSocialProof";
 import { AuditFunnel } from "@/components/audit/AuditFunnel";
 import { initMetaPixel, trackPixel } from "@/lib/metaPixel";
 
-const PAGE_TITLE = "Free Personalised Website Audit | Jay Alminshawi";
+const PAGE_TITLE = "Free Website Audit for Building Firms | Jay Alminshawi";
 const PAGE_DESCRIPTION =
-  "Request a free, personally recorded website audit. I'll review your design, user experience and enquiry journey and show you what's holding your website back.";
+  "A free, personally recorded website audit for UK building firms — renovation, construction, new build, kitchen & bathroom and extension companies. I'll review your design, user experience and enquiry journey and show you what's holding your website back.";
 
 const setMeta = (name, content, attr = "name") => {
   let tag = document.querySelector(`meta[${attr}="${name}"]`);

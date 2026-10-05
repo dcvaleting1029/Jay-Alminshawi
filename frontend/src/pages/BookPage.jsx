@@ -12,7 +12,7 @@ const CALENDLY_SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
 const PAGE_TITLE =
   "Book Your Free Discovery Call | Jay Alminshawi — Web Designer";
 const PAGE_DESCRIPTION =
-  "Free 30-minute discovery call for building firms ready for a website that wins better jobs. Watch the intro, then pick a time that suits you.";
+  "Free 30-minute discovery call for UK building firms — renovation, construction, new build, kitchen & bathroom and extension companies — ready for a website that wins better jobs. Watch the intro, then pick a time that suits you.";
 
 /* -------------------------------------------------------------- Meta */
 const setMeta = (name, content, attr = "name") => {
