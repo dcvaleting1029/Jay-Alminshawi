@@ -4,7 +4,7 @@ import { LogOut, RefreshCw, Loader2 } from "lucide-react";
 import { AdminLogin } from "@/components/admin/AdminLogin";
 import { LeadsList } from "@/components/admin/LeadsList";
 import { LeadDetail } from "@/components/admin/LeadDetail";
-import { adminFetch, getToken, clearToken } from "@/components/admin/adminApi";
+import { adminFetch, getToken, clearToken, needsFollowUp } from "@/components/admin/adminApi";
 
 const AdminPage = () => {
   const [authed, setAuthed] = useState(!!getToken());
@@ -37,11 +37,12 @@ const AdminPage = () => {
   const onUpdated = (updated) => setLeads((ls) => ls.map((l) => (l.id === updated.id ? updated : l)));
   const selected = leads?.find((l) => l.id === selectedId) || null;
   const newCount = leads?.filter((l) => l.status === "new").length ?? 0;
+  const followUps = leads?.filter(needsFollowUp).length ?? 0;
 
   return (
-    <main data-testid="admin-page" className="relative min-h-screen bg-[#050505] text-white">
-      <header className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between">
-        <Link to="/" className="font-heading text-[11px] sm:text-[13px] tracking-[0.28em] uppercase text-white/90 hover:text-white transition">
+    <main data-testid="admin-page" className="relative min-h-screen bg-[#09090b] text-white font-jakarta antialiased">
+      <header className="mx-auto w-full px-[5vw] h-16 sm:h-20 flex items-center justify-between">
+        <Link to="/" className="font-heading text-[11px] sm:text-[13px] tracking-widest uppercase text-white/90 hover:text-white transition">
           Jay Alminshawi
         </Link>
         {authed && (
@@ -51,7 +52,7 @@ const AdminPage = () => {
               {refreshing ? <Loader2 size={14} className="animate-spin" /> : <RefreshCw size={14} />}
             </button>
             <button data-testid="admin-logout" onClick={logout}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 h-9 font-mono-grotesk text-[10px] tracking-[0.22em] uppercase text-white/70 hover:bg-white hover:text-black transition-colors">
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 h-9 font-mono-grotesk text-[10px] tracking-wider uppercase text-white/70 hover:bg-white hover:text-black transition-colors">
               <LogOut size={13} /> Sign out
             </button>
           </div>
@@ -61,17 +62,17 @@ const AdminPage = () => {
       {!authed ? (
         <AdminLogin onLogin={() => setAuthed(true)} />
       ) : (
-        <section className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12 pt-8 sm:pt-12 pb-24">
+        <section className="mx-auto w-full px-[5vw] pt-8 sm:pt-12 pb-24">
           <div className="flex items-end justify-between gap-6 mb-8 sm:mb-10">
             <div>
-              <p className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/45 mb-3">
+              <p className="font-heading text-[11px] tracking-widest uppercase text-white/45 mb-3">
                 <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
                 Website Audit Requests
               </p>
-              <h1 className="font-display uppercase text-white leading-[0.9] tracking-tight text-4xl sm:text-5xl">Leads.</h1>
+              <h1 className="font-title font-medium text-white leading-[1.1] tracking-tight text-4xl sm:text-5xl">Leads.</h1>
             </div>
-            <p data-testid="admin-lead-count" className="font-mono-grotesk text-[11px] tracking-[0.24em] uppercase text-white/40 text-right">
-              {leads ? `${leads.length} total · ${newCount} new` : "Loading…"}
+            <p data-testid="admin-lead-count" className="font-mono-grotesk text-[11px] tracking-wider uppercase text-white/40 text-right">
+              {leads ? `${leads.length} total · ${newCount} new${followUps ? ` · ${followUps} to follow up` : ""}` : "Loading…"}
             </p>
           </div>
 

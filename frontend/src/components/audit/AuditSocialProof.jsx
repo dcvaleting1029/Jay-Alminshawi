@@ -10,7 +10,7 @@ export const AuditSocialProof = () => {
       data-testid="audit-social-proof"
       className="relative border-y border-white/[0.06] bg-[#070707] overflow-hidden"
     >
-      <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12 py-8 sm:py-10">
+      <div className="mx-auto w-full px-[5vw] py-8 sm:py-10">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           <motion.a
             href={GOOGLE_REVIEWS_URL}
@@ -23,7 +23,7 @@ export const AuditSocialProof = () => {
             transition={{ duration: 0.6 }}
             className="group lg:col-span-4 flex items-center gap-4 sm:gap-5"
           >
-            <span className="font-display text-4xl sm:text-5xl text-white leading-none tracking-tight">5.0</span>
+            <span className="font-title font-semibold text-4xl sm:text-5xl text-white leading-none tracking-tight">5.0</span>
             <span className="flex flex-col gap-1.5">
               <span className="flex gap-0.5 text-white">
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -37,7 +37,7 @@ export const AuditSocialProof = () => {
           </motion.a>
 
           <div className="lg:col-span-8 relative gradient-fade-x">
-            <p className="sr-only">Trusted by ambitious brands</p>
+            <p className="sr-only">Trusted by building firms</p>
             <div
               data-testid="audit-trusted-logos"
               className="flex w-max items-center gap-12 sm:gap-16 animate-logo-marquee whitespace-nowrap"

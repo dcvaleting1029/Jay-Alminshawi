@@ -12,6 +12,7 @@ module.exports = {
         heading: ['Montserrat', 'system-ui', 'sans-serif'],
         body: ['Manrope', 'system-ui', 'sans-serif'],
         mono: ['"Space Grotesk"', 'monospace'],
+        jakarta: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',

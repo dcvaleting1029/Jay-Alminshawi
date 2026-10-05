@@ -1,6 +1,6 @@
 import React from "react";
-import { Eye } from "lucide-react";
-import { STATUS_LABELS, formatDate } from "./adminApi";
+import { Eye, BellRing } from "lucide-react";
+import { STATUS_LABELS, formatDate, needsFollowUp, daysSince } from "./adminApi";
 
 export const StatusBadge = ({ status }) => {
   const sent = ["sent", "call_booked", "won"].includes(status);
@@ -22,22 +22,29 @@ export const LeadsList = ({ leads, selectedId, onSelect, filter, setFilter }) =>
     if (filter === "all") return true;
     if (filter === "new") return l.status === "new" || l.status === "reviewing";
     if (filter === "opened") return (l.open_count || 0) > 0;
+    if (filter === "follow_up") return needsFollowUp(l);
     return l.status === filter;
   });
+  const followUpCount = leads.filter(needsFollowUp).length;
 
   return (
     <div data-testid="leads-list" className="rounded-2xl border border-white/[0.08] bg-white/[0.015] overflow-hidden">
       <div className="flex items-center gap-1 px-3 py-3 border-b border-white/[0.08] overflow-x-auto scrollbar-hide">
-        {[["all", "All"], ["new", "To review"], ["sent", "Sent"], ["opened", "Opened"], ["call_booked", "Calls"], ["won", "Won"], ["closed", "Closed"]].map(([k, label]) => (
+        {[["all", "All"], ["new", "To review"], ["follow_up", "Follow up"], ["sent", "Sent"], ["opened", "Opened"], ["call_booked", "Calls"], ["won", "Won"], ["closed", "Closed"]].map(([k, label]) => (
           <button
             key={k}
             data-testid={`leads-filter-${k}`}
             onClick={() => setFilter(k)}
-            className={`shrink-0 rounded-full px-3.5 h-8 font-mono-grotesk text-[10px] tracking-[0.2em] uppercase transition-colors ${
+            className={`shrink-0 inline-flex items-center gap-1.5 rounded-full px-3.5 h-8 font-mono-grotesk text-[10px] tracking-[0.2em] uppercase transition-colors ${
               filter === k ? "bg-white text-black" : "text-white/50 hover:text-white hover:bg-white/[0.05]"
             }`}
           >
             {label}
+            {k === "follow_up" && followUpCount > 0 && (
+              <span data-testid="follow-up-count" className={`grid place-items-center h-4 min-w-4 px-1 rounded-full text-[9px] ${filter === k ? "bg-black text-white" : "bg-amber-400 text-black"}`}>
+                {followUpCount}
+              </span>
+            )}
           </button>
         ))}
       </div>
@@ -62,7 +69,11 @@ export const LeadsList = ({ leads, selectedId, onSelect, filter, setFilter }) =>
                   </div>
                   <div className="flex flex-col items-end gap-1.5 shrink-0">
                     <StatusBadge status={l.status} />
-                    {l.delivery_sent && (
+                    {l.delivery_sent && needsFollowUp(l) ? (
+                      <span data-testid="lead-follow-up-indicator" className="inline-flex items-center gap-1.5 font-mono-grotesk text-[9.5px] tracking-[0.18em] uppercase text-amber-400">
+                        <BellRing size={10} /> Follow up · {daysSince(l.audit_sent_at)}d unopened
+                      </span>
+                    ) : l.delivery_sent && (
                       <span
                         data-testid="lead-opened-indicator"
                         className={`inline-flex items-center gap-1.5 font-mono-grotesk text-[9.5px] tracking-[0.18em] uppercase ${

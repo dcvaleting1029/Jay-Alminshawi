@@ -69,9 +69,9 @@ export const PricingFAQ = () => {
   return (
     <section
       data-testid="pricing-faq-section"
-      className="relative py-14 sm:py-20 lg:py-24 bg-[#050505]"
+      className="relative py-14 sm:py-20 lg:py-24 bg-[#09090b]"
     >
-      <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto w-full px-[5vw]">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-14">
           {/* Heading */}
           <motion.div
@@ -94,7 +94,7 @@ export const PricingFAQ = () => {
                   transition: { duration: 0.7 },
                 },
               }}
-              className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/40 mb-5"
+              className="font-heading text-[11px] tracking-widest uppercase text-white/40 mb-5"
             >
               <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
               FAQ
@@ -109,7 +109,7 @@ export const PricingFAQ = () => {
                   transition: { duration: 0.85 },
                 },
               }}
-              className="font-display uppercase text-white leading-[0.9] tracking-tight text-4xl sm:text-5xl lg:text-6xl"
+              className="font-title font-medium text-white leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-6xl"
             >
               Questions,<br />answered.
             </motion.h2>

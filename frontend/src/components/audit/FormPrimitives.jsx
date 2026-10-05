@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Check } from "lucide-react";
 
 export const Label = ({ children, htmlFor }) => (
-  <label htmlFor={htmlFor} className="block font-mono-grotesk text-[10.5px] tracking-[0.28em] uppercase text-white/40 mb-2">
+  <label htmlFor={htmlFor} className="block font-mono-grotesk text-[10.5px] tracking-widest uppercase text-white/40 mb-2">
     {children}
   </label>
 );

@@ -6,9 +6,9 @@ export const AddOnsTable = () => {
   return (
     <section
       data-testid="addons-section"
-      className="relative py-16 sm:py-24 lg:py-28 bg-[#050505]"
+      className="relative py-16 sm:py-24 lg:py-28 bg-[#09090b]"
     >
-      <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto w-full px-[5vw]">
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -29,7 +29,7 @@ export const AddOnsTable = () => {
                 transition: { duration: 0.7 },
               },
             }}
-            className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/40 mb-5"
+            className="font-heading text-[11px] tracking-widest uppercase text-white/40 mb-5"
           >
             <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
             Extras
@@ -44,7 +44,7 @@ export const AddOnsTable = () => {
                 transition: { duration: 0.85 },
               },
             }}
-            className="font-display uppercase text-white leading-[0.9] tracking-tight text-4xl sm:text-5xl lg:text-6xl"
+            className="font-title font-medium text-white leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-6xl"
           >
             Optional Add-ons
           </motion.h2>
@@ -70,14 +70,14 @@ export const AddOnsTable = () => {
               className="flex items-center justify-between gap-6 px-5 sm:px-7 lg:px-8 py-5 sm:py-6 transition-colors"
             >
               <div className="flex items-center gap-4 sm:gap-6 min-w-0">
-                <span className="font-mono-grotesk text-[10.5px] tracking-[0.2em] text-white/30 w-6 tabular-nums shrink-0">
+                <span className="font-mono-grotesk text-[10.5px] tracking-wider text-white/30 w-6 tabular-nums shrink-0">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="font-heading text-[15px] sm:text-base text-white/90 truncate">
                   {item.name}
                 </span>
               </div>
-              <span className="font-display text-lg sm:text-xl text-white tracking-tight whitespace-nowrap">
+              <span className="font-title font-semibold text-lg sm:text-xl text-white tracking-tight whitespace-nowrap">
                 {item.price}
               </span>
             </motion.div>

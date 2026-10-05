@@ -12,7 +12,7 @@ const CALENDLY_SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
 const PAGE_TITLE =
   "Book Your Free Discovery Call | Jay Alminshawi — Web Designer";
 const PAGE_DESCRIPTION =
-  "Free 30-minute discovery call for ambitious businesses ready to build a modern, high-performing website. Watch the intro, then pick a time that suits you.";
+  "Free 30-minute discovery call for building firms ready for a website that wins better jobs. Watch the intro, then pick a time that suits you.";
 
 /* -------------------------------------------------------------- Meta */
 const setMeta = (name, content, attr = "name") => {
@@ -103,7 +103,7 @@ const VSLPlayer = () => {
             data-testid="vsl-mute-btn"
             onClick={toggleMute}
             aria-label={isMuted ? "Unmute" : "Mute"}
-            className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 z-20 inline-flex items-center gap-2 h-10 px-4 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white text-[11px] tracking-[0.22em] uppercase hover:bg-white hover:text-black transition-all"
+            className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 z-20 inline-flex items-center gap-2 h-10 px-4 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white text-[13px] font-medium hover:bg-white hover:text-black transition-all"
           >
             {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
             {isMuted ? "Sound Off" : "Sound On"}
@@ -154,30 +154,30 @@ const CalendlyInline = () => {
 
 /* -------------------------------------------------------------- Sections */
 const CALL_TOPICS = [
-  "Your business, services and long-term goals",
+  "Your company, the work you do and the jobs you want more of",
   "Your current website (or lack of one)",
-  "What's currently working — and what isn't",
-  "Your ideal customer and target audience",
-  "Competitor analysis and positioning",
-  "Website strategy and user journey",
-  "Recommended pages and functionality",
-  "Design direction and brand identity",
+  "Where your enquiries come from today — and what isn't working",
+  "Your ideal customer and the areas you cover",
+  "How local competitors present themselves online",
+  "Website strategy and the homeowner's journey to a quote",
+  "Recommended pages: services, projects, areas, reviews",
+  "Design direction and how to look like the premium choice",
   "Timeline, investment and next steps",
 ];
 
 const IDEAL_FOR = [
-  "Build a new website",
-  "Redesign an existing website",
-  "Improve lead generation",
-  "Create a stronger online presence",
-  "Elevate their brand",
+  "Build a new website for their building firm",
+  "Redesign an outdated website that isn't bringing in work",
+  "Win higher-value projects rather than price-shopping enquiries",
+  "Rely less on Checkatrade, MyBuilder or word of mouth",
+  "Showcase their projects properly",
   "Invest in a premium, strategic website",
 ];
 
 const BEFORE_CALL = [
   "Your current website (if applicable)",
+  "A few photos of recent projects",
   "Links to websites you like",
-  "Your business goals",
   "Any questions you'd like to discuss",
 ];
 
@@ -205,11 +205,11 @@ const Section = ({ eyebrow, title, children }) => (
     className="border-t border-white/[0.08] pt-8 sm:pt-10"
   >
     {eyebrow && (
-      <p className="font-mono-grotesk text-[10.5px] tracking-[0.32em] uppercase text-white/40 mb-3">
+      <p className="font-mono-grotesk text-[10.5px] tracking-widest uppercase text-white/40 mb-3">
         {eyebrow}
       </p>
     )}
-    <h3 className="font-display uppercase text-white tracking-tight text-2xl sm:text-3xl leading-[0.95] mb-6">
+    <h3 className="font-title font-medium text-white tracking-tight text-2xl sm:text-3xl leading-[1.1] mb-6">
       {title}
     </h3>
     <div className="text-[14.5px] sm:text-[15px] text-white/60 leading-relaxed space-y-4">
@@ -239,7 +239,7 @@ const BookPage = () => {
   return (
     <main
       data-testid="book-page"
-      className="relative min-h-screen bg-[#050505] text-white overflow-hidden"
+      className="relative min-h-screen bg-[#09090b] text-white overflow-hidden font-jakarta antialiased"
     >
       {/* Ambient background glow */}
       <div className="pointer-events-none fixed inset-0 -z-0">
@@ -249,17 +249,14 @@ const BookPage = () => {
       {/* Minimal top bar — no nav distractions to keep lead focused on booking */}
       <header
         data-testid="book-topbar"
-        className="relative z-20 mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12 pt-8 sm:pt-10 flex items-center justify-between"
+        className="relative z-20 mx-auto w-full px-[5vw] pt-8 sm:pt-10 flex items-center justify-between"
       >
-        <a
-          href="/"
-          className="font-heading text-[11px] sm:text-[13px] tracking-[0.28em] uppercase text-white/90 hover:text-white transition"
-        >
-          Jay Alminshawi
+        <a href="/" aria-label="Jay Alminshawi — home" className="flex items-center">
+          <img src="/ja-logo.png" alt="Jay Alminshawi" className="h-7 sm:h-8 w-auto" />
         </a>
         <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5">
           <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="font-mono-grotesk text-[10px] tracking-[0.28em] uppercase text-white/70">
+          <span className="font-mono-grotesk text-[10px] tracking-widest uppercase text-white/70">
             Now Booking
           </span>
         </span>
@@ -268,7 +265,7 @@ const BookPage = () => {
       {/* Hero — VSL front and centre */}
       <section
         data-testid="book-hero"
-        className="relative mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12 pt-12 sm:pt-16 lg:pt-20 pb-8"
+        className="relative mx-auto w-full px-[5vw] pt-12 sm:pt-16 lg:pt-20 pb-8"
       >
         <motion.div
           initial="hidden"
@@ -282,7 +279,7 @@ const BookPage = () => {
               hidden: { opacity: 0, y: 20, filter: "blur(6px)" },
               show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.7 } },
             }}
-            className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/40 mb-5"
+            className="font-heading text-[11px] tracking-widest uppercase text-white/40 mb-5"
           >
             <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
             Free Discovery Call — 30 Minutes
@@ -292,7 +289,7 @@ const BookPage = () => {
               hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
               show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.95, ease: [0.22, 1, 0.36, 1] } },
             }}
-            className="font-display uppercase text-white leading-[0.9] tracking-tight text-4xl sm:text-5xl lg:text-6xl"
+            className="font-title font-medium text-white leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-6xl"
           >
             Watch this first,<br />then book below.
           </motion.h1>
@@ -303,8 +300,8 @@ const BookPage = () => {
             }}
             className="mt-6 text-[15px] sm:text-base text-white/55 max-w-xl mx-auto leading-relaxed"
           >
-            A quick intro to how I help ambitious businesses grow online — then
-            pick a time that suits you.
+            A quick intro to how I help building firms
+            win better jobs online — then pick a time that suits you.
           </motion.p>
         </motion.div>
 
@@ -321,7 +318,7 @@ const BookPage = () => {
       {/* Description + Calendly */}
       <section
         data-testid="book-body"
-        className="relative mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20"
+        className="relative mx-auto w-full px-[5vw] py-12 sm:py-16 lg:py-20"
       >
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
           {/* Left column — description */}
@@ -334,15 +331,14 @@ const BookPage = () => {
           >
             <p className="text-[15px] sm:text-base text-white/60 leading-relaxed">
               This complimentary discovery call is designed to understand your
-              business, your goals and whether we&apos;re the right fit to work
-              together.
+              company, the kind of projects you want to win and whether
+              we&apos;re the right fit to work together.
             </p>
             <p className="mt-5 text-[15px] sm:text-base text-white/60 leading-relaxed">
-              We&apos;ll discuss your current online presence, identify
-              opportunities for improvement and explore how a modern,
-              high-performing website can help you build trust, generate more
-              enquiries and position your business as the premium choice within
-              your industry.
+              We&apos;ll look at how homeowners currently find you, where your
+              website is losing their trust and how a modern, high-performing
+              site can position you as the premium choice for renovations,
+              extensions, new builds, kitchens and bathrooms in your area.
             </p>
 
             <div className="mt-10 sm:mt-12 space-y-10 sm:space-y-12">
@@ -355,7 +351,7 @@ const BookPage = () => {
 
               <Section eyebrow="Ideal For" title="Who this call is for">
                 <p>
-                  This call is ideal for ambitious businesses looking to:
+                  This call is ideal for building firms looking to:
                 </p>
                 <CheckList items={IDEAL_FOR} testId="ideal-for" />
               </Section>
@@ -387,11 +383,11 @@ const BookPage = () => {
           {/* Right column — Calendly (sticky on desktop) */}
           <div className="lg:col-span-6 xl:col-span-5">
             <div className="lg:sticky lg:top-8">
-              <p className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/40 mb-5">
+              <p className="font-heading text-[11px] tracking-widest uppercase text-white/40 mb-5">
                 <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
                 Pick a Time
               </p>
-              <h2 className="font-display uppercase text-white leading-[0.9] tracking-tight text-3xl sm:text-4xl lg:text-5xl mb-6">
+              <h2 className="font-title font-medium text-white leading-[1.1] tracking-tight text-3xl sm:text-4xl lg:text-5xl mb-6">
                 Book your <br />discovery call.
               </h2>
               <CalendlyInline />
@@ -403,7 +399,7 @@ const BookPage = () => {
       {/* Minimal footer */}
       <footer
         data-testid="book-footer"
-        className="relative mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12 py-10 border-t border-white/[0.06] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono-grotesk text-[10.5px] tracking-[0.28em] uppercase text-white/35"
+        className="relative mx-auto w-full px-[5vw] py-10 border-t border-white/[0.06] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[12px] text-neutral-500 normal-case"
       >
         <p>© 2025 Jay Alminshawi — All Rights Reserved</p>
         <p>Modern Web Design — UK-Wide</p>

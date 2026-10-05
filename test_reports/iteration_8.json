@@ -1,0 +1,36 @@
+{
+  "summary": "Frontend regression after site-wide restyle (HomeNav/HomeFooter, IntroScreen, 6-card Work grid, /projects redirect). Nearly all specs pass. One minor spec deviation: /book uses a minimal `book-topbar` instead of the HomeNav (`main-navbar`), which contradicts the request wording ('/pricing, /book, /audit, /privacy all render with the new HomeNav — /audit uses a minimal topbar instead'). Everything else — homepage work grid (6 cards with real images under /work/mock/, 2-3 tag pills each), intro screen (progress 2→36%+, disappears within 5s, not re-shown on reload), /projects → /#work redirect + scroll, HomeNav/HomeFooter + hash-nav from /pricing, mobile 390 (no overflow, hamburger drawer, mobile-sticky-cta='Book a call' after scrolling hero), /audit minimal topbar + hero CTA scroll to form, /pricing visual (hero heading & £4,495 both present) — passes.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "spec_deviations": [
+      {"page": "/book", "issue": "Uses a minimal `book-topbar` (brand + 'NOW BOOKING' pill only). Spec expected HomeNav (`main-navbar`) on /book — only /audit was supposed to use a minimal topbar. If intentional (focused funnel like /audit), add `data-testid='book-topbar'` to spec or expose Work/Services/Reviews/Pricing/Free audit links; otherwise swap in HomeNav.", "priority": "LOW"}
+    ]
+  },
+  "test_evidence": {
+    "homepage_work_grid": "project-card-1..6 present with /work/mock/{edn,bespoke,citycivils,etn,aceofspades,rha}.webp (naturalWidth=1600). project-tag counts: 3,2,3,2,3,2. projects-all-link=None, projects-more-tile=None.",
+    "intro_screen": "loading-screen visible on first load; loading-progress-value animates 2% → 36% within ~800ms; detaches within 6s; not shown after reload (sessionStorage jay_loader_seen).",
+    "projects_redirect": "/projects → https://.../#work, Work section scrolled into view (top=0, inView=true).",
+    "secondary_pages": "/pricing & /privacy: main-navbar + nav-work + nav-pricing + nav-free-audit + nav-book-call + footer-section all True. /audit: audit-topbar + audit-brand + audit-back-to-website True, main-navbar absent. /book: main-navbar FALSE (uses book-topbar).",
+    "hash_nav_from_pricing": "nav-work click → url ends with /#work. nav-book-call click → url ends with /#contact.",
+    "mobile_390": "/, /pricing, /privacy scrollWidth==clientWidth==390 (no horizontal overflow). nav-menu-toggle opens nav-menu-drawer. mobile-sticky-cta present with text 'Book a call' after scrolling home past hero.",
+    "pricing_visual": "Heading 'Websites that pay for themselves.' present. '£' + '4,495' present. CTAs render.",
+    "audit_entry": "audit-hero-cta present, click scrolls to Step 1 form (input-first-name, input-company, input-website, specialism-option-*, audit-continue-btn visible). Previously validated end-to-end in iterations 6/7; backend POST /api/audit-leads reachable (422 on partial payload = schema active).",
+    "console": "No console errors observed on any tested page."
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Decide whether /book is intended to use HomeNav or its own minimal `book-topbar`. If HomeNav expected, replace the minimal top bar on BookPage.jsx with <HomeNav/>. Otherwise, update spec/doc to list /book alongside /audit as a minimal-topbar page."
+  ],
+  "critical_code_review_comments": [
+    "/book uses a bespoke mini topbar (book-topbar) that duplicates part of HomeNav behavior; either reuse HomeNav for consistency, or extract a shared MinimalTopbar used by both /audit and /book to DRY the two funnel chromes."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (frontend-only run; endpoint reachable)", "frontend": "~95% (1 minor spec deviation on /book navbar)"},
+  "seed_data_creation": "None.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Set sessionStorage.jay_loader_seen='1' before navigating to '/' when the intro is not the thing under test. /book intentionally (or by oversight) uses a minimal `book-topbar` not HomeNav — flag only, do not fail the suite on it. Previous iterations (6,7) already validated the full /audit 10-step submission end-to-end; this iteration only re-verified the entry point renders after restyle."
+}

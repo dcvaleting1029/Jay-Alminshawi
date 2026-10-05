@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "@/App.css";
 import { AnimatePresence } from "framer-motion";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { Toaster } from "sonner";
 
-import Navbar from "@/components/portfolio/Navbar";
-import Hero from "@/components/portfolio/Hero";
-import IntroVideo from "@/components/portfolio/IntroVideo";
-import TrustedBy from "@/components/portfolio/TrustedBy";
-import Projects from "@/components/portfolio/Projects";
-import Services from "@/components/portfolio/Services";
-import Testimonials from "@/components/portfolio/Testimonials";
-import About from "@/components/portfolio/About";
-import Contact from "@/components/portfolio/Contact";
-import Footer from "@/components/portfolio/Footer";
-import LoadingScreen from "@/components/portfolio/LoadingScreen";
+import IntroScreen, { INTRO_DURATION } from "@/components/home/IntroScreen";
 import MobileStickyCTA from "@/components/portfolio/MobileStickyCTA";
+import { HomeNav } from "@/components/home/HomeNav";
+import { HomeHero, Statement, Sectors } from "@/components/home/HomeHero";
+import { WorkGrid, LogoWall } from "@/components/home/WorkSections";
+import { ServicesSplit } from "@/components/home/ProofSections";
+import { Reviews } from "@/components/home/Reviews";
+import { HomeContact, HomeFooter } from "@/components/home/ContactFooter";
 import PricingPage from "@/pages/PricingPage";
-import ProjectsPage from "@/pages/ProjectsPage";
 import BookPage from "@/pages/BookPage";
 import AuditPage from "@/pages/AuditPage";
 import PrivacyPage from "@/pages/PrivacyPage";
@@ -26,8 +21,9 @@ import AuditViewPage from "@/pages/AuditViewPage";
 
 const LOADER_KEY = "jay_loader_seen";
 
-const Home = () => {
+const Home = ({ introActive }) => {
   const location = useLocation();
+  const [heroDelay] = useState(() => (introActive ? (INTRO_DURATION + 500) / 1000 : 0));
 
   // Scroll to hash target (e.g. /#contact from Pricing page) after mount
   useEffect(() => {
@@ -42,17 +38,17 @@ const Home = () => {
   }, [location.hash]);
 
   return (
-    <main data-testid="home-main" className="relative bg-[#050505] text-white">
-      <Navbar />
-      <Hero />
-      <IntroVideo />
-      <TrustedBy />
-      <Projects />
-      <Services />
-      <Testimonials />
-      <About />
-      <Contact />
-      <Footer />
+    <main data-testid="home-main" className="relative bg-[#09090b] text-white font-jakarta antialiased">
+      <HomeNav />
+      <HomeHero delay={heroDelay} />
+      <Statement />
+      <Sectors />
+      <WorkGrid />
+      <LogoWall />
+      <Reviews />
+      <ServicesSplit />
+      <HomeContact />
+      <HomeFooter />
       <MobileStickyCTA />
     </main>
   );
@@ -70,9 +66,9 @@ const AppShell = () => {
     <>
       <AnimatePresence mode="wait">
         {showLoader && (
-          <LoadingScreen
-            key="loading-screen"
-            onProgressComplete={() => {
+          <IntroScreen
+            key="intro-screen"
+            onDone={() => {
               sessionStorage.setItem(LOADER_KEY, "1");
               setShowLoader(false);
             }}
@@ -80,8 +76,8 @@ const AppShell = () => {
         )}
       </AnimatePresence>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/" element={<Home introActive={showLoader} />} />
+        <Route path="/projects" element={<Navigate to="/#work" replace />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/book" element={<BookPage />} />
         <Route path="/audit" element={<AuditPage />} />

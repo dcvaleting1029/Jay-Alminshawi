@@ -71,7 +71,7 @@ export const TextareaStep = ({ step, answers, set }) => (
       onChange={(e) => set(step.field, e.target.value)}
       className="w-full resize-none rounded-2xl border border-white/[0.08] bg-white/[0.02] px-5 py-4 text-[16px] text-white placeholder:text-white/25 outline-none focus:border-white/40 transition-colors duration-300 leading-relaxed"
     />
-    <p className="mt-3 font-mono-grotesk text-[10.5px] tracking-[0.22em] uppercase text-white/30">
+    <p className="mt-3 font-mono-grotesk text-[10.5px] tracking-wider uppercase text-white/30">
       Optional — a sentence or two is plenty.
     </p>
   </div>

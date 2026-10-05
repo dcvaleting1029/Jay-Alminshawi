@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 
 from database import client, db
 from auth import router as auth_router, seed_admin
-from audit_leads import router as audit_router, public_router as audit_view_router
+from audit_leads import router as audit_router, public_router as audit_view_router, cron_router
 
 app = FastAPI(title="Jay Alminshawi Portfolio API")
 api_router = APIRouter(prefix="/api")
@@ -52,6 +52,7 @@ async def get_status_checks():
 api_router.include_router(auth_router)
 api_router.include_router(audit_router)
 api_router.include_router(audit_view_router)
+api_router.include_router(cron_router)
 app.include_router(api_router)
 
 

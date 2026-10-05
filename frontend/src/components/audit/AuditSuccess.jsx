@@ -4,7 +4,7 @@ import { Check } from "lucide-react";
 import { CalendlyInline } from "@/components/portfolio/CalendlyInline";
 
 const NEXT = [
-  "I'll personally review your website, positioning, user experience and enquiry journey.",
+  "I'll personally review your website the way a homeowner would — first impression, project galleries, trust signals and the quote journey.",
   "You'll receive a personalised video audit by email within 48 hours.",
   "No obligation — the recommendations are yours to keep.",
 ];
@@ -26,11 +26,11 @@ export const AuditSuccess = ({ result }) => {
         <span className="grid place-items-center h-9 w-9 rounded-full bg-white text-black">
           <Check size={15} strokeWidth={3} />
         </span>
-        <p className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/55">Request Received</p>
+        <p className="font-heading text-[11px] tracking-widest uppercase text-white/55">Request Received</p>
       </motion.div>
 
       <motion.h2 variants={item} data-testid="audit-success-heading"
-        className="font-display uppercase text-white tracking-tight leading-[0.9] text-4xl sm:text-5xl lg:text-6xl text-balance">
+        className="font-title font-medium text-white tracking-tight leading-[1.1] text-4xl sm:text-5xl lg:text-6xl text-balance">
         Thanks, {result.first_name}.<br />I&apos;ll take it from here.
       </motion.h2>
 
@@ -49,8 +49,8 @@ export const AuditSuccess = ({ result }) => {
       </motion.ul>
 
       <motion.div variants={item} className="mt-14 sm:mt-16 border-t border-white/[0.08] pt-10">
-        <p className="font-mono-grotesk text-[10.5px] tracking-[0.32em] uppercase text-white/40 mb-3">Optional</p>
-        <h3 className="font-display uppercase text-white tracking-tight text-2xl sm:text-3xl leading-[0.95]">
+        <p className="font-mono-grotesk text-[10.5px] tracking-widest uppercase text-white/40 mb-3">Optional</p>
+        <h3 className="font-title font-medium text-white tracking-tight text-2xl sm:text-3xl leading-[1.1]">
           Prefer to talk it through?
         </h3>
         <p className="mt-4 text-[14.5px] sm:text-[15px] text-white/55 leading-relaxed max-w-lg">
@@ -58,7 +58,17 @@ export const AuditSuccess = ({ result }) => {
         </p>
 
         <div className="mt-8">
-          <CalendlyInline height={760} testId="audit-calendly" />
+          <CalendlyInline
+            height={760}
+            testId="audit-calendly"
+            onScheduled={(payload) =>
+              fetch(`${process.env.REACT_APP_BACKEND_URL}/api/audit-leads/${result.id}/call-booked`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+              }).catch(() => {})
+            }
+          />
         </div>
       </motion.div>
     </motion.div>

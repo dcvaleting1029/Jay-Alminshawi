@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import Navbar from "@/components/portfolio/Navbar";
-import Footer from "@/components/portfolio/Footer";
+import { HomeNav as Navbar } from "@/components/home/HomeNav";
+import { HomeFooter as Footer } from "@/components/home/ContactFooter";
 
 const PAGE_TITLE = "Privacy Policy | Jay Alminshawi";
 const LAST_UPDATED = "June 2026";
@@ -68,11 +68,11 @@ const PrivacyPage = () => {
   }, []);
 
   return (
-    <main data-testid="privacy-page" className="relative bg-[#050505] text-white">
+    <main data-testid="privacy-page" className="relative bg-[#09090b] text-white font-jakarta antialiased">
       <Navbar />
       <section className="relative pt-32 sm:pt-40 lg:pt-44 pb-20 sm:pb-28">
         <div className="absolute inset-0 vertical-panels opacity-60 pointer-events-none" />
-        <div className="relative mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
+        <div className="relative mx-auto w-full px-[5vw]">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
             <motion.div
               initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
@@ -80,17 +80,17 @@ const PrivacyPage = () => {
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
               className="lg:col-span-5"
             >
-              <p className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/45 mb-6">
+              <p className="font-heading text-[11px] tracking-widest uppercase text-white/45 mb-6">
                 <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
                 Legal
               </p>
-              <h1 className="font-display uppercase text-white leading-[0.9] tracking-tight text-4xl sm:text-5xl lg:text-6xl">
+              <h1 className="font-title font-medium text-white leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-6xl">
                 Privacy<br />Policy.
               </h1>
               <p className="mt-6 text-[15px] sm:text-base text-white/55 leading-relaxed max-w-md">
                 A plain-English summary of what I collect when you get in touch, why I collect it and how you can control it.
               </p>
-              <p className="mt-8 font-mono-grotesk text-[10.5px] tracking-[0.28em] uppercase text-white/35">
+              <p className="mt-8 font-mono-grotesk text-[10.5px] tracking-widest uppercase text-white/35">
                 Last updated — {LAST_UPDATED}
               </p>
             </motion.div>
@@ -106,7 +106,7 @@ const PrivacyPage = () => {
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                   className="grid sm:grid-cols-12 gap-3 sm:gap-8 border-t border-white/[0.08] py-8 sm:py-10"
                 >
-                  <p className="sm:col-span-1 font-mono-grotesk text-[10.5px] tracking-[0.28em] text-white/35 pt-1">
+                  <p className="sm:col-span-1 font-mono-grotesk text-[10.5px] tracking-widest text-white/35 pt-1">
                     {String(i + 1).padStart(2, "0")}
                   </p>
                   <div className="sm:col-span-11">

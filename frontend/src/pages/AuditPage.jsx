@@ -45,7 +45,7 @@ const AuditPage = () => {
   };
 
   return (
-    <main data-testid="audit-page" className="relative min-h-screen bg-[#050505] text-white">
+    <main data-testid="audit-page" className="relative min-h-screen bg-[#09090b] text-white font-jakarta antialiased">
       <AuditTopbar />
       <AuditHero onStart={startFunnel} />
       <AuditSocialProof />

@@ -4,8 +4,23 @@ export const CALENDLY_URL =
   "https://calendly.com/contact-jayalminshawi/30min?background_color=1a1a1a&text_color=ffffff&primary_color=ffffff";
 const CALENDLY_SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
 
-export const CalendlyInline = ({ url = CALENDLY_URL, height = 720, className = "", testId = "calendly-inline" }) => {
+export const CalendlyInline = ({ url = CALENDLY_URL, height = 720, className = "", testId = "calendly-inline", onScheduled }) => {
   const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (!onScheduled) return;
+    const handler = (e) => {
+      if (!/https:\/\/([a-z0-9-]+\.)?calendly\.com$/.test(e.origin)) return;
+      if (e.data?.event === "calendly.event_scheduled") {
+        onScheduled({
+          event_uri: e.data.payload?.event?.uri || null,
+          invitee_uri: e.data.payload?.invitee?.uri || null,
+        });
+      }
+    };
+    window.addEventListener("message", handler);
+    return () => window.removeEventListener("message", handler);
+  }, [onScheduled]);
 
   useEffect(() => {
     let cancelled = false;

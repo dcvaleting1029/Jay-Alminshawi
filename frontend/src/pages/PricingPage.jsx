@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import Navbar from "@/components/portfolio/Navbar";
-import Footer from "@/components/portfolio/Footer";
+import { HomeNav as Navbar } from "@/components/home/HomeNav";
+import { HomeFooter as Footer } from "@/components/home/ContactFooter";
 import MobileStickyCTA from "@/components/portfolio/MobileStickyCTA";
 import PricingHero from "@/components/pricing/PricingHero";
 import PricingCards from "@/components/pricing/PricingCards";
@@ -10,13 +10,13 @@ import PricingFAQ from "@/components/pricing/PricingFAQ";
 import PricingCTA from "@/components/pricing/PricingCTA";
 
 const PAGE_TITLE =
-  "Pricing | £4,495 Signature Web Design Package | Jay Alminshawi";
+  "Pricing | £4,495 Signature Website for Building Firms | Jay Alminshawi";
 const PAGE_DESCRIPTION =
-  "The £4,495 Signature package: a complete website for ambitious businesses — bespoke design, AI chatbot, CRM integrations, contact system and 30 days launch support.";
+  "The £4,495 Signature package: a complete website for building firms — bespoke design, project galleries, quote forms, CRM integrations and 30 days launch support.";
 const DEFAULT_TITLE =
-  "Modern Web Design & Development for Ambitious Businesses | Jay Alminshawi";
+  "Web Design for Building Firms | Jay Alminshawi";
 const DEFAULT_DESCRIPTION =
-  "Modern, high-performing websites for ambitious businesses. Elevate your brand, generate more enquiries and turn site visitors into loyal customers.";
+  "Websites for building firms across the UK. Look like the premium choice and turn homeowners into enquiries.";
 
 const setMeta = (name, content, attr = "name") => {
   let tag = document.querySelector(`meta[${attr}="${name}"]`);
@@ -55,7 +55,7 @@ const PricingPage = () => {
   return (
     <main
       data-testid="pricing-page"
-      className="relative bg-[#050505] text-white"
+      className="relative bg-[#09090b] text-white font-jakarta antialiased"
     >
       <Navbar />
       <PricingHero />

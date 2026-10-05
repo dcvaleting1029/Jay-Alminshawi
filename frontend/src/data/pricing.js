@@ -6,16 +6,16 @@ export const PLANS = [
     price: 4495,
     priceLabel: "£4,495",
     tagline:
-      "The complete website solution for ambitious businesses ready to grow — bespoke design, advanced functionality and every tool needed to convert visitors into customers.",
+      "The complete website for building firms ready to grow — bespoke design, project galleries, quote forms and every tool needed to turn homeowners into enquiries.",
     badge: "Flagship Package",
     highlight: true,
     features: [
       "Fully bespoke, cinematic design",
       "Unlimited pages",
       "Premium scroll animations",
-      "Portfolio & case studies",
-      "Contact & booking system",
-      "Advanced SEO structure",
+      "Project galleries & case studies",
+      "Quote request & booking system",
+      "Local SEO structure & area pages",
       "AI Chatbot integration",
       "CRM & API integrations",
       "Google Ads landing pages",
@@ -61,8 +61,12 @@ export const ADD_ONS = [
 
 export const PRICING_FAQ = [
   {
+    q: "Do you only work with building firms?",
+    a: "Yes — I only work with building firms. That focus means I already understand how homeowners choose a builder, what makes them trust a firm, and which pages and features actually generate quote requests — so you're not paying for a generalist to learn your industry.",
+  },
+  {
     q: "How long does the Signature website take?",
-    a: "Typical delivery for the Signature package is 3–4 weeks from kick-off to launch, depending on how quickly content and imagery are supplied. You'll receive a clear, week-by-week delivery schedule on our discovery call, plus 30 days of launch support after go-live.",
+    a: "Typical delivery for the Signature package is 3–4 weeks from kick-off to launch, depending on how quickly project photos and content are supplied. You'll receive a clear, week-by-week delivery schedule on our discovery call, plus 30 days of launch support after go-live.",
   },
   {
     q: "Do you offer payment plans?",
@@ -70,7 +74,7 @@ export const PRICING_FAQ = [
   },
   {
     q: "What if I want to add extras later?",
-    a: "Every Signature website is built on a foundation that scales. You can add extra pages, custom functionality, Google Ads landing pages, blog setup, additional integrations or copywriting at any point using the Optional Add-ons — no rebuild required.",
+    a: "Every Signature website is built on a foundation that scales. You can add extra service or area pages, before-and-after galleries, Google Ads landing pages, blog setup, additional integrations or copywriting at any point using the Optional Add-ons — no rebuild required.",
   },
   {
     q: "Do I own the website?",

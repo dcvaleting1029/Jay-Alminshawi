@@ -4,10 +4,10 @@ import uuid
 import secrets
 import logging
 from html import escape
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request
 from pydantic import BaseModel, EmailStr, Field, field_validator
 
 from email_service import send_email
@@ -17,6 +17,7 @@ from database import db
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/audit-leads", tags=["audit-leads"])
 public_router = APIRouter(prefix="/audit-view", tags=["audit-view"])
+cron_router = APIRouter(prefix="/cron", tags=["cron"])
 
 OWNER_EMAIL = os.environ["OWNER_EMAIL"]
 PUBLIC_SITE_URL = os.environ["PUBLIC_SITE_URL"]
@@ -116,10 +117,24 @@ def _build_email(lead: AuditLeadCreate) -> str:
     )
 
 
-def _build_confirmation(lead: AuditLeadCreate) -> str:
+def _signature(site_origin: str) -> str:
+    brand = escape(os.environ["EMAIL_FROM_NAME"])
+    avatar = escape(f"{site_origin}/jay-avatar.png")
+    return (
+        '<table role="presentation" cellpadding="0" cellspacing="0" style="margin:8px 0 0"><tr>'
+        f'<td style="vertical-align:middle;padding-right:14px"><img src="{avatar}" width="56" height="56" alt="Jay Alminshawi" '
+        'style="display:block;width:56px;height:56px;border-radius:50%;border:1px solid #ddd"></td>'
+        '<td style="vertical-align:middle">'
+        f'<p style="margin:0;font-size:14px;color:#111;font-weight:bold">Jay Alminshawi</p>'
+        f'<p style="margin:2px 0 0;font-size:12px;color:#777">Web Designer &amp; Developer — {brand}</p>'
+        f'<p style="margin:4px 0 0;font-size:12px"><a href="https://jayalminshawi.com" style="color:#999">jayalminshawi.com</a></p>'
+        '</td></tr></table>'
+    )
+
+
+def _build_confirmation(lead: AuditLeadCreate, site_origin: str) -> str:
     name = escape(lead.first_name)
     site = escape(lead.website)
-    brand = escape(os.environ["EMAIL_FROM_NAME"])
     p = 'style="margin:0 0 16px;color:#111;font-size:15px;line-height:1.65"'
     return (
         '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
@@ -133,15 +148,14 @@ def _build_confirmation(lead: AuditLeadCreate) -> str:
         f'video walking you through what I find and where the biggest opportunities are.</p>'
         f'<p {p}>If anything changes or you&#39;d like to add some context before I start, just reply '
         f'to this email.</p>'
-        f'<p {p}>Speak soon,<br>Jay</p>'
-        f'<p style="margin:28px 0 0;font-size:12px;color:#999;line-height:1.6">{brand} — Web Designer &amp; Developer<br>'
-        f'<a href="https://jayalminshawi.com" style="color:#999">jayalminshawi.com</a></p>'
+        f'<p {p}>Speak soon,</p>'
+        f'{_signature(site_origin)}'
         '</td></tr></table>'
     )
 
 
 @router.post("", response_model=AuditLeadResponse)
-async def create_audit_lead(payload: AuditLeadCreate):
+async def create_audit_lead(payload: AuditLeadCreate, request: Request):
     lead_id = str(uuid.uuid4())
     doc = payload.model_dump()
     doc.update({
@@ -167,7 +181,7 @@ async def create_audit_lead(payload: AuditLeadCreate):
         await send_email(
             to=payload.email,
             subject=f"Got your website audit request, {payload.first_name}",
-            html=_build_confirmation(payload),
+            html=_build_confirmation(payload, _site_origin(request)),
         )
         confirmation_sent = True
     except Exception as e:
@@ -222,10 +236,9 @@ def _site_origin(request: Request) -> str:
     return origin if origin.startswith("https://") else PUBLIC_SITE_URL
 
 
-def _build_delivery(lead: dict, view_url: str) -> str:
+def _build_delivery(lead: dict, view_url: str, site_origin: str) -> str:
     name = escape(lead["first_name"])
     site = escape(lead["website"])
-    brand = escape(os.environ["EMAIL_FROM_NAME"])
     note = escape(lead["personal_note"]).replace("\n", "<br>")
     brands = "City Civils Construction · LashMek &amp; Co · Celunéa Skincare · EDN Renovation Group"
     p = 'style="margin:0 0 16px;color:#111;font-size:15px;line-height:1.65"'
@@ -245,14 +258,13 @@ def _build_delivery(lead: dict, view_url: str) -> str:
         f'font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:bold">Watch My Audit</a></td></tr></table>'
         f'<p {p}>Once you&#39;ve watched it, if you&#39;d like to talk through the recommendations, there&#39;s a link on '
         f'the same page to book a call with me. No pressure either way — the recommendations are yours to keep.</p>'
-        f'<p {p}>Speak soon,<br>Jay</p>'
+        f'<p {p}>Speak soon,</p>'
+        f'{_signature(site_origin)}'
         '</td></tr>'
         '<tr><td style="padding:18px 14px 28px;border-top:1px solid #eee">'
         '<p style="margin:0 0 6px;font-size:13px;color:#111"><span style="color:#111;letter-spacing:2px">★★★★★</span>'
         '&nbsp; <strong>5.0</strong> rated on Google</p>'
-        f'<p style="margin:0 0 14px;font-size:12px;color:#777;line-height:1.6">Trusted by ambitious brands including {brands}.</p>'
-        f'<p style="margin:0;font-size:12px;color:#999;line-height:1.6">{brand} — Web Designer &amp; Developer<br>'
-        f'<a href="https://jayalminshawi.com" style="color:#999">jayalminshawi.com</a></p>'
+        f'<p style="margin:0;font-size:12px;color:#777;line-height:1.6">Trusted by ambitious brands including {brands}.</p>'
         '</td></tr></table>'
     )
 
@@ -301,7 +313,7 @@ async def send_audit(lead_id: str, body: SendAuditRequest, request: Request):
         await send_email(
             to=lead["email"],
             subject=f"{lead['first_name']}, your personalised website audit is ready",
-            html=_build_delivery({**lead, **delivery}, view_url),
+            html=_build_delivery({**lead, **delivery}, view_url, _site_origin(request)),
         )
     except Exception as e:
         logger.error(f"Audit delivery email failed for {lead_id}: {e}")
@@ -311,9 +323,186 @@ async def send_audit(lead_id: str, body: SendAuditRequest, request: Request):
     return await db.audit_leads.find_one({"id": lead_id}, LEAD_PROJECTION)
 
 
+def _build_nudge(lead: dict, view_url: str, site_origin: str) -> str:
+    name = escape(lead["first_name"])
+    site = escape(lead["website"])
+    p = 'style="margin:0 0 16px;color:#111;font-size:15px;line-height:1.65"'
+    return (
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
+        'style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto">'
+        '<tr><td style="padding:28px 14px">'
+        f'<p {p}>Hi {name},</p>'
+        f'<p {p}>Just checking this landed OK — I sent over your personalised website audit for '
+        f'<strong>{site}</strong> a few days ago and wanted to make sure it didn&#39;t get buried.</p>'
+        f'<p {p}>It&#39;s a short video with a handful of practical changes that should make a real difference '
+        f'to the enquiries coming through your site. Here&#39;s the link again:</p>'
+        '<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px"><tr><td '
+        'style="background:#111;border-radius:999px">'
+        f'<a href="{escape(view_url)}" style="display:inline-block;padding:14px 28px;color:#fff;text-decoration:none;'
+        f'font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:bold">Watch My Audit</a></td></tr></table>'
+        f'<p {p}>No pressure at all — if now isn&#39;t the right time, the recommendations will still be there when it is. '
+        f'And if you have any questions, just reply to this email.</p>'
+        f'<p {p}>Speak soon,</p>'
+        f'{_signature(site_origin)}'
+        '</td></tr></table>'
+    )
+
+
+async def _send_nudge(lead: dict, origin: str, auto: bool = False) -> None:
+    view_url = f"{origin}/audit/view/{lead['view_token']}"
+    await send_email(
+        to=lead["email"],
+        subject=f"{lead['first_name']}, did your website audit land OK?",
+        html=_build_nudge(lead, view_url, origin),
+    )
+    now = datetime.now(timezone.utc).isoformat()
+    update = {"$inc": {"nudge_count": 1}, "$set": {"last_nudged_at": now}}
+    if auto:
+        update["$set"]["auto_nudged_at"] = now
+    await db.audit_leads.update_one({"id": lead["id"]}, update)
+
+
+@router.post("/{lead_id}/nudge", dependencies=[Depends(get_current_admin)])
+async def nudge_lead(lead_id: str, request: Request):
+    lead = await db.audit_leads.find_one({"id": lead_id}, LEAD_PROJECTION)
+    if not lead:
+        raise HTTPException(status_code=404, detail="Lead not found")
+    if not lead.get("delivery_sent"):
+        raise HTTPException(status_code=400, detail="Send the audit before nudging")
+    try:
+        await _send_nudge(lead, _site_origin(request))
+    except Exception as e:
+        logger.error(f"Nudge email failed for {lead_id}: {e}")
+        raise HTTPException(status_code=502, detail="Email could not be sent. Please try again.")
+    return await db.audit_leads.find_one({"id": lead_id}, LEAD_PROJECTION)
+
+
+# ------------------------------------------------------------------ Cron: auto nudge
+NUDGE_AFTER_DAYS = 3
+CRON_SECRET = os.environ["WEBHOOK_CRON_SECRET"]
+
+
+def _auto_nudge_query() -> dict:
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=NUDGE_AFTER_DAYS)).isoformat()
+    return {
+        "delivery_sent": True,
+        "audit_sent_at": {"$lte": cutoff},
+        "$or": [{"open_count": {"$exists": False}}, {"open_count": 0}],
+        "nudge_count": {"$in": [None, 0]},
+        "auto_nudged_at": {"$exists": False},
+        "status": {"$nin": ["call_booked", "won", "closed"]},
+    }
+
+
+async def _run_auto_nudge(run_id: str):
+    leads = await db.audit_leads.find(_auto_nudge_query(), LEAD_PROJECTION).to_list(200)
+    sent = 0
+    for lead in leads:
+        try:
+            await _send_nudge(lead, PUBLIC_SITE_URL, auto=True)
+            sent += 1
+        except Exception as e:
+            logger.error(f"Auto-nudge failed for {lead['id']}: {e}")
+    await db.cron_runs.update_one({"run_id": run_id}, {"$set": {"finished_at": datetime.now(timezone.utc).isoformat(), "sent": sent, "candidates": len(leads)}})
+    logger.info(f"Auto-nudge run {run_id}: {sent}/{len(leads)} nudges sent")
+
+
+@cron_router.post("/auto-nudge", status_code=202)
+async def cron_auto_nudge(request: Request, background: BackgroundTasks):
+    # Cron endpoints must ack 2xx immediately; enqueue/background the actual work.
+    auth = request.headers.get("Authorization", "")
+    token = auth[7:] if auth.startswith("Bearer ") else ""
+    if not token or not secrets.compare_digest(token, CRON_SECRET):
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    try:
+        body = await request.json()
+    except Exception:
+        body = {}
+    run_id = request.headers.get("X-Webhook-Id") or (body or {}).get("run_id") or str(uuid.uuid4())
+    existing = await db.cron_runs.find_one({"run_id": run_id})
+    if existing:
+        return {"status": "duplicate", "run_id": run_id}
+    await db.cron_runs.insert_one({"run_id": run_id, "job": "auto-nudge", "started_at": datetime.now(timezone.utc).isoformat()})
+    background.add_task(_run_auto_nudge, run_id)
+    return {"status": "accepted", "run_id": run_id}
+
+
+# ------------------------------------------------------------------ Calendly: call booked sync
+class CallBookedPayload(BaseModel):
+    event_uri: Optional[str] = Field(default=None, max_length=300)
+    invitee_uri: Optional[str] = Field(default=None, max_length=300)
+
+
+async def _mark_call_booked(query: dict, body: CallBookedPayload) -> dict:
+    lead = await db.audit_leads.find_one(query, LEAD_PROJECTION)
+    if not lead:
+        raise HTTPException(status_code=404, detail="Lead not found")
+    if lead.get("status") not in ("won", "closed"):
+        await db.audit_leads.update_one(
+            query,
+            {"$set": {
+                "status": "call_booked",
+                "call_booked_at": datetime.now(timezone.utc).isoformat(),
+                "calendly_event_uri": body.event_uri,
+                "calendly_invitee_uri": body.invitee_uri,
+            }},
+        )
+    return {"status": "ok"}
+
+
+@public_router.post("/{token}/call-booked")
+async def call_booked_from_view(token: str, body: CallBookedPayload):
+    return await _mark_call_booked({"view_token": token, "delivery_sent": True}, body)
+
+
+@router.post("/{lead_id}/call-booked")
+async def call_booked_from_success(lead_id: str, body: CallBookedPayload):
+    return await _mark_call_booked({"id": lead_id}, body)
+
+
+def _build_opened_alert(lead: dict, opened_at: str) -> str:
+    company = escape(lead["company"])
+    name = escape(lead["first_name"])
+    sent = escape(lead.get("audit_sent_at", "")[:10])
+    admin_url = escape(f"{PUBLIC_SITE_URL}/admin")
+    email_link = f'<a href="mailto:{escape(lead["email"])}" style="color:#111">{escape(lead["email"])}</a>'
+    phone_link = f'<a href="tel:{escape(lead["phone"])}" style="color:#111">{escape(lead["phone"])}</a>'
+    rows = _row("Email", email_link, raw=True) + _row("Phone", phone_link, raw=True) + _row("Website", lead["website"])
+    return (
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
+        'style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto">'
+        '<tr><td style="padding:28px 14px">'
+        '<p style="margin:0 0 14px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#888">Audit Opened</p>'
+        f'<h1 style="margin:0 0 10px;font-size:22px;color:#111">{name} at {company} just opened their audit</h1>'
+        f'<p style="margin:0 0 18px;color:#555;font-size:14px;line-height:1.6">Opened {escape(opened_at[:16].replace("T", " at "))} UTC — '
+        f'audit sent {sent}. Now is a good moment to follow up while it&#39;s fresh.</p>'
+        '<table role="presentation" cellpadding="0" cellspacing="0" style="border:1px solid #eee;border-radius:10px;border-collapse:separate;width:100%">'
+        f'{rows}'
+        '</table>'
+        f'<p style="margin:20px 0 0;font-size:13px"><a href="{admin_url}" style="color:#111">Open the leads dashboard</a></p>'
+        f'<p style="margin:24px 0 0;font-size:12px;color:#999">Sent by {escape(os.environ["EMAIL_FROM_NAME"])} — website audit funnel.</p>'
+        '</td></tr></table>'
+    )
+
+
+async def _notify_first_open(token: str, opened_at: str):
+    lead = await db.audit_leads.find_one({"view_token": token}, LEAD_PROJECTION)
+    if not lead:
+        return
+    try:
+        await send_email(
+            to=OWNER_EMAIL,
+            subject=f"{lead['first_name']} at {lead['company']} just opened their audit",
+            html=_build_opened_alert(lead, opened_at),
+        )
+        await db.audit_leads.update_one({"view_token": token}, {"$set": {"open_alert_sent_at": opened_at}})
+    except Exception as e:
+        logger.error(f"Opened-alert email failed for {lead['id']}: {e}")
+
+
 # ------------------------------------------------------------------ Public audit view
 @public_router.get("/{token}")
-async def view_audit(token: str, preview: bool = False):
+async def view_audit(token: str, background: BackgroundTasks, preview: bool = False):
     lead = await db.audit_leads.find_one(
         {"view_token": token, "delivery_sent": True},
         {"_id": 0, "first_name": 1, "company": 1, "website": 1, "video_url": 1, "personal_note": 1, "audit_sent_at": 1},
@@ -326,9 +515,11 @@ async def view_audit(token: str, preview: bool = False):
             {"view_token": token},
             {"$inc": {"open_count": 1}, "$set": {"last_opened_at": now}},
         )
-        await db.audit_leads.update_one(
+        first = await db.audit_leads.update_one(
             {"view_token": token, "first_opened_at": {"$exists": False}},
             {"$set": {"first_opened_at": now}},
         )
+        if first.modified_count:
+            background.add_task(_notify_first_open, token, now)
     lead["embed_url"] = f"https://www.loom.com/embed/{_loom_id(lead['video_url'])}?hide_owner=true&hideEmbedTopBar=true"
     return lead

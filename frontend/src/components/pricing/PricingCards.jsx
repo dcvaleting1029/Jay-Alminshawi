@@ -13,17 +13,17 @@ const Price = ({ plan }) => {
   return (
     <div ref={ref} className="flex items-baseline gap-1.5 justify-center">
       {plan.price === null ? (
-        <span className="font-display text-6xl sm:text-7xl lg:text-[112px] text-white leading-none tracking-tight whitespace-nowrap">
+        <span className="font-title font-semibold text-6xl sm:text-7xl lg:text-[112px] text-white leading-none tracking-tight whitespace-nowrap">
           Custom
         </span>
       ) : (
         <>
-          <span className="font-display text-4xl sm:text-5xl lg:text-6xl text-white/70 leading-none">
+          <span className="font-title font-semibold text-4xl sm:text-5xl lg:text-6xl text-white/70 leading-none">
             £
           </span>
           <span
             data-testid={`plan-price-${plan.id}`}
-            className="font-display text-6xl sm:text-7xl lg:text-[112px] text-white leading-none tracking-tight tabular-nums whitespace-nowrap"
+            className="font-title font-semibold text-6xl sm:text-7xl lg:text-[112px] text-white leading-none tracking-tight tabular-nums whitespace-nowrap"
           >
             {count.toLocaleString()}
           </span>
@@ -47,7 +47,7 @@ const FlagshipCard = ({ plan }) => (
       <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-30">
         <span
           data-testid="flagship-badge"
-          className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-black text-[10px] tracking-[0.28em] uppercase font-heading font-medium shadow-[0_8px_24px_-4px_rgba(0,0,0,0.7)] whitespace-nowrap"
+          className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-black text-[10px] tracking-widest uppercase font-heading font-medium shadow-[0_8px_24px_-4px_rgba(0,0,0,0.7)] whitespace-nowrap"
         >
           <Sparkles size={12} className="fill-black" />
           {plan.badge}
@@ -115,7 +115,7 @@ const FlagshipCard = ({ plan }) => (
           <a
             href={CTA_LINK}
             data-testid={`plan-cta-${plan.id}`}
-            className="group/btn inline-flex items-center gap-3 rounded-full bg-white text-black h-14 px-8 sm:px-10 text-[12px] tracking-[0.24em] uppercase font-medium hover:bg-white/90 transition-all duration-300 hover:scale-[1.02]"
+            className="group/btn inline-flex items-center gap-3 rounded-full bg-white text-black h-14 px-8 sm:px-10 text-[13.5px] font-medium hover:bg-white/90 transition-all duration-300 hover:scale-[1.02]"
           >
             {plan.cta}
             <ArrowUpRight
@@ -126,7 +126,7 @@ const FlagshipCard = ({ plan }) => (
         </div>
 
         {/* Trust line */}
-        <p className="mt-6 text-center font-mono-grotesk text-[10.5px] tracking-[0.28em] uppercase text-white/35">
+        <p className="mt-6 text-center font-mono-grotesk text-[10.5px] tracking-widest uppercase text-white/35">
           50% Deposit · 50% On Launch · Payment Plans Available
         </p>
       </div>
@@ -143,9 +143,9 @@ export const PricingCards = () => {
   return (
     <section
       data-testid="pricing-cards-section"
-      className="relative py-12 sm:py-16 lg:py-20 bg-[#050505]"
+      className="relative py-12 sm:py-16 lg:py-20 bg-[#09090b]"
     >
-      <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto w-full px-[5vw]">
         <FlagshipCard plan={plan} />
       </div>
     </section>

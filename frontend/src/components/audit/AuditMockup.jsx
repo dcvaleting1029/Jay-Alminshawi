@@ -16,7 +16,7 @@ const Annotation = ({ n, label, className, delay = 0 }) => (
       {n}
       <span className="absolute inset-0 rounded-full ring-1 ring-white/40 animate-ping [animation-duration:2.6s]" />
     </span>
-    <span className="rounded-md border border-white/15 bg-black/80 backdrop-blur-md px-2 py-1 font-mono-grotesk text-[8px] sm:text-[9px] tracking-[0.18em] uppercase text-white/85 whitespace-nowrap">
+    <span className="rounded-md border border-white/15 bg-black/80 backdrop-blur-md px-2 py-1 font-mono-grotesk text-[8px] sm:text-[9px] tracking-wider uppercase text-white/85 whitespace-nowrap">
       {label}
     </span>
   </motion.div>
@@ -40,12 +40,12 @@ const Cursor = () => (
 
 const VideoBubble = () => (
   <div className="absolute bottom-[6%] right-[4%] z-20 flex items-center gap-2">
-    <span className="rounded-md bg-black/70 backdrop-blur-md border border-white/10 px-2 py-1 font-mono-grotesk text-[8px] tracking-[0.2em] text-white/70">
+    <span className="rounded-md bg-black/70 backdrop-blur-md border border-white/10 px-2 py-1 font-mono-grotesk text-[8px] tracking-wider text-white/70">
       <span className="inline-block h-1.5 w-1.5 rounded-full bg-red-500 mr-1.5 align-middle animate-pulse" />
       02:14
     </span>
     <span className="relative grid place-items-center h-10 w-10 sm:h-14 sm:w-14 rounded-full border border-white/20 bg-gradient-to-b from-[#1c1c1c] to-[#0a0a0a] shadow-[0_10px_30px_-8px_rgba(0,0,0,0.9)]">
-      <span className="font-display text-[10px] sm:text-[13px] text-white tracking-tight">JA</span>
+      <span className="font-title font-semibold text-[10px] sm:text-[13px] text-white tracking-tight">JA</span>
       <span className="absolute inset-0 rounded-full ring-1 ring-white/10" />
     </span>
   </div>
@@ -109,8 +109,8 @@ export const AuditMockup = () => (
 
               {/* Review overlays */}
               <Annotation n="1" label="Hero clarity" className="left-[7%] top-[23%]" />
-              <Annotation n="2" label="Call-to-action" className="left-[18%] top-[57%]" delay={0.25} />
-              <Annotation n="3" label="Trust signals" className="left-[52%] top-[78%]" delay={0.5} />
+              <Annotation n="2" label="Quote request" className="left-[18%] top-[57%]" delay={0.25} />
+              <Annotation n="3" label="Project gallery" className="left-[52%] top-[78%]" delay={0.5} />
               <Cursor />
               <VideoBubble />
 
@@ -126,12 +126,12 @@ export const AuditMockup = () => (
     </motion.div>
 
     <div className="mt-10 sm:mt-12 flex items-baseline justify-between gap-4 font-mono-grotesk uppercase">
-      <p className="text-[10px] sm:text-[10.5px] tracking-[0.32em] text-white/45">
+      <p className="text-[10px] sm:text-[10.5px] tracking-widest text-white/45">
         <span className="inline-block h-px w-6 align-middle mr-3 bg-white/30" />
         Personalised Video Audit
       </p>
-      <p className="hidden sm:block text-[10px] tracking-[0.22em] text-white/30">
-        Recorded specifically for your business.
+      <p className="hidden sm:block text-[10px] tracking-wider text-white/30">
+        Recorded specifically for your company.
       </p>
     </div>
   </div>

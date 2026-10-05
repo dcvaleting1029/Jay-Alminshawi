@@ -13,9 +13,9 @@ export const CarePlan = () => {
   return (
     <section
       data-testid="care-plan-section"
-      className="relative py-12 sm:py-16 lg:py-20 bg-[#050505]"
+      className="relative py-12 sm:py-16 lg:py-20 bg-[#09090b]"
     >
-      <div className="mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto w-full px-[5vw]">
         <motion.article
           ref={ref}
           data-testid="care-plan-card"
@@ -33,26 +33,26 @@ export const CarePlan = () => {
             <div className="lg:col-span-5">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 mb-6">
                 <ShieldCheck size={13} className="text-white/70" />
-                <span className="font-mono-grotesk text-[10px] tracking-[0.28em] uppercase text-white/60">
+                <span className="font-mono-grotesk text-[10px] tracking-widest uppercase text-white/60">
                   Ongoing Care
                 </span>
               </div>
 
-              <h3 className="font-display uppercase text-white leading-[0.95] tracking-tight text-4xl sm:text-5xl lg:text-6xl">
+              <h3 className="font-title font-medium text-white leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-6xl">
                 {CARE_PLAN.title}
               </h3>
 
               <div className="mt-6 flex items-baseline gap-1">
-                <span className="font-display text-2xl sm:text-3xl text-white/70 leading-none">
+                <span className="font-title font-semibold text-2xl sm:text-3xl text-white/70 leading-none">
                   £
                 </span>
                 <span
                   data-testid="care-plan-price"
-                  className="font-display text-5xl sm:text-6xl lg:text-[68px] text-white leading-none tracking-tight tabular-nums"
+                  className="font-title font-semibold text-5xl sm:text-6xl lg:text-[68px] text-white leading-none tracking-tight tabular-nums"
                 >
                   {count.toLocaleString()}
                 </span>
-                <span className="ml-1 font-mono-grotesk text-[12px] tracking-[0.24em] uppercase text-white/45">
+                <span className="ml-1 font-mono-grotesk text-[12px] tracking-wider uppercase text-white/45">
                   {CARE_PLAN.period}
                 </span>
               </div>
@@ -64,7 +64,7 @@ export const CarePlan = () => {
               <a
                 href={CTA_LINK}
                 data-testid="care-plan-cta"
-                className="group/btn mt-8 inline-flex items-center gap-3 rounded-full bg-white text-black h-12 px-6 text-[11.5px] tracking-[0.24em] uppercase font-medium hover:bg-white/90 transition-all duration-300"
+                className="group/btn mt-8 inline-flex items-center gap-3 rounded-full bg-white text-black h-12 px-6 text-[13.5px] font-medium hover:bg-white/90 transition-all duration-300"
               >
                 {CARE_PLAN.cta}
                 <ArrowUpRight

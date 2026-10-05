@@ -8,9 +8,7 @@ const NAV_LINKS = [
   { label: "PROJECTS", target: "/projects" },
   { label: "SERVICES", target: "/#services" },
   { label: "PRICING", target: "/pricing" },
-  { label: "FREE AUDIT", target: "/audit" },
-  { label: "ABOUT", target: "/#about" },
-  { label: "CONTACT", target: "/#contact" },
+  { label: "WEBSITE AUDIT", target: "/audit" },
 ];
 
 export const Navbar = () => {

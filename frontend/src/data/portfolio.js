@@ -1,7 +1,16 @@
 // Portfolio data — single source of truth
+export const SECTORS = [
+  { name: "Renovation firms", blurb: "Full-house refurbishments and period property renovations." },
+  { name: "Construction & building firms", blurb: "Main contractors, groundworks, civils and general builders." },
+  { name: "New build specialists", blurb: "Self-build, developer and one-off bespoke homes." },
+  { name: "Kitchen & bathroom fitters", blurb: "Design-and-install showrooms and independent fitters." },
+  { name: "Extension specialists", blurb: "Rear, side-return, wraparound and loft conversions." },
+];
+
 export const PARTNERS = [
   {
     name: "City Civils Construction",
+    trade: true,
     src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/afl9bojg_Copy%20of%20C%20%281%29.png",
   },
   {
@@ -14,18 +23,22 @@ export const PARTNERS = [
   },
   {
     name: "EDN Renovation Group",
+    trade: true,
     src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/ecm2ahxa_Copy%20of%20C%20%2814%29.png",
   },
   {
     name: "B&A Landscaping",
+    trade: true,
     src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/icj99f3b_B%26A%20LANDSCAPING.png",
   },
   {
     name: "MA Home Interiors",
+    trade: true,
     src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/5gj3usg5_Copy%20of%20C%20%2818%29.png",
   },
   {
     name: "Refined Spaces",
+    trade: true,
     src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/21sqgwu2_Copy%20of%20C%20%2817%29.png",
   },
   {
@@ -34,9 +47,12 @@ export const PARTNERS = [
   },
   {
     name: "Ace Of Spades Landscapes",
+    trade: true,
     src: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/2jovh8s3_Copy%20of%20C%20%2815%29.png",
   },
 ];
+
+export const TRADE_PARTNERS = PARTNERS.filter((p) => p.trade);
 
 // Verified asset → brand mapping:
 // yhaksnqh = City Civils (Construction)
@@ -44,6 +60,58 @@ export const PARTNERS = [
 // c7ekj4qk = Play_Co (Fitness coaching by Jay)
 // 4jswi790 = LashMek & Co (Beauty)
 // d87iar8q = Celunéa Skincare (used here as MA Home Interiors / placeholder)
+
+export const WORK = [
+  {
+    name: "EDN Renovation Group",
+    mockup: "/work/mock/edn.webp",
+    tags: ["Web design","Development"],
+    description: "Calm, editorial website for an Edinburgh renovation specialist.",
+    type: "Client work",
+    image: "/work/edn.webp",
+  },
+  {
+    name: "Complete Heating",
+    mockup: "/work/mock/completeheating.webp",
+    tags: ["Web design", "Development"],
+    description: "Clean, modern website for an Edinburgh boiler installation specialist.",
+    type: "Client work",
+    image: "/work/mock/completeheating.webp",
+  },
+  {
+    name: "City Civils Construction",
+    mockup: "/work/mock/citycivils.webp",
+    tags: ["Web design","Development"],
+    description: "Striking site for groundworks, drainage and landscaping across Central Scotland.",
+    type: "Client work",
+    url: "https://www.citycivilsconstructionltd.co.uk/",
+    image: "/work/citycivils.webp",
+  },
+  {
+    name: "ETN Joinery",
+    mockup: "/work/mock/etn.webp",
+    tags: ["Web design","Concept"],
+    description: "Dark, premium concept for a Glasgow bespoke joinery brand.",
+    type: "Concept",
+    image: "/work/etn.webp",
+  },
+  {
+    name: "Capital Window Cleaning",
+    mockup: "/work/mock/capital.webp",
+    tags: ["Web design", "Concept"],
+    description: "Crisp, trust-led concept for a professional window cleaning company.",
+    type: "Concept",
+    image: "/work/mock/capital.webp",
+  },
+  {
+    name: "RHA Construction",
+    mockup: "/work/mock/rha.webp",
+    tags: ["Web design", "Concept"],
+    description: "Refined, editorial concept for a luxury new-build and extension specialist across Scotland.",
+    type: "Concept",
+    image: "/work/mock/rha.webp",
+  },
+];
 
 export const PROJECTS = [
   {
@@ -94,37 +162,37 @@ export const SERVICES = [
   {
     title: "Website Design",
     icon: "PenTool",
-    items: ["Bespoke custom design", "Modern & responsive", "Conversion-focused", "Mobile-first layout"],
+    items: ["Bespoke design for building firms", "Looks premium, wins bigger jobs", "Mobile-first for homeowners", "Fast and conversion-focused"],
   },
   {
-    title: "Contact & Enquiry Forms",
+    title: "Quote & Enquiry Forms",
     icon: "Code2",
-    items: ["High-converting forms", "WhatsApp & call CTAs", "Instant email alerts", "Spam protection"],
+    items: ["Quote request forms", "WhatsApp & click-to-call", "Instant email alerts", "Spam protection"],
   },
   {
-    title: "Portfolio & Galleries",
+    title: "Project Galleries",
     icon: "Sparkles",
-    items: ["Case study layouts", "Before & after showcase", "Project galleries", "Client reviews built-in"],
+    items: ["Before & after showcase", "Project case studies", "Filter by extension, kitchen, new build", "Google reviews built-in"],
   },
   {
     title: "Local SEO",
     icon: "Search",
-    items: ["Rank in your area", "Google Business setup", "Location pages", "Fast, indexable pages"],
+    items: ["Rank for 'builders near me'", "Google Business Profile", "Pages for every area you cover", "Fast, indexable pages"],
   },
   {
     title: "Redesigns & Rescues",
     icon: "ShoppingBag",
-    items: ["Old site rebuilds", "Modern responsive design", "Faster load times", "Better conversion"],
+    items: ["Outdated site rebuilds", "Checkatrade-only firms go independent", "Faster load times", "More enquiries from the same traffic"],
   },
   {
     title: "CRM Integrations",
     icon: "Users",
-    items: ["HubSpot / Zoho / Pipedrive", "Auto-sync new leads", "Sales pipeline tracking", "Follow-up automations"],
+    items: ["HubSpot / Zoho / Pipedrive", "Auto-sync new enquiries", "Quote pipeline tracking", "Follow-up automations"],
   },
   {
     title: "Google Ads",
     icon: "Target",
-    items: ["Campaign setup", "High-converting landing pages", "Local geo-targeting", "Monthly ad management"],
+    items: ["Campaign setup", "Landing pages per service", "Local geo-targeting", "Monthly ad management"],
   },
   {
     title: "Care & Hosting",
@@ -134,6 +202,53 @@ export const SERVICES = [
 ];
 
 export const TESTIMONIALS = [
+  {
+    author: "Scott",
+    initial: "S",
+    color: "#E8731A",
+    company: "City Civils Construction",
+    sector: "Construction",
+    trade: true,
+    image: "/work/citycivils.webp",
+    quote:
+      "Couldn't recommend him enough. He redesigned the City Civils website and the finished result is exactly what we were looking for. The site looks modern, professional and really represents our business. He did everything we asked for, nothing was ever too much hassle, and he was always quick to respond whenever we had questions or wanted changes made.",
+    rating: 5,
+  },
+  {
+    author: "Trevor",
+    initial: "T",
+    color: "#4F6BED",
+    company: "Ace of Spades Landscapes",
+    sector: "Landscaping",
+    trade: true,
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/qi631dz2_Ace%20of%20Spades%20Landscapes%20Homepage%20%281%29.png",
+    quote:
+      "He took my very plain website and transformed it into a professionally designed website. He is great to work with and does everything that you want done to provide an excellent website. I can't praise him enough.",
+    rating: 5,
+    date: "9 weeks ago",
+  },
+  {
+    author: "Joe Crawford",
+    initial: "J",
+    color: "#1A73E8",
+    badge: "Local Guide",
+    company: "Crawford Tree Surgery",
+    sector: "Tree surgery",
+    trade: true,
+    image: "https://customer-assets.emergentagent.com/job_jay-minimal-pro/artifacts/pxi38kdg_Crawford%20Tree%20Surgery%20Website%20Homepage%20%281%29.png",
+    quote:
+      "Excellent service. I have had a terrific response from the website Jay developed. Great attention to detail and always on hand to help. Great value. Highly recommended.",
+    rating: 5,
+    date: "9 weeks ago",
+  },
+  {
+    author: "Moustapha Diaby",
+    initial: "M",
+    color: "#0F9D58",
+    quote:
+      "Loved working with Jay, he really understands what the business needs and functions were. From the design stage to coding implementation he worked really close with our team to get everything correct with our iteration and feedback. Thank you.",
+    rating: 5,
+  },
   {
     author: "Dylan Cramb",
     initial: "D",
@@ -153,25 +268,6 @@ export const TESTIMONIALS = [
     date: "6 days ago",
   },
   {
-    author: "Joe Crawford",
-    initial: "J",
-    color: "#1A73E8",
-    badge: "Local Guide",
-    quote:
-      "Excellent service. I have had a terrific response from the website Jay developed. Great attention to detail and always on hand to help. Great value. Highly recommended.",
-    rating: 5,
-    date: "9 weeks ago",
-  },
-  {
-    author: "Trevor",
-    initial: "T",
-    color: "#4F6BED",
-    quote:
-      "He took my very plain website and transformed it into a professionally designed website. He is great to work with and does everything that you want done to provide an excellent website. I can't praise him enough.",
-    rating: 5,
-    date: "9 weeks ago",
-  },
-  {
     author: "Kirima Alam",
     initial: "K",
     color: "#7E3FA8",
@@ -181,6 +277,9 @@ export const TESTIMONIALS = [
     date: "9 weeks ago",
   },
 ];
+
+export const TRADE_TESTIMONIALS = TESTIMONIALS.filter((t) => t.trade);
+export const OTHER_TESTIMONIALS = TESTIMONIALS.filter((t) => !t.trade);
 
 // Google Business profile — public reviews page
 export const GOOGLE_REVIEWS_URL =

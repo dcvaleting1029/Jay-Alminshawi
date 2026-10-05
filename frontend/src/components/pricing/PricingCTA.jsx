@@ -6,7 +6,7 @@ export const PricingCTA = () => {
   return (
     <section
       data-testid="pricing-cta-section"
-      className="relative py-24 sm:py-32 lg:py-40 bg-[#050505] overflow-hidden border-t border-white/[0.05]"
+      className="relative py-24 sm:py-32 lg:py-40 bg-[#09090b] overflow-hidden border-t border-white/[0.05]"
     >
       {/* Background gradients */}
       <div className="pointer-events-none absolute inset-0">
@@ -14,7 +14,7 @@ export const PricingCTA = () => {
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-white/[0.02] blur-[120px]" />
       </div>
 
-      <div className="relative mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
+      <div className="relative mx-auto w-full px-[5vw]">
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -35,7 +35,7 @@ export const PricingCTA = () => {
                 transition: { duration: 0.7 },
               },
             }}
-            className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/40 mb-6"
+            className="font-heading text-[11px] tracking-widest uppercase text-white/40 mb-6"
           >
             <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
             Let&apos;s Build
@@ -51,7 +51,7 @@ export const PricingCTA = () => {
                 transition: { duration: 0.95, ease: [0.22, 1, 0.36, 1] },
               },
             }}
-            className="font-display uppercase text-white leading-[0.9] tracking-tight text-4xl sm:text-6xl lg:text-7xl xl:text-[88px]"
+            className="font-title font-medium text-white leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-6xl"
           >
             Ready to build a <br className="hidden sm:block" />
             website that <br className="hidden sm:block" />
@@ -65,9 +65,10 @@ export const PricingCTA = () => {
             }}
             className="mt-8 sm:mt-10 text-[16px] sm:text-lg text-white/55 max-w-2xl mx-auto leading-relaxed"
           >
-            Whether you&apos;re a solo entrepreneur or a full team, let&apos;s
-            build the online presence your brand deserves — and start bringing
-            in the enquiries that grow your business.
+            Whether you&apos;re a one-van renovation firm or a multi-team
+            contractor, let&apos;s build the website that makes homeowners
+            choose you — and start bringing in the higher-value jobs that grow
+            your business.
           </motion.p>
 
           <motion.div
@@ -80,7 +81,7 @@ export const PricingCTA = () => {
             <a
               href="/#contact"
               data-testid="pricing-final-cta-primary"
-              className="group inline-flex items-center gap-3 rounded-full bg-white text-black h-14 px-7 sm:px-8 text-[12px] tracking-[0.24em] uppercase font-medium hover:bg-white/90 transition-all duration-300 hover:scale-[1.02]"
+              className="group inline-flex items-center gap-3 rounded-full bg-white text-black h-14 px-7 sm:px-8 text-[13.5px] font-medium hover:bg-white/90 transition-all duration-300 hover:scale-[1.02]"
             >
               Book Free Discovery Call
               <ArrowUpRight
@@ -89,9 +90,9 @@ export const PricingCTA = () => {
               />
             </a>
             <a
-              href="/#projects"
+              href="/#work"
               data-testid="pricing-final-cta-secondary"
-              className="group inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/[0.03] text-white h-14 px-7 sm:px-8 text-[12px] tracking-[0.24em] uppercase font-medium hover:bg-white hover:text-black hover:border-white transition-all duration-300"
+              className="group inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/[0.03] text-white h-14 px-7 sm:px-8 text-[13.5px] font-medium hover:bg-white hover:text-black hover:border-white transition-all duration-300"
             >
               View Portfolio
               <ArrowUpRight

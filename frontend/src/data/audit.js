@@ -2,8 +2,9 @@ export const SPECIALISMS = [
   "Renovations",
   "Extensions",
   "Kitchens & Bathrooms",
-  "Landscaping",
   "New Builds",
+  "Construction / Building",
+  "Landscaping",
   "Other",
 ];
 
@@ -91,7 +92,7 @@ export const STEPS = [
   {
     id: "business",
     heading: "Let's take a look at your website.",
-    supporting: "First, tell me a little about your business.",
+    supporting: "First, tell me a little about your company and what you build.",
   },
   {
     id: "objectives",

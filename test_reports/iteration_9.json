@@ -1,0 +1,61 @@
+{
+  "summary": "Frontend-only regression for the construction/renovation niche repositioning. Verified Home, Pricing, Audit, Book pages, meta/titles, nav regressions, mobile overflow and /projects redirect. All 12 requested checkpoints pass. No console errors on any route.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_results": {
+    "home": {
+      "title": "PASS — 'Web Design for Construction & Renovation Companies | Jay Alminshawi'",
+      "hero_h1": "PASS — mentions renovation, construction, new build, kitchen & bathroom and extension companies",
+      "sectors_section": "PASS — 5 items (sector-1..sector-5) rendered between Statement and WorkGrid; order verified via DOM top positions",
+      "work_heading": "PASS — 'Websites built for construction and renovation companies, designed to win better jobs.'",
+      "work_grid": "PASS — 6 project cards (project-card-1..6) in 3 columns at 1920",
+      "trusted_logos": "PASS — exactly 6 trade logos; heading reads 'Trusted by builders, renovators and trades across the UK, including:'",
+      "services": "PASS — 8 services incl. 'Quote & Enquiry Forms' and 'Project Galleries'",
+      "footer_bottom": "PASS — 'Web design for construction & renovation companies — UK-wide'",
+      "desktop_overflow": "PASS — none",
+      "mobile_390_overflow": "PASS — none; hamburger drawer opens correctly",
+      "console_errors": "0"
+    },
+    "pricing": {
+      "title": "PASS — starts with 'Pricing | £4,495 Signature Website for Construction & Renovation Companies'",
+      "h1": "PASS — 'Websites that win better jobs.'",
+      "signature_features": "PASS — 'Project galleries & case studies', 'Quote request & booking system', 'Local SEO structure & area pages' all present",
+      "faq_first": "PASS — 'Do you only work with construction and renovation companies?' present and expandable (defaults open, answer text 'Yes — I specialise in renovation...' visible)",
+      "final_cta_secondary": "PASS — 'View Portfolio' with href '/#work'; navigation scrolls to projects-grid section"
+    },
+    "audit": {
+      "eyebrow": "PASS — 'Free Website Audit for Construction & Renovation Companies'",
+      "h1": "PASS — 'See why homeowners aren't enquiring.'",
+      "step1_supporting": "PASS — 'First, tell me a little about your company and what you build.'",
+      "specialism_chips": "PASS — includes 'Construction / Building'",
+      "form_submission": "SKIPPED per instructions"
+    },
+    "book": {
+      "page_renders": "PASS — book-page testid present",
+      "ideal_for_contains_checkatrade_line": "PASS — 'Rely less on Checkatrade, MyBuilder or word of mouth'",
+      "intro_copy": "PASS — mentions 'construction and renovation companies'"
+    },
+    "regression": {
+      "nav_links_present": "PASS — Work/Services/Reviews/Pricing/Free audit visible in HomeNav",
+      "mobile_hamburger": "PASS — drawer opens on 390x844",
+      "projects_redirect": "PASS — /projects -> /#work and work section in viewport"
+    }
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "TRADE_PARTNERS is derived via PARTNERS.filter(p=>p.trade) and currently resolves to exactly 6 trade entries (City Civils, EDN, B&A Landscaping, MA Home Interiors, Refined Spaces, Ace Of Spades Landscapes) — matches the spec. Any future additions to PARTNERS should keep this count audited.",
+    "The pricing page FAQ opens item #0 by default (useState(0)). This is intentional UX but worth noting: automated tests that 'click to expand' will instead collapse it.",
+    "On navigating / <- /pricing via '/#work', the intro loader is correctly suppressed by sessionStorage key jay_loader_seen; verified it does not re-trigger."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (not tested per request)", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Niche repositioning only; no case study pages exist yet. Intro overlay blocks ~2.4s on first / visit per session (sessionStorage jay_loader_seen). TRADE_PARTNERS is a derived filter — count depends on 'trade: true' entries in PARTNERS. Audit form must not be submitted. FAQ item 0 defaults open."
+}

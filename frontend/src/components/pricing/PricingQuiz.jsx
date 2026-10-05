@@ -86,14 +86,14 @@ export const PricingQuiz = () => {
     <section
       ref={containerRef}
       data-testid="pricing-quiz-section"
-      className="relative py-16 sm:py-20 lg:py-24 bg-[#050505] overflow-hidden"
+      className="relative py-16 sm:py-20 lg:py-24 bg-[#09090b] overflow-hidden"
     >
       {/* Ambient glow */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute top-0 left-1/3 w-[600px] h-[400px] rounded-full bg-white/[0.03] blur-[140px]" />
       </div>
 
-      <div className="relative mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
+      <div className="relative mx-auto w-full px-[5vw]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -105,12 +105,12 @@ export const PricingQuiz = () => {
           <div className="flex items-center justify-between gap-4 px-6 sm:px-8 pt-6 sm:pt-8">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5">
               <Sparkles size={12} className="text-white/70" />
-              <span className="font-mono-grotesk text-[10px] tracking-[0.28em] uppercase text-white/60">
+              <span className="font-mono-grotesk text-[10px] tracking-widest uppercase text-white/60">
                 Package Finder
               </span>
             </div>
             {open && step < QUESTIONS.length && (
-              <span className="font-mono-grotesk text-[10.5px] tracking-[0.24em] uppercase text-white/40 tabular-nums">
+              <span className="font-mono-grotesk text-[10.5px] tracking-wider uppercase text-white/40 tabular-nums">
                 {String(step + 1).padStart(2, "0")} / {String(QUESTIONS.length).padStart(2, "0")}
               </span>
             )}
@@ -140,7 +140,7 @@ export const PricingQuiz = () => {
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   className="text-center"
                 >
-                  <h2 className="font-display uppercase text-white leading-[0.95] tracking-tight text-3xl sm:text-4xl lg:text-5xl">
+                  <h2 className="font-title font-medium text-white leading-[1.1] tracking-tight text-3xl sm:text-4xl lg:text-5xl">
                     Not sure which<br />package fits?
                   </h2>
                   <p className="mt-5 text-[15px] sm:text-base text-white/60 max-w-md mx-auto leading-relaxed">
@@ -150,7 +150,7 @@ export const PricingQuiz = () => {
                   <button
                     data-testid="quiz-start"
                     onClick={() => setOpen(true)}
-                    className="group mt-8 inline-flex items-center gap-3 rounded-full bg-white text-black h-12 px-6 text-[11.5px] tracking-[0.24em] uppercase font-medium hover:bg-white/90 transition-all duration-300"
+                    className="group mt-8 inline-flex items-center gap-3 rounded-full bg-white text-black h-12 px-6 text-[13.5px] font-medium hover:bg-white/90 transition-all duration-300"
                   >
                     Take The 30-Second Quiz
                     <ArrowRight
@@ -172,7 +172,7 @@ export const PricingQuiz = () => {
                 >
                   <h3
                     data-testid={`quiz-question-${step}`}
-                    className="font-display uppercase text-white leading-[0.95] tracking-tight text-2xl sm:text-3xl lg:text-4xl max-w-lg"
+                    className="font-title font-medium text-white leading-[1.1] tracking-tight text-2xl sm:text-3xl lg:text-4xl max-w-lg"
                   >
                     {QUESTIONS[step].label}
                   </h3>
@@ -211,10 +211,10 @@ export const PricingQuiz = () => {
                   className="text-center"
                   data-testid="quiz-result"
                 >
-                  <p className="font-mono-grotesk text-[10.5px] tracking-[0.32em] uppercase text-white/45 mb-4">
+                  <p className="font-mono-grotesk text-[10.5px] tracking-widest uppercase text-white/45 mb-4">
                     Recommended For You
                   </p>
-                  <h3 className="font-display uppercase text-white leading-[0.9] tracking-tight text-5xl sm:text-6xl lg:text-7xl">
+                  <h3 className="font-title font-medium text-white leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-6xl">
                     {recommendation.name}
                   </h3>
                   <p className="mt-5 text-[15px] sm:text-base text-white/55 max-w-md mx-auto leading-relaxed">
@@ -224,7 +224,7 @@ export const PricingQuiz = () => {
                     <button
                       data-testid="quiz-scroll-to-plan"
                       onClick={scrollToPlan}
-                      className="group inline-flex items-center gap-3 rounded-full bg-white text-black h-12 px-6 text-[11.5px] tracking-[0.24em] uppercase font-medium hover:bg-white/90 transition-all duration-300"
+                      className="group inline-flex items-center gap-3 rounded-full bg-white text-black h-12 px-6 text-[13.5px] font-medium hover:bg-white/90 transition-all duration-300"
                     >
                       See {recommendation.name} Details
                       <ArrowRight
@@ -235,7 +235,7 @@ export const PricingQuiz = () => {
                     <button
                       data-testid="quiz-restart"
                       onClick={restart}
-                      className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] text-white h-12 px-5 text-[11.5px] tracking-[0.24em] uppercase font-medium hover:bg-white hover:text-black hover:border-white transition-all duration-300"
+                      className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] text-white h-12 px-5 text-[13.5px] font-medium hover:bg-white hover:text-black hover:border-white transition-all duration-300"
                     >
                       <RotateCcw
                         size={13}

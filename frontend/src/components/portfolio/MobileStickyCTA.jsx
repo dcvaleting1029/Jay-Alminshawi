@@ -39,15 +39,15 @@ export const MobileStickyCTA = () => {
         <motion.button
           data-testid="mobile-sticky-cta"
           type="button"
-          onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+          onClick={() => { const el = document.getElementById("contact"); if (el) el.scrollIntoView({ behavior: "smooth" }); else window.location.assign("/#contact"); }}
           initial={{ opacity: 0, y: 24, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.9 }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          aria-label="Build Your Website"
-          className="lg:hidden fixed z-40 bottom-5 right-5 inline-flex items-center gap-2 rounded-full bg-white text-black px-5 h-12 text-[11px] tracking-[0.22em] uppercase font-semibold shadow-2xl shadow-black/60 hover:bg-black hover:text-white hover:border-white/20 border border-transparent transition-colors"
+          aria-label="Book a call"
+          className="lg:hidden fixed z-40 bottom-5 right-5 inline-flex items-center gap-2 rounded-full bg-white text-black px-5 h-11 text-[13px] font-medium shadow-2xl shadow-black/60 hover:bg-neutral-200 transition-colors"
         >
-          Build Your Website
+          Book a call
           <ArrowUpRight size={14} />
         </motion.button>
       )}

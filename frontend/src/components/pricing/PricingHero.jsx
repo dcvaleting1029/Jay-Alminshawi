@@ -5,7 +5,7 @@ export const PricingHero = () => {
   return (
     <section
       data-testid="pricing-hero"
-      className="relative pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-24 bg-[#050505] overflow-hidden"
+      className="relative pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-24 bg-[#09090b] overflow-hidden"
     >
       {/* Floating background gradients */}
       <div className="pointer-events-none absolute inset-0 -z-0">
@@ -13,7 +13,7 @@ export const PricingHero = () => {
         <div className="absolute top-20 right-0 w-[480px] h-[480px] rounded-full bg-white/[0.025] blur-[120px]" />
       </div>
 
-      <div className="relative mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
+      <div className="relative mx-auto w-full px-[5vw]">
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -34,7 +34,7 @@ export const PricingHero = () => {
                 transition: { duration: 0.7 },
               },
             }}
-            className="font-heading text-[11px] tracking-[0.32em] uppercase text-white/40 mb-6"
+            className="font-heading text-[11px] tracking-widest uppercase text-white/40 mb-6"
           >
             <span className="inline-block h-px w-8 align-middle mr-3 bg-white/30" />
             Pricing
@@ -50,10 +50,10 @@ export const PricingHero = () => {
                 transition: { duration: 0.95, ease: [0.22, 1, 0.36, 1] },
               },
             }}
-            className="font-display uppercase text-white leading-[0.9] tracking-tight text-5xl sm:text-6xl lg:text-7xl xl:text-[88px]"
+            className="font-title font-medium text-white leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-6xl"
           >
             Websites that <br className="hidden sm:block" />
-            <span className="text-white/60">pay for themselves.</span>
+            <span className="text-white/60">win better jobs.</span>
           </motion.h1>
 
           <motion.p
@@ -63,10 +63,9 @@ export const PricingHero = () => {
             }}
             className="mt-8 sm:mt-10 text-[16px] sm:text-lg text-white/60 max-w-2xl leading-relaxed"
           >
-            Whether you&apos;re a solo entrepreneur or a full team, this is the
-            complete website solution for ambitious businesses ready to grow —
-            designed to bring in enquiries and convert visitors into loyal
-            customers from day one.
+            One package, built for building firms — everything you need to
+            look like the premium choice and turn homeowners into quote
+            requests from day one.
           </motion.p>
         </motion.div>
       </div>

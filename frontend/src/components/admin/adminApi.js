@@ -39,6 +39,16 @@ export const STATUS_LABELS = {
   closed: "Closed",
 };
 
+export const NUDGE_AFTER_DAYS = 3;
+
+export const needsFollowUp = (lead) => {
+  if (!lead.delivery_sent || lead.open_count || ["call_booked", "won", "closed"].includes(lead.status)) return false;
+  const sent = new Date(lead.audit_sent_at).getTime();
+  return Date.now() - sent >= NUDGE_AFTER_DAYS * 86400000;
+};
+
+export const daysSince = (iso) => Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
+
 export const formatDate = (iso) =>
   iso ? new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "—";
 

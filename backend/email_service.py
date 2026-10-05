@@ -13,6 +13,8 @@ EMAIL_BASE_URL = "https://integrations.emergentagent.com"
 EMAIL_KEY = os.environ["EMERGENT_EMAIL_KEY"]
 EMAIL_FROM_NAME = os.environ["EMAIL_FROM_NAME"]
 EMAIL_REPLY_TO = os.environ.get("EMAIL_REPLY_TO")
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
+RESEND_FROM_EMAIL = os.environ.get("RESEND_FROM_EMAIL")
 
 _SHORTENERS = ("bit.ly", "tinyurl.com", "t.co", "is.gd", "cutt.ly", "goo.gl", "rebrand.ly")
 _CRED_ASK = ("reply with your password", "reply with the code", "send your password", "cvv",
@@ -87,8 +89,26 @@ def _assert_safe_email(subject: str, html: str) -> None:
                 raise ValueError(f"Anchor text {m.group(1)!r} ≠ real link host {real!r} (G3)")
 
 
-async def send_email(*, to: str, subject: str, html: str) -> str | None:
-    _assert_safe_email(subject, html)
+async def _send_via_resend(to: str, subject: str, html: str) -> str | None:
+    payload = {
+        "from": f"{EMAIL_FROM_NAME} <{RESEND_FROM_EMAIL}>",
+        "to": [to],
+        "subject": subject,
+        "html": html,
+    }
+    if EMAIL_REPLY_TO:
+        payload["reply_to"] = EMAIL_REPLY_TO
+    async with httpx.AsyncClient(timeout=20) as client:
+        resp = await client.post(
+            "https://api.resend.com/emails",
+            headers={"Authorization": f"Bearer {RESEND_API_KEY}"},
+            json=payload,
+        )
+    resp.raise_for_status()
+    return resp.json().get("id")
+
+
+async def _send_via_proxy(to: str, subject: str, html: str) -> str | None:
     payload = {"to": [to], "subject": subject, "html": html, "from_name": EMAIL_FROM_NAME}
     if EMAIL_REPLY_TO:
         payload["contact_email"] = EMAIL_REPLY_TO
@@ -100,3 +120,13 @@ async def send_email(*, to: str, subject: str, html: str) -> str | None:
         )
     resp.raise_for_status()
     return resp.json().get("id")
+
+
+async def send_email(*, to: str, subject: str, html: str) -> str | None:
+    _assert_safe_email(subject, html)
+    if RESEND_API_KEY and RESEND_FROM_EMAIL:
+        try:
+            return await _send_via_resend(to, subject, html)
+        except httpx.HTTPStatusError as e:  # own-domain send rejected — fall back to managed sender
+            logger.error(f"Resend send failed ({e.response.status_code}): {e.response.text[:200]}")
+    return await _send_via_proxy(to, subject, html)

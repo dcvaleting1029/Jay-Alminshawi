@@ -1,0 +1,9 @@
+crons:
+  - name: auto-nudge
+    description: "Emails a friendly nudge to leads whose audit has been unopened for 3+ days (once per lead)"
+    cron: "0 9 * * *"
+    timezone: "Europe/London"
+    endpoint: "{{BASE_URL}}/api/cron/auto-nudge"
+    method: POST
+    # Cron endpoints must ack 2xx immediately; enqueue/background the actual work.
+    enabled: true
